@@ -1,0 +1,132 @@
+granuleId,packageId,committees,authorityId,chamber,committeeName,type
+CREC-2015-01-29-pt1-PgS611,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS611-8,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS611-5,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS611-7,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS611-2,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS611-3,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS611-6,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS611-4,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS612,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS613,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS613-2,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS613-3,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS613-4,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS615,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS616,CREC-2015-01-29,,ssap00,S,Committee on Appropriations,S
+CREC-2015-01-29-pt1-PgS614,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS619,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS617-2,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS617,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS620,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS620-2,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS645,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS620-3,CREC-2015-01-29,,sshr00,S,"Committee on Health, Education, Labor, and Pensions",S
+CREC-2015-01-29-pt1-PgS620-3,CREC-2015-01-29,,spag00,S,Special Committee on Aging,P
+CREC-2015-01-29-pt1-PgS620-3,CREC-2015-01-29,,hsif00,H,Committee on Energy and Commerce,S
+CREC-2015-01-29-pt1-PgS620-3,CREC-2015-01-29,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2015-01-29-pt1-PgS645-2,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS648,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS648-2,CREC-2015-01-29,,ssap00,S,Committee on Appropriations,S
+CREC-2015-01-29-pt1-PgS649,CREC-2015-01-29,,ssra00,S,Committee on Rules and Administration,S
+CREC-2015-01-29-pt1-PgS650,CREC-2015-01-29,,slet00,S,Select Committee on Ethics,L
+CREC-2015-01-29-pt1-PgS650-2,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS650-3,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS651,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS651-2,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS652,CREC-2015-01-29,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-01-29-pt1-PgS651-3,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS653-2,CREC-2015-01-29,,ssas00,S,Committee on Armed Services,S
+CREC-2015-01-29-pt1-PgS653-2,CREC-2015-01-29,,ssra00,S,Committee on Rules and Administration,S
+CREC-2015-01-29-pt1-PgS653-2,CREC-2015-01-29,,slin00,S,Select Committee on Intelligence,L
+CREC-2015-01-29-pt1-PgS653-2,CREC-2015-01-29,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-01-29-pt1-PgS653-2,CREC-2015-01-29,,ssbu00,S,Committee on the Budget,S
+CREC-2015-01-29-pt1-PgS651-4,CREC-2015-01-29,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2015-01-29-pt1-PgS651-5,CREC-2015-01-29,,ssaf00,S,"Committee on Agriculture, Nutrition, and Forestry",S
+CREC-2015-01-29-pt1-PgS651-5,CREC-2015-01-29,,ssas00,S,Committee on Armed Services,S
+CREC-2015-01-29-pt1-PgS651-5,CREC-2015-01-29,,ssbk00,S,"Committee on Banking, Housing, and Urban Affairs",S
+CREC-2015-01-29-pt1-PgS651-5,CREC-2015-01-29,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2015-01-29-pt1-PgS651-5,CREC-2015-01-29,,ssev00,S,Committee on Environment and Public Works,S
+CREC-2015-01-29-pt1-PgS651-5,CREC-2015-01-29,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2015-01-29-pt1-PgS651-5,CREC-2015-01-29,,sshr00,S,"Committee on Health, Education, Labor, and Pensions",S
+CREC-2015-01-29-pt1-PgS651-5,CREC-2015-01-29,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2015-01-29-pt1-PgS651-5,CREC-2015-01-29,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-01-29-pt1-PgS651-5,CREC-2015-01-29,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2015-01-29-pt1-PgS652-2,CREC-2015-01-29,,ssas00,S,Committee on Armed Services,S
+CREC-2015-01-29-pt1-PgS652-2,CREC-2015-01-29,,ssra00,S,Committee on Rules and Administration,S
+CREC-2015-01-29-pt1-PgS652-2,CREC-2015-01-29,,slin00,S,Select Committee on Intelligence,L
+CREC-2015-01-29-pt1-PgS652-2,CREC-2015-01-29,,ssbu00,S,Committee on the Budget,S
+CREC-2015-01-29-pt1-PgS653,CREC-2015-01-29,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2015-01-29-pt1-PgS653,CREC-2015-01-29,,ssas00,S,Committee on Armed Services,S
+CREC-2015-01-29-pt1-PgS653,CREC-2015-01-29,,ssbk00,S,"Committee on Banking, Housing, and Urban Affairs",S
+CREC-2015-01-29-pt1-PgS653,CREC-2015-01-29,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2015-01-29-pt1-PgS653,CREC-2015-01-29,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2015-01-29-pt1-PgS653,CREC-2015-01-29,,ssfi00,S,Committee on Finance,S
+CREC-2015-01-29-pt1-PgS653,CREC-2015-01-29,,sshr00,S,"Committee on Health, Education, Labor, and Pensions",S
+CREC-2015-01-29-pt1-PgS653,CREC-2015-01-29,,ssra00,S,Committee on Rules and Administration,S
+CREC-2015-01-29-pt1-PgS653,CREC-2015-01-29,,ssbu00,S,Committee on the Budget,S
+CREC-2015-01-29-pt1-PgS653,CREC-2015-01-29,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2015-01-29-pt1-PgS653,CREC-2015-01-29,,slia00,S,Committee on Indian Affairs,O
+CREC-2015-01-29-pt1-PgS654,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS654-3,CREC-2015-01-29,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2015-01-29-pt1-PgS654-2,CREC-2015-01-29,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2015-01-29-pt1-PgS654-2,CREC-2015-01-29,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2015-01-29-pt1-PgS654-2,CREC-2015-01-29,,sshr00,S,"Committee on Health, Education, Labor, and Pensions",S
+CREC-2015-01-29-pt1-PgS654-2,CREC-2015-01-29,,ssbu00,S,Committee on the Budget,S
+CREC-2015-01-29-pt1-PgS654-2,CREC-2015-01-29,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2015-01-29-pt1-PgS655,CREC-2015-01-29,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2015-01-29-pt1-PgS656-2,CREC-2015-01-29,,ssbu00,S,Committee on the Budget,S
+CREC-2015-01-29-pt1-PgS656,CREC-2015-01-29,,sshr00,S,"Committee on Health, Education, Labor, and Pensions",S
+CREC-2015-01-29-pt1-PgS657,CREC-2015-01-29,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2015-01-29-pt1-PgS657-2,CREC-2015-01-29,,sshr00,S,"Committee on Health, Education, Labor, and Pensions",S
+CREC-2015-01-29-pt1-PgS658,CREC-2015-01-29,,ssas00,S,Committee on Armed Services,S
+CREC-2015-01-29-pt1-PgS658,CREC-2015-01-29,,ssra00,S,Committee on Rules and Administration,S
+CREC-2015-01-29-pt1-PgS659,CREC-2015-01-29,,ssra00,S,Committee on Rules and Administration,S
+CREC-2015-01-29-pt1-PgS659-2,CREC-2015-01-29,,slin00,S,Select Committee on Intelligence,L
+CREC-2015-01-29-pt1-PgS659-2,CREC-2015-01-29,,ssra00,S,Committee on Rules and Administration,S
+CREC-2015-01-29-pt1-PgS660,CREC-2015-01-29,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-01-29-pt1-PgS660-3,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS661,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS660-2,CREC-2015-01-29,,ssbu00,S,Committee on the Budget,S
+CREC-2015-01-29-pt1-PgS660-2,CREC-2015-01-29,,ssra00,S,Committee on Rules and Administration,S
+CREC-2015-01-29-pt1-PgS661-2,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS661-3,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS661-4,CREC-2015-01-29,,ssas00,S,Committee on Armed Services,S
+CREC-2015-01-29-pt1-PgS661-4,CREC-2015-01-29,,ssbk00,S,"Committee on Banking, Housing, and Urban Affairs",S
+CREC-2015-01-29-pt1-PgS661-4,CREC-2015-01-29,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2015-01-29-pt1-PgS661-4,CREC-2015-01-29,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2015-01-29-pt1-PgS661-4,CREC-2015-01-29,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2015-01-29-pt1-PgS661-4,CREC-2015-01-29,,sshr00,S,"Committee on Health, Education, Labor, and Pensions",S
+CREC-2015-01-29-pt1-PgS661-4,CREC-2015-01-29,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-01-29-pt1-PgS661-4,CREC-2015-01-29,,ssra00,S,Committee on Rules and Administration,S
+CREC-2015-01-29-pt1-PgS661-4,CREC-2015-01-29,,slin00,S,Select Committee on Intelligence,L
+CREC-2015-01-29-pt1-PgS661-5,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS662,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS662-2,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS662-4,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS662-3,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS662-5,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS662-7,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS662-6,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS663,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS663-2,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgS664,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgD80,CREC-2015-01-29,,ssas00,S,Committee on Armed Services,S
+CREC-2015-01-29-pt1-PgD80,CREC-2015-01-29,,ssra00,S,Committee on Rules and Administration,S
+CREC-2015-01-29-pt1-PgD80,CREC-2015-01-29,,slin00,S,Select Committee on Intelligence,L
+CREC-2015-01-29-pt1-PgD80,CREC-2015-01-29,,ssbu00,S,Committee on the Budget,S
+CREC-2015-01-29-pt1-PgD81,CREC-2015-01-29,,ssap00,S,Committee on Appropriations,S
+CREC-2015-01-29-pt1-PgD81,CREC-2015-01-29,,ssas00,S,Committee on Armed Services,S
+CREC-2015-01-29-pt1-PgD81,CREC-2015-01-29,,ssbk00,S,"Committee on Banking, Housing, and Urban Affairs",S
+CREC-2015-01-29-pt1-PgD81,CREC-2015-01-29,,ssbu00,S,Committee on the Budget,S
+CREC-2015-01-29-pt1-PgD81,CREC-2015-01-29,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2015-01-29-pt1-PgD81,CREC-2015-01-29,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2015-01-29-pt1-PgD81,CREC-2015-01-29,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2015-01-29-pt1-PgD81,CREC-2015-01-29,,sshr00,S,"Committee on Health, Education, Labor, and Pensions",S
+CREC-2015-01-29-pt1-PgD81,CREC-2015-01-29,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-01-29-pt1-PgD81,CREC-2015-01-29,,ssra00,S,Committee on Rules and Administration,S
+CREC-2015-01-29-pt1-PgD81,CREC-2015-01-29,,slin00,S,Select Committee on Intelligence,L
+CREC-2015-01-29-pt1-PgD83,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgD83-2,CREC-2015-01-29,,,,,
+CREC-2015-01-29-pt1-PgD83-4,CREC-2015-01-29,,jspr00,J,Joint Committee on Printing,J
+CREC-2015-01-29-pt1-PgD83-3,CREC-2015-01-29,,,,,

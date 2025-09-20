@@ -1,0 +1,76 @@
+granuleId,packageId,members,role,chamber,congress,bioGuideId,memberName,state,party,name__authority-lnf,name__parsed,name__authority-fnf,name__authority-other
+CREC-2015-09-21-pt1-PgS6821,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6847,CREC-2015-09-21,,SPEAKING,S,114,L000575,"Lankford, James",OK,R,"Lankford, James",Mr. LANKFORD,James Lankford,
+CREC-2015-09-21-pt1-PgS6821-3,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6822,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6821-2,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6821-5,CREC-2015-09-21,,SPEAKING,S,114,R000146,"Reid, Harry",NV,D,"Reid, Harry",Mr. REID,Harry Reid,Harry M. Reid
+CREC-2015-09-21-pt1-PgS6821-4,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,H000338,"Hatch, Orrin G.",UT,R,"Hatch, Orrin G.",Mr. HATCH,Orrin G. Hatch,Orrin Hatch
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,H000338,"Hatch, Orrin G.",UT,R,"Hatch, Orrin G.",Mr. HATCH,Orrin G. Hatch,Orrin Grant Hatch
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,F000062,"Feinstein, Dianne",CA,D,"Feinstein, Dianne",Mrs. FEINSTEIN,Dianne Feinstein,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,C001095,"Cotton, Tom",AR,R,"Cotton, Tom",Mr. COTTON,Tom Cotton,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,A000360,"Alexander, Lamar",TN,R,"Alexander, Lamar",Mr. ALEXANDER,Lamar Alexander,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,H001042,"Hirono, Mazie K.",HI,D,"Hirono, Mazie K.",Ms. HIRONO,Mazie K. Hirono,Mazie Hirono
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,P000612,"Perdue, David",GA,R,"Perdue, David",Mr. PERDUE,David Perdue,David Alfred Perdue
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,W000802,"Whitehouse, Sheldon",RI,D,"Whitehouse, Sheldon",Mr. WHITEHOUSE,Sheldon Whitehouse,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,S001141,"Sessions, Jeff",AL,R,"Sessions, Jeff",Mr. SESSIONS,Jeff Sessions,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,F000457,"Franken, Al",MN,D,"Franken, Al",Mr. FRANKEN,Al Franken,Al Franken
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,C001056,"Cornyn, John",TX,R,"Cornyn, John",Mr. CORNYN,John Cornyn,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,M000355,"McConnell, Mitch",KY,R,"McConnell, Mitch",Mr. McCONNELL,Mitch McConnell,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,L000577,"Lee, Mike",UT,R,"Lee, Mike",Mr. LEE,Mike Lee,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,D000607,"Donnelly, Joe",IN,D,"Donnelly, Joe",Mr. DONNELLY,Joe Donnelly,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,B001277,"Blumenthal, Richard",CT,D,"Blumenthal, Richard",Mr. BLUMENTHAL,Richard Blumenthal,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,G000359,"Graham, Lindsey",SC,R,"Graham, Lindsey",Mr. GRAHAM,Lindsey Graham,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,E000295,"Ernst, Joni",IA,R,"Ernst, Joni",Mrs. ERNST,Joni Ernst,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,S001181,"Shaheen, Jeanne",NH,D,"Shaheen, Jeanne",Mrs. SHAHEEN,Jeanne Shaheen,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,F000463,"Fischer, Deb",NE,R,"Fischer, Deb",Mrs. FISCHER,Deb Fischer,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,W000817,"Warren, Elizabeth",MA,D,"Warren, Elizabeth",Ms. WARREN,Elizabeth Warren,Elizabeth A. Warren
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,B000575,"Blunt, Roy",MO,R,"Blunt, Roy",Mr. BLUNT,Roy Blunt,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,B001230,"Baldwin, Tammy",WI,D,"Baldwin, Tammy",Ms. BALDWIN,Tammy Baldwin,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,C000542,"Coats, Daniel",IN,R,"Coats, Daniel",Mr. COATS,Daniel Coats,Daniel Ray Coats
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,I000024,"Inhofe, James M.",OK,R,"Inhofe, James M.",Mr. INHOFE,James M. Inhofe,Jim Inhofe
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,T000250,"Thune, John",SD,R,"Thune, John",Mr. THUNE,John Thune,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,G000386,"Grassley, Chuck",IA,R,"Grassley, Chuck",Mr. GRASSLEY,Chuck Grassley,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,R000307,"Roberts, Pat",KS,R,"Roberts, Pat",Mr. ROBERTS,Pat Roberts,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,D000618,"Daines, Steve",MT,R,"Daines, Steve",Mr. DAINES,Steve Daines,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,P000449,"Portman, Rob",OH,R,"Portman, Rob",Mr. PORTMAN,Rob Portman,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,L000575,"Lankford, James",OK,R,"Lankford, James",Mr. LANKFORD,James Lankford,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,SPEAKING,S,114,E000285,"Enzi, Michael B.",WY,R,"Enzi, Michael B.",Mr. ENZI,Michael B. Enzi,Michael Enzi
+CREC-2015-09-21-pt1-PgS6847-2,CREC-2015-09-21,,SPEAKING,S,114,R000146,"Reid, Harry",NV,D,"Reid, Harry",Mr. REID,Harry Reid,Harry M. Reid
+CREC-2015-09-21-pt1-PgS6848-2,CREC-2015-09-21,,SPEAKING,S,114,I000024,"Inhofe, James M.",OK,R,"Inhofe, James M.",Mr. INHOFE,James M. Inhofe,Jim Inhofe
+CREC-2015-09-21-pt1-PgS6848,CREC-2015-09-21,,SPEAKING,S,114,C000880,"Crapo, Mike",ID,R,"Crapo, Mike",Mr. CRAPO,Mike Crapo,
+CREC-2015-09-21-pt1-PgS6848-4,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6849,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6849-2,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6848-3,CREC-2015-09-21,,SPEAKING,S,114,M000639,"Menendez, Robert",NJ,D,"Menendez, Robert",Mr. MENENDEZ,Robert Menendez,
+CREC-2015-09-21-pt1-PgS6849-3,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6849-4,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6849-5,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6849-6,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6849-7,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6849-8,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6850,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6849-10,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6849-9,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6851,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6851-2,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6851-3,CREC-2015-09-21,,SPEAKING,S,114,C001070,"Casey, Robert P., Jr.",PA,D,"Casey, Robert P., Jr.",Mr. CASEY,Robert P. Casey Jr.,Bob Casey
+CREC-2015-09-21-pt1-PgS6851-4,CREC-2015-09-21,,SPEAKING,S,114,L000575,"Lankford, James",OK,R,"Lankford, James",Mr. LANKFORD,James Lankford,
+CREC-2015-09-21-pt1-PgS6852,CREC-2015-09-21,,SPEAKING,S,114,L000575,"Lankford, James",OK,R,"Lankford, James",Mr. LANKFORD,James Lankford,
+CREC-2015-09-21-pt1-PgS6855,CREC-2015-09-21,,SPEAKING,S,114,L000575,"Lankford, James",OK,R,"Lankford, James",Mr. LANKFORD,James Lankford,
+CREC-2015-09-21-pt1-PgS6855,CREC-2015-09-21,,SPEAKING,S,114,C001035,"Collins, Susan M.",ME,R,"Collins, Susan M.",Ms. COLLINS,Susan M. Collins,Susan Collins
+CREC-2015-09-21-pt1-PgS6851-5,CREC-2015-09-21,,SPEAKING,S,114,L000575,"Lankford, James",OK,R,"Lankford, James",Mr. LANKFORD,James Lankford,
+CREC-2015-09-21-pt1-PgS6855-2,CREC-2015-09-21,,SPEAKING,S,114,L000575,"Lankford, James",OK,R,"Lankford, James",Mr. LANKFORD,James Lankford,
+CREC-2015-09-21-pt1-PgS6855-3,CREC-2015-09-21,,SPEAKING,S,114,L000575,"Lankford, James",OK,R,"Lankford, James",Mr. LANKFORD,James Lankford,
+CREC-2015-09-21-pt1-PgS6855-5,CREC-2015-09-21,,SPEAKING,S,114,L000575,"Lankford, James",OK,R,"Lankford, James",Mr. LANKFORD,James Lankford,
+CREC-2015-09-21-pt1-PgS6855-4,CREC-2015-09-21,,SPEAKING,S,114,L000575,"Lankford, James",OK,R,"Lankford, James",Mr. LANKFORD,James Lankford,
+CREC-2015-09-21-pt1-PgD995,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgD996,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgS6855-6,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgD996-2,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgE1331,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgD996-3,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgD996-4,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgD996-5,CREC-2015-09-21,,,,,,,,,,,,
+CREC-2015-09-21-pt1-PgD997,CREC-2015-09-21,,,,,,,,,,,,

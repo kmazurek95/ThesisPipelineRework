@@ -1,0 +1,12 @@
+{
+  "packageId": "CREC-2015-02-25",
+  "congress": 114,
+  "date": null,
+  "chambers": "EHS",
+  "counts": {
+    "granules_core": 193,
+    "granule_references": 479,
+    "granule_committees": 311,
+    "granule_members": 262
+  }
+}

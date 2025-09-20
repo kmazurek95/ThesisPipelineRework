@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "interest-group-analysis"
+version = "0.1.0"
+description = "Collect and analyze Congressional Record transcripts (CREC) from GovInfo."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Your Name" }]
+requires-python = ">=3.10"
+dependencies = [
+  "requests",
+  "beautifulsoup4",
+  "tqdm",
+  "retrying",
+  "pandas",
+  "readability-lxml",
+  "lxml",
+  "python-dotenv",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["interest_group_analysis*"]
+
+[tool.black]
+line-length = 100
+

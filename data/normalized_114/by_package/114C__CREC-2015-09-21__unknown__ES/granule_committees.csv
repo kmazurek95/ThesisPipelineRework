@@ -1,0 +1,61 @@
+granuleId,packageId,committees,authorityId,chamber,committeeName,type
+CREC-2015-09-21-pt1-PgS6821,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6847,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6821-3,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6822,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6821-2,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6821-5,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6821-4,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6822-2,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6847-2,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6848-2,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6848,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6848-4,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6849,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6849-2,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6848-3,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6849-3,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6849-4,CREC-2015-09-21,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-09-21-pt1-PgS6849-5,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6849-6,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6849-7,CREC-2015-09-21,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2015-09-21-pt1-PgS6849-8,CREC-2015-09-21,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2015-09-21-pt1-PgS6849-8,CREC-2015-09-21,,ssva00,S,Committee on Veterans' Affairs,S
+CREC-2015-09-21-pt1-PgS6850,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6849-10,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6849-9,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6851,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6851-2,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6851-3,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6851-4,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6852,CREC-2015-09-21,,ssaf00,S,"Committee on Agriculture, Nutrition, and Forestry",S
+CREC-2015-09-21-pt1-PgS6852,CREC-2015-09-21,,hsag00,H,Committee on Agriculture,S
+CREC-2015-09-21-pt1-PgS6852,CREC-2015-09-21,,ssap00,S,Committee on Appropriations,S
+CREC-2015-09-21-pt1-PgS6852,CREC-2015-09-21,,ssaf00,S,Committee on Agriculture,S
+CREC-2015-09-21-pt1-PgS6852,CREC-2015-09-21,,hsap00,H,Committee on Appropriations,S
+CREC-2015-09-21-pt1-PgS6855,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6851-5,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6855-2,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6855-3,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6855-5,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6855-4,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgD995,CREC-2015-09-21,,ssas00,S,Committee on Armed Services,S
+CREC-2015-09-21-pt1-PgD996,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgS6855-6,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgD996-2,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgE1331,CREC-2015-09-21,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2015-09-21-pt1-PgE1331,CREC-2015-09-21,,slin00,S,Select Committee on Intelligence,L
+CREC-2015-09-21-pt1-PgE1331,CREC-2015-09-21,,ssas00,S,Committee on Armed Services,S
+CREC-2015-09-21-pt1-PgE1331,CREC-2015-09-21,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-09-21-pt1-PgD996-3,CREC-2015-09-21,,,,,
+CREC-2015-09-21-pt1-PgD996-4,CREC-2015-09-21,,ssas00,S,Committee on Armed Services,S
+CREC-2015-09-21-pt1-PgD996-4,CREC-2015-09-21,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2015-09-21-pt1-PgD996-4,CREC-2015-09-21,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2015-09-21-pt1-PgD996-4,CREC-2015-09-21,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-09-21-pt1-PgD996-4,CREC-2015-09-21,,slin00,S,Select Committee on Intelligence,L
+CREC-2015-09-21-pt1-PgD996-5,CREC-2015-09-21,,ssas00,S,Committee on Armed Services,S
+CREC-2015-09-21-pt1-PgD996-5,CREC-2015-09-21,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2015-09-21-pt1-PgD996-5,CREC-2015-09-21,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2015-09-21-pt1-PgD996-5,CREC-2015-09-21,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-09-21-pt1-PgD996-5,CREC-2015-09-21,,slin00,S,Select Committee on Intelligence,L
+CREC-2015-09-21-pt1-PgD997,CREC-2015-09-21,,jspr00,J,Joint Committee on Printing,J

@@ -1,0 +1,43 @@
+granuleId,packageId,gpoId,authorityId,role,chamber,congress,bioGuideId,memberName,state,party,members,name__authority-lnf,name__authority-other,name__parsed,name__authority-fnf
+CREC-2016-01-07-pt1-PgH106-3,CREC-2016-01-07,7968,1504,SPEAKING,H,114,M000312,"McGovern, James P.",MA,D,,"McGovern, James P.",James Mcgovern,Mr. McGOVERN,James P. McGovern
+CREC-2016-01-07-pt1-PgH105,CREC-2016-01-07,,,,,,,,,,,,,,
+CREC-2016-01-07-pt1-PgH105-3,CREC-2016-01-07,,,,,,,,,,,,,,
+CREC-2016-01-07-pt1-PgH105-2,CREC-2016-01-07,,,,,,,,,,,,,,
+CREC-2016-01-07-pt1-PgH106-2,CREC-2016-01-07,8123,1952,SPEAKING,H,114,T000467,"Thompson, Glenn",PA,R,,"Thompson, Glenn",,Mr. THOMPSON of Pennsylvania,Glenn Thompson
+CREC-2016-01-07-pt1-PgH-FrontMatter-3,CREC-2016-01-07,,,,,,,,,,,,,,
+CREC-2016-01-07-pt1-PgH106,CREC-2016-01-07,8116,99,SPEAKING,H,114,B000574,"Blumenauer, Earl",OR,D,,"Blumenauer, Earl",,Mr. BLUMENAUER,Earl Blumenauer
+CREC-2016-01-07-pt1-PgH105-4,CREC-2016-01-07,7790,1987,SPEAKING,H,114,B001274,"Brooks, Mo",AL,R,,"Brooks, Mo",,Mr. BROOKS of Alabama,Mo Brooks
+CREC-2016-01-07-pt1-PgH108-2,CREC-2016-01-07,7852,1522,SPEAKING,H,114,S000030,"Sanchez, Loretta",CA,D,,"Sanchez, Loretta",,Ms. LORETTA SANCHEZ of California,Loretta Sanchez
+CREC-2016-01-07-pt1-PgH107,CREC-2016-01-07,,2243,SPEAKING,H,114,B001295,"Bost, Mike",IL,R,,"Bost, Mike",,Mr. BOST,Mike Bost
+CREC-2016-01-07-pt1-PgH110-2,CREC-2016-01-07,,2235,SPEAKING,H,114,C001107,"Curbelo, Carlos",FL,R,,"Curbelo, Carlos",,Mr. CURBELO of Florida,Carlos Curbelo
+CREC-2016-01-07-pt1-PgH108,CREC-2016-01-07,,2100,SPEAKING,H,114,L000578,"LaMalfa, Doug",CA,R,,"LaMalfa, Doug",,Mr. LaMALFA,Doug LaMalfa
+CREC-2016-01-07-pt1-PgH110-3,CREC-2016-01-07,7825,1774,SPEAKING,H,114,C001059,"Costa, Jim",CA,D,,"Costa, Jim",,Mr. COSTA,Jim Costa
+CREC-2016-01-07-pt1-PgH107-2,CREC-2016-01-07,8024,1761,SPEAKING,H,114,B001251,"Butterfield, G. K.",NC,D,,"Butterfield, G. K.",,Mr. BUTTERFIELD,G. K. Butterfield
+CREC-2016-01-07-pt1-PgH109,CREC-2016-01-07,7926,1848,SPEAKING,H,114,R000580,"Roskam, Peter J.",IL,R,,"Roskam, Peter J.",Mr. Peter Roskam,Mr. ROSKAM,Peter J. Roskam
+CREC-2016-01-07-pt1-PgH110,CREC-2016-01-07,8360,2089,SPEAKING,H,114,H001063,"Hahn, Janice",CA,D,,"Hahn, Janice",,Ms. HAHN,Janice Hahn
+CREC-2016-01-07-pt1-PgH112,CREC-2016-01-07,,2266,SPEAKING,H,114,C001106,"Costello, Ryan A.",PA,R,,"Costello, Ryan A.",Mr. Ryan Costello,Mr. COSTELLO of Pennsylvania,Ryan A. Costello
+CREC-2016-01-07-pt1-PgH111,CREC-2016-01-07,8022,2035,SPEAKING,H,114,P000601,"Palazzo, Steven M.",MS,R,,"Palazzo, Steven M.",Mr. Steven Palazzo,Mr. PALAZZO,Steven M. Palazzo
+CREC-2016-01-07-pt1-PgH111-2,CREC-2016-01-07,7861,1997,SPEAKING,H,114,T000470,"Tipton, Scott R.",CO,R,,"Tipton, Scott R.",Mr. Scott Tipton,Mr. TIPTON,Scott R. Tipton
+CREC-2016-01-07-pt1-PgH113-3,CREC-2016-01-07,,,,,,,,,,,,,,
+CREC-2016-01-07-pt1-PgH113-2,CREC-2016-01-07,,,,,,,,,,,,,,
+CREC-2016-01-07-pt1-PgH113,CREC-2016-01-07,,,,,,,,,,,,,,
+CREC-2016-01-07-pt1-PgH112-2,CREC-2016-01-07,7900,1779,SPEAKING,H,114,W000796,"Westmoreland, Lynn A.",GA,R,,"Westmoreland, Lynn A.",Mr. Lynn Westmoreland,Mr. WESTMORELAND,Lynn A. Westmoreland
+CREC-2016-01-07-pt1-PgH113-4,CREC-2016-01-07,,,,,,,,,,,,,,
+CREC-2016-01-07-pt1-PgH113-6,CREC-2016-01-07,,,,,,,,,,,,,,
+CREC-2016-01-07-pt1-PgH113-5,CREC-2016-01-07,,,,,,,,,,,,,,
+CREC-2016-01-07-pt1-PgH113-7,CREC-2016-01-07,8142,1688,SPEAKING,H,114,W000795,"Wilson, Joe",SC,R,,"Wilson, Joe",,Mr. WILSON of South Carolina,Joe Wilson
+CREC-2016-01-07-pt1-PgH113-9,CREC-2016-01-07,,2161,SPEAKING,H,114,W000814,"Weber, Randy K., Sr.",TX,R,,"Weber, Randy K., Sr.",Mr. Randy Weber Sr.,Mr. WEBER of Texas,"Randy K. Weber, Sr."
+CREC-2016-01-07-pt1-PgH113-10,CREC-2016-01-07,8088,1794,SPEAKING,H,114,H001038,"Higgins, Brian",NY,D,,"Higgins, Brian",,Mr. HIGGINS,Brian Higgins
+CREC-2016-01-07-pt1-PgH114-2,CREC-2016-01-07,,2110,SPEAKING,H,114,T000472,"Takano, Mark",CA,D,,"Takano, Mark",,Mr. TAKANO,Mark Takano
+CREC-2016-01-07-pt1-PgH113-8,CREC-2016-01-07,8374,2096,SPEAKING,H,114,D000617,"DelBene, Suzan K.",WA,D,,"DelBene, Suzan K.",Ms. Suzan Delbene,Ms. DelBENE,Suzan K. DelBene
+CREC-2016-01-07-pt1-PgH114,CREC-2016-01-07,,2128,SPEAKING,H,114,W000813,"Walorski, Jackie",IN,R,,"Walorski, Jackie",,Mrs. WALORSKI,Jackie Walorski
+CREC-2016-01-07-pt1-PgH115-3,CREC-2016-01-07,7828,1471,SPEAKING,H,114,C001036,"Capps, Lois",CA,D,,"Capps, Lois",,Mrs. CAPPS,Lois Capps
+CREC-2016-01-07-pt1-PgH115-2,CREC-2016-01-07,8158,1802,SPEAKING,H,114,P000592,"Poe, Ted",TX,R,,"Poe, Ted",,Mr. POE of Texas,Ted Poe
+CREC-2016-01-07-pt1-PgH115,CREC-2016-01-07,,2113,SPEAKING,H,114,P000608,"Peters, Scott H.",CA,D,,"Peters, Scott H.",Mr. Scott Peters,Mr. PETERS,Scott H. Peters
+CREC-2016-01-07-pt1-PgH115-5,CREC-2016-01-07,7852,1522,SPEAKING,H,114,S000030,"Sanchez, Loretta",CA,D,,"Sanchez, Loretta",,Ms. LORETTA SANCHEZ of California,Loretta Sanchez
+CREC-2016-01-07-pt1-PgH114-5,CREC-2016-01-07,,2236,SPEAKING,H,114,C001103,"Carter, Earl L. ""Buddy""",GA,R,,"Carter, Earl L. ""Buddy""",Mr. Earl Carter,Mr. CARTER of Georgia,"Earl L. ""Buddy"" Carter"
+CREC-2016-01-07-pt1-PgH115-4,CREC-2016-01-07,,2239,SPEAKING,H,114,A000372,"Allen, Rick W.",GA,R,,"Allen, Rick W.",Mr. Rick Allen,Mr. ALLEN,Rick W. Allen
+CREC-2016-01-07-pt1-PgH114-4,CREC-2016-01-07,,2169,SPEAKING,H,114,K000381,"Kilmer, Derek",WA,D,,"Kilmer, Derek",,Mr. KILMER,Derek Kilmer
+CREC-2016-01-07-pt1-PgH114-3,CREC-2016-01-07,,2263,SPEAKING,H,114,S001196,"Stefanik, Elise M.",NY,R,,"Stefanik, Elise M.",Ms. Elise Stefanik,Ms. STEFANIK,Elise M. Stefanik
+CREC-2016-01-07-pt1-PgH116,CREC-2016-01-07,,2166,SPEAKING,H,114,V000131,"Veasey, Marc A.",TX,D,,"Veasey, Marc A.",Mr. Marc Veasey,Mr. VEASEY,Marc A. Veasey
+CREC-2016-01-07-pt1-PgH115-6,CREC-2016-01-07,7987,2028,SPEAKING,H,114,H001058,"Huizenga, Bill",MI,R,,"Huizenga, Bill",,Mr. HUIZENGA of Michigan,Bill Huizenga

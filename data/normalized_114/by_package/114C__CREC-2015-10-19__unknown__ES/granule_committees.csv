@@ -1,0 +1,80 @@
+granuleId,packageId,committees,authorityId,chamber,committeeName,type
+CREC-2015-10-19-pt1-PgS7290,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7289-2,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7289,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7289-6,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7289-3,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7289-4,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7289-5,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7290-2,CREC-2015-10-19,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-10-19-pt1-PgS7301,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7302,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7303,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7303-2,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7303-3,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7303-4,CREC-2015-10-19,,slia00,S,Committee on Indian Affairs,O
+CREC-2015-10-19-pt1-PgS7303-4,CREC-2015-10-19,,ssbk00,S,"Committee on Banking, Housing, and Urban Affairs",S
+CREC-2015-10-19-pt1-PgS7303-5,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7303-6,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7304,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7303-7,CREC-2015-10-19,,ssva00,S,Committee on Veterans' Affairs,S
+CREC-2015-10-19-pt1-PgS7303-7,CREC-2015-10-19,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2015-10-19-pt1-PgS7303-7,CREC-2015-10-19,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2015-10-19-pt1-PgS7304-2,CREC-2015-10-19,,ssev00,S,Committee on Environment and Public Works,S
+CREC-2015-10-19-pt1-PgS7305,CREC-2015-10-19,,ssev00,S,Committee on Environment and Public Works,S
+CREC-2015-10-19-pt1-PgS7305-4,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7304-3,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7305-3,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7305-2,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7306,CREC-2015-10-19,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-10-19-pt1-PgS7305-5,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7306-2,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7306-4,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7306-3,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7307,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7306-5,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgS7306-6,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,ssas00,S,Committee on Armed Services,S
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,ssaf00,S,"Committee on Agriculture, Nutrition, and Forestry",S
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,ssap00,S,Committee on Appropriations,S
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,ssaf00,S,Committee on Agriculture,S
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,ssev00,S,Committee on Environment and Public Works,S
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,ssbu00,S,Committee on the Budget,S
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,slia00,S,Committee on Indian Affairs,O
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,spag00,S,Special Committee on Aging,P
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,slin00,S,Select Committee on Intelligence,L
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,hshm00,H,Committee on Homeland Security,S
+CREC-2015-10-19-pt1-PgE1479-2,CREC-2015-10-19,,hsha00,H,Committee on Oversight,S
+CREC-2015-10-19-pt1-PgD1093,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgD1093-2,CREC-2015-10-19,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-10-19-pt1-PgD1094,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgD1094-3,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgD1094-2,CREC-2015-10-19,,,,,
+CREC-2015-10-19-pt1-PgD1094-4,CREC-2015-10-19,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2015-10-19-pt1-PgD1094-4,CREC-2015-10-19,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2015-10-19-pt1-PgD1094-4,CREC-2015-10-19,,slin00,S,Select Committee on Intelligence,L
+CREC-2015-10-19-pt1-PgD1094-4,CREC-2015-10-19,,hsif00,H,Committee on Energy and Commerce,S
+CREC-2015-10-19-pt1-PgD1094-4,CREC-2015-10-19,,hsru00,H,Committee on Rules,S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,ssaf00,S,"Committee on Agriculture, Nutrition, and Forestry",S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,ssap00,S,Committee on Appropriations,S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,ssas00,S,Committee on Armed Services,S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,ssbu00,S,Committee on the Budget,S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,ssev00,S,Committee on Environment and Public Works,S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,slia00,S,Committee on Indian Affairs,O
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,ssju00,S,Committee on the Judiciary,S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,slin00,S,Select Committee on Intelligence,L
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,spag00,S,Special Committee on Aging,P
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,ssaf00,S,Committee on Agriculture,S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,sshr00,S,Committee on Education,S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,hsha00,H,Committee on House Administration,S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,sssb00,S,Committee on Small Business,S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,ssva00,S,Committee on Veterans' Affairs,S
+CREC-2015-10-19-pt1-PgD1095,CREC-2015-10-19,,hsvr00,H,Committee on Veterans' Affairs,S
+CREC-2015-10-19-pt1-PgD1097,CREC-2015-10-19,,jspr00,J,Joint Committee on Printing,J

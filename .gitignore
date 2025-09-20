@@ -1,0 +1,93 @@
+# -----------------------------
+# Virtual environments
+# -----------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# -----------------------------
+# Python bytecode / caches
+# -----------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.pyright/
+.cache/
+.ipynb_checkpoints/
+
+# -----------------------------
+# Build / packaging
+# -----------------------------
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# -----------------------------
+# Editors / OS junk
+# -----------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# -----------------------------
+# Environment & secrets
+# (keep the example file tracked)
+# -----------------------------
+.env
+*.env
+!.env.example
+
+# -----------------------------
+# Logs / debug scratch
+# -----------------------------
+*.log
+debug_output.txt
+
+# -----------------------------
+# Data
+# - Ignore big/derived data
+# - Keep docs and sample fixtures
+# -----------------------------
+data/raw/
+data/processed/
+
+# Ignore common data files at the top of data/
+data/*.csv
+data/*.xlsx
+data/*.json
+data/*.sqlite3
+
+# Keep these explicitly
+!data/.gitkeep
+!data/README.md
+!data/sample/**
+# (add more explicit allowlists under data/sample if needed)
+
+# -----------------------------
+# Results
+# - Ignore outputs; keep folder markers/docs
+# -----------------------------
+results/**
+!results/.gitkeep
+!results/README.md
+
+# -----------------------------
+# Notebooks (optional)
+# If you want to track notebooks, remove this.
+# -----------------------------
+*.ipynb
+
+# -----------------------------
+# Cloud / CI local artifacts
+# -----------------------------
+.azure/

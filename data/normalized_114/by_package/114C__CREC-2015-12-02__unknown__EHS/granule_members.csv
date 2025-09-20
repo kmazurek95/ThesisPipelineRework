@@ -1,0 +1,317 @@
+granuleId,packageId,members,role,chamber,congress,bioGuideId,memberName,state,party,name__authority-lnf,name__authority-other,name__parsed,name__authority-fnf
+CREC-2015-12-02-pt1-PgH8863-3,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8863,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8864-3,CREC-2015-12-02,,SPEAKING,H,114,R000580,"Roskam, Peter J.",IL,R,"Roskam, Peter J.",Peter Roskam,Mr. ROSKAM,Peter J. Roskam
+CREC-2015-12-02-pt1-PgH8864-2,CREC-2015-12-02,,SPEAKING,H,114,D000096,"Davis, Danny K.",IL,D,"Davis, Danny K.",Danny Davis,Mr. DANNY K. DAVIS of Illinois,Danny K. Davis
+CREC-2015-12-02-pt1-PgH8863-2,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH-FrontMatter-2,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8863-4,CREC-2015-12-02,,SPEAKING,H,114,B000574,"Blumenauer, Earl",OR,D,"Blumenauer, Earl",,Mr. BLUMENAUER,Earl Blumenauer
+CREC-2015-12-02-pt1-PgH8864,CREC-2015-12-02,,SPEAKING,H,114,J000296,"Jolly, David W.",FL,R,"Jolly, David W.",David Jolly,Mr. JOLLY,David W. Jolly
+CREC-2015-12-02-pt1-PgH8865,CREC-2015-12-02,,SPEAKING,H,114,M000312,"McGovern, James P.",MA,D,"McGovern, James P.",James McGovern,Mr. McGOVERN,James P. McGovern
+CREC-2015-12-02-pt1-PgH8865-2,CREC-2015-12-02,,SPEAKING,H,114,C001107,"Curbelo, Carlos",FL,R,"Curbelo, Carlos",,Mr. CURBELO of Florida,Carlos Curbelo
+CREC-2015-12-02-pt1-PgH8866,CREC-2015-12-02,,SPEAKING,H,114,G000559,"Garamendi, John",CA,D,"Garamendi, John",,Mr. GARAMENDI,John Garamendi
+CREC-2015-12-02-pt1-PgH8867,CREC-2015-12-02,,SPEAKING,H,114,F000449,"Fortenberry, Jeff",NE,R,"Fortenberry, Jeff",,Mr. FORTENBERRY,Jeff Fortenberry
+CREC-2015-12-02-pt1-PgH8867-2,CREC-2015-12-02,,SPEAKING,H,114,Y000062,"Yarmuth, John A.",KY,D,"Yarmuth, John A.",John Yarmuth,Mr. YARMUTH,John A. Yarmuth
+CREC-2015-12-02-pt1-PgH8868,CREC-2015-12-02,,SPEAKING,H,114,D000613,"Dold, Robert J.",IL,R,"Dold, Robert J.",Robert Dold,Mr. DOLD,Robert J. Dold
+CREC-2015-12-02-pt1-PgH8869,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8868-2,CREC-2015-12-02,,SPEAKING,H,114,S000364,"Shimkus, John",IL,R,"Shimkus, John",John M. Shimkus,Mr. SHIMKUS,John Shimkus
+CREC-2015-12-02-pt1-PgH8869-2,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8869-3,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8869-4,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8869-5,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8869-6,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8869-7,CREC-2015-12-02,,SPEAKING,H,114,J000174,"Johnson, Sam",TX,R,"Johnson, Sam",,Mr. SAM JOHNSON of Texas,Sam Johnson
+CREC-2015-12-02-pt1-PgH8869-8,CREC-2015-12-02,,SPEAKING,H,114,Q000023,"Quigley, Mike",IL,D,"Quigley, Mike",,Mr. QUIGLEY,Mike Quigley
+CREC-2015-12-02-pt1-PgH8869-9,CREC-2015-12-02,,SPEAKING,H,114,W000795,"Wilson, Joe",SC,R,"Wilson, Joe",,Mr. WILSON of South Carolina,Joe Wilson
+CREC-2015-12-02-pt1-PgH8870,CREC-2015-12-02,,SPEAKING,H,114,H001038,"Higgins, Brian",NY,D,"Higgins, Brian",,Mr. HIGGINS,Brian Higgins
+CREC-2015-12-02-pt1-PgH8870-2,CREC-2015-12-02,,SPEAKING,H,114,W000813,"Walorski, Jackie",IN,R,"Walorski, Jackie",,Mrs. WALORSKI,Jackie Walorski
+CREC-2015-12-02-pt1-PgH8870-3,CREC-2015-12-02,,SPEAKING,H,114,C001084,"Cicilline, David N.",RI,D,"Cicilline, David N.",David Cicilline,Mr. CICILLINE,David N. Cicilline
+CREC-2015-12-02-pt1-PgH8870-5,CREC-2015-12-02,,SPEAKING,H,114,A000371,"Aguilar, Pete",CA,D,"Aguilar, Pete",,Mr. AGUILAR,Pete Aguilar
+CREC-2015-12-02-pt1-PgH8870-4,CREC-2015-12-02,,SPEAKING,H,114,J000296,"Jolly, David W.",FL,R,"Jolly, David W.",David Jolly,Mr. JOLLY,David W. Jolly
+CREC-2015-12-02-pt1-PgH8870-6,CREC-2015-12-02,,SPEAKING,H,114,C001103,"Carter, Earl L. ""Buddy""",GA,R,"Carter, Earl L. ""Buddy""",Earl Carter,Mr. CARTER of Georgia,"Earl L. ""Buddy"" Carter"
+CREC-2015-12-02-pt1-PgH8871,CREC-2015-12-02,,SPEAKING,H,114,F000454,"Foster, Bill",IL,D,"Foster, Bill",,Mr. FOSTER,Bill Foster
+CREC-2015-12-02-pt1-PgH8871-2,CREC-2015-12-02,,SPEAKING,H,114,S001196,"Stefanik, Elise M.",NY,R,"Stefanik, Elise M.",Elise Stefanik,Ms. STEFANIK,Elise M. Stefanik
+CREC-2015-12-02-pt1-PgH8871-3,CREC-2015-12-02,,SPEAKING,H,114,K000380,"Kildee, Daniel T.",MI,D,"Kildee, Daniel T.",Daniel Kildee,Mr. KILDEE,Daniel T. Kildee
+CREC-2015-12-02-pt1-PgH8871-4,CREC-2015-12-02,,SPEAKING,H,114,K000386,"Katko, John",NY,R,"Katko, John",,Mr. KATKO,John Katko
+CREC-2015-12-02-pt1-PgH8872,CREC-2015-12-02,,SPEAKING,H,114,P000592,"Poe, Ted",TX,R,"Poe, Ted",,Mr. POE of Texas,Ted Poe
+CREC-2015-12-02-pt1-PgH8871-5,CREC-2015-12-02,,SPEAKING,H,114,K000382,"Kuster, Ann M.",NH,D,"Kuster, Ann M.",Ann Kuster,Ms. KUSTER,Ann M. Kuster
+CREC-2015-12-02-pt1-PgH8872-2,CREC-2015-12-02,,SPEAKING,H,114,E000293,"Esty, Elizabeth H.",CT,D,"Esty, Elizabeth H.",Elizabeth Esty,Ms. ESTY,Elizabeth H. Esty
+CREC-2015-12-02-pt1-PgH8872-3,CREC-2015-12-02,,SPEAKING,H,114,E000294,"Emmer, Tom",MN,R,"Emmer, Tom",,Mr. EMMER of Minnesota,Tom Emmer
+CREC-2015-12-02-pt1-PgH8872-4,CREC-2015-12-02,,SPEAKING,H,114,E000288,"Ellison, Keith",MN,D,"Ellison, Keith",,Mr. ELLISON,Keith Ellison
+CREC-2015-12-02-pt1-PgH8872-5,CREC-2015-12-02,,SPEAKING,H,114,T000467,"Thompson, Glenn",PA,R,"Thompson, Glenn",,Mr. THOMPSON of Pennsylvania,Glenn Thompson
+CREC-2015-12-02-pt1-PgH8872-6,CREC-2015-12-02,,SPEAKING,H,114,G000410,"Green, Gene",TX,D,"Green, Gene",,Mr. GENE GREEN of Texas,Gene Green
+CREC-2015-12-02-pt1-PgH8873,CREC-2015-12-02,,SPEAKING,H,114,W000815,"Wenstrup, Brad R.",OH,R,"Wenstrup, Brad R.",Brad Wenstrup,Mr. WENSTRUP,Brad R. Wenstrup
+CREC-2015-12-02-pt1-PgH8873-2,CREC-2015-12-02,,SPEAKING,H,114,D000610,"Deutch, Theodore E.",FL,D,"Deutch, Theodore E.",Theodore Deutch,Mr. DEUTCH,Theodore E. Deutch
+CREC-2015-12-02-pt1-PgH8873-3,CREC-2015-12-02,,SPEAKING,H,114,R000598,"Rothfus, Keith J.",PA,R,"Rothfus, Keith J.",Keith Rothfus,Mr. ROTHFUS,Keith J. Rothfus
+CREC-2015-12-02-pt1-PgH8873-4,CREC-2015-12-02,,SPEAKING,H,114,L000551,"Lee, Barbara",CA,D,"Lee, Barbara",,Ms. LEE,Barbara Lee
+CREC-2015-12-02-pt1-PgH8873-5,CREC-2015-12-02,,SPEAKING,H,114,Y000066,"Young, David",IA,R,"Young, David",,Mr. YOUNG of Iowa,David Young
+CREC-2015-12-02-pt1-PgH8874,CREC-2015-12-02,,SPEAKING,H,114,J000032,"Jackson Lee, Sheila",TX,D,"Jackson Lee, Sheila",,Ms. JACKSON LEE,Sheila Jackson Lee
+CREC-2015-12-02-pt1-PgH8874-2,CREC-2015-12-02,,SPEAKING,H,114,R000435,"Ros-Lehtinen, Ileana",FL,R,"Ros-Lehtinen, Ileana",,Ms. ROS-LEHTINEN,Ileana Ros-Lehtinen
+CREC-2015-12-02-pt1-PgH8874-3,CREC-2015-12-02,,SPEAKING,H,114,A000370,"Adams, Alma S.",NC,D,"Adams, Alma S.",Alma Adams,Ms. ADAMS,Alma S. Adams
+CREC-2015-12-02-pt1-PgH8874-4,CREC-2015-12-02,,SPEAKING,H,114,M001197,"McSally, Martha",AZ,R,"McSally, Martha",,Ms. McSALLY,Martha McSally
+CREC-2015-12-02-pt1-PgH8874-5,CREC-2015-12-02,,SPEAKING,H,114,G000575,"Graham, Gwen",FL,D,"Graham, Gwen",,Ms. GRAHAM,Gwen Graham
+CREC-2015-12-02-pt1-PgH8884,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8875,CREC-2015-12-02,,SPEAKING,H,114,B001248,"Burgess, Michael C.",TX,R,"Burgess, Michael C.",Michael Burgess,Mr. BURGESS,Michael C. Burgess
+CREC-2015-12-02-pt1-PgH8875,CREC-2015-12-02,,SPEAKING,H,114,P000598,"Polis, Jared",CO,D,"Polis, Jared",,Mr. POLIS,Jared Polis
+CREC-2015-12-02-pt1-PgH8875,CREC-2015-12-02,,SPEAKING,H,114,F000450,"Foxx, Virginia",NC,R,"Foxx, Virginia",,Ms. FOXX,Virginia Foxx
+CREC-2015-12-02-pt1-PgH8875,CREC-2015-12-02,,SPEAKING,H,114,K000379,"Kennedy, Joseph P., III",MA,D,"Kennedy, Joseph P., III",Joseph Kennedy,Mr. KENNEDY,Joseph P. Kennedy III
+CREC-2015-12-02-pt1-PgH8875,CREC-2015-12-02,,SPEAKING,H,114,K000379,"Kennedy, Joseph P., III",MA,D,"Kennedy, Joseph P., III",Joseph P. Kennedy,Mr. KENNEDY,Joseph P. Kennedy III
+CREC-2015-12-02-pt1-PgH8875,CREC-2015-12-02,,SPEAKING,H,114,B001289,"Byrne, Bradley",AL,R,"Byrne, Bradley",,Mr. BYRNE,Bradley Byrne
+CREC-2015-12-02-pt1-PgH8875,CREC-2015-12-02,,SPEAKING,H,114,P000096,"Pascrell, Bill",NJ,D,"Pascrell, Bill",Bill Pascrell,Mr. PASCRELL,"Bill Pascrell, Jr."
+CREC-2015-12-02-pt1-PgH8875,CREC-2015-12-02,,SPEAKING,H,114,D000533,"Duncan, John J., Jr.",TN,R,"Duncan, John J., Jr.",John Duncan,Mr. DUNCAN of Tennessee,"John J. Duncan, Jr."
+CREC-2015-12-02-pt1-PgH8875,CREC-2015-12-02,,SPEAKING,H,114,D000533,"Duncan, John J., Jr.",TN,R,"Duncan, John J., Jr.",John J. Duncan,Mr. DUNCAN of Tennessee,"John J. Duncan, Jr."
+CREC-2015-12-02-pt1-PgH8875,CREC-2015-12-02,,SPEAKING,H,114,W000800,"Welch, Peter",VT,D,"Welch, Peter",,Mr. WELCH,Peter Welch
+CREC-2015-12-02-pt1-PgH8875,CREC-2015-12-02,,SPEAKING,H,114,R000577,"Ryan, Tim",OH,D,"Ryan, Tim",,Mr. RYAN of Ohio,Tim Ryan
+CREC-2015-12-02-pt1-PgH8875,CREC-2015-12-02,,SPEAKING,H,114,J000032,"Jackson Lee, Sheila",TX,D,"Jackson Lee, Sheila",,Ms. JACKSON LEE,Sheila Jackson Lee
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,K000363,"Kline, John",MN,R,"Kline, John",,Mr. KLINE,John Kline
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,S000185,"Scott, Robert C. ""Bobby""",VA,D,"Scott, Robert C. ""Bobby""",Robert Scott,Mr. SCOTT of Virginia,"Robert C. ""Bobby"" Scott"
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,R000592,"Rokita, Todd",IN,R,"Rokita, Todd",,Mr. ROKITA,Todd Rokita
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,F000455,"Fudge, Marcia L.",OH,D,"Fudge, Marcia L.",Marcia Fudge,Ms. FUDGE,Marcia L. Fudge
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,T000467,"Thompson, Glenn",PA,R,"Thompson, Glenn",,Mr. THOMPSON of Pennsylvania,Glenn Thompson
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,C001069,"Courtney, Joe",CT,D,"Courtney, Joe",,Mr. COURTNEY,Joe Courtney
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,R000582,"Roe, David P.",TN,R,"Roe, David P.",David Roe,Mr. ROE of Tennessee,David P. Roe
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,W000808,"Wilson, Frederica S.",FL,D,"Wilson, Frederica S.",Frederica Wilson,Ms. WILSON of Florida,Frederica S. Wilson
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,G000558,"Guthrie, Brett",KY,R,"Guthrie, Brett",,Mr. GUTHRIE,Brett Guthrie
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,T000472,"Takano, Mark",CA,D,"Takano, Mark",,Mr. TAKANO,Mark Takano
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,M001189,"Messer, Luke",IN,R,"Messer, Luke",,Mr. MESSER,Luke Messer
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,H000874,"Hoyer, Steny H.",MD,D,"Hoyer, Steny H.",Steny Hoyer,Mr. HOYER,Steny H. Hoyer
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,C001107,"Curbelo, Carlos",FL,R,"Curbelo, Carlos",,Mr. CURBELO of Florida,Carlos Curbelo
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,B001278,"Bonamici, Suzanne",OR,D,"Bonamici, Suzanne",,Ms. BONAMICI,Suzanne Bonamici
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,P000607,"Pocan, Mark",WI,D,"Pocan, Mark",,Mr. POCAN,Mark Pocan
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,B001293,"Bishop, Mike",MI,R,"Bishop, Mike",,Mr. BISHOP of Michigan,Mike Bishop
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,C001101,"Clark, Katherine M.",MA,D,"Clark, Katherine M.",Katherine Clark,Ms. CLARK of Massachusetts,Katherine M. Clark
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,A000370,"Adams, Alma S.",NC,D,"Adams, Alma S.",Alma Adams,Ms. ADAMS,Alma S. Adams
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,A000372,"Allen, Rick W.",GA,R,"Allen, Rick W.",Rick Allen,Mr. ALLEN,Rick W. Allen
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,D000623,"DeSaulnier, Mark",CA,D,"DeSaulnier, Mark",,Mr. DeSAULNIER,Mark DeSaulnier
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,P000598,"Polis, Jared",CO,D,"Polis, Jared",,Mr. POLIS,Jared Polis
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,P000197,"Pelosi, Nancy",CA,D,"Pelosi, Nancy",,Ms. PELOSI,Nancy Pelosi
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,D000096,"Davis, Danny K.",IL,D,"Davis, Danny K.",Danny Davis,Mr. DANNY K. DAVIS of Illinois,Danny K. Davis
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,B001269,"Barletta, Lou",PA,R,"Barletta, Lou",,Mr. BARLETTA,Lou Barletta
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,G000410,"Green, Gene",TX,D,"Green, Gene",,Mr. GENE GREEN of Texas,Gene Green
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,V000128,"Van Hollen, Chris",MD,D,"Van Hollen, Chris",,Mr. VAN HOLLEN,Chris Van Hollen
+CREC-2015-12-02-pt1-PgH8884-2,CREC-2015-12-02,,SPEAKING,H,114,R000486,"Roybal-Allard, Lucille",CA,D,"Roybal-Allard, Lucille",,Ms. ROYBAL-ALLARD,Lucille Roybal-Allard
+CREC-2015-12-02-pt1-PgH8894,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,U000031,"Upton, Fred",MI,R,"Upton, Fred",,Mr. UPTON,Fred Upton
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,R000515,"Rush, Bobby L.",IL,D,"Rush, Bobby L.",Bobby Rush,Mr. RUSH,Bobby L. Rush
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,T000469,"Tonko, Paul",NY,D,"Tonko, Paul",,Mr. TONKO,Paul Tonko
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,W000822,"Watson Coleman, Bonnie",NJ,D,"Watson Coleman, Bonnie",,Mrs. WATSON COLEMAN,Bonnie Watson Coleman
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,P000608,"Peters, Scott H.",CA,D,"Peters, Scott H.",Scott Peters,Mr. PETERS,Scott H. Peters
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,F000448,"Franks, Trent",AZ,R,"Franks, Trent",,Mr. FRANKS of Arizona,Trent Franks
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,P000611,"Poliquin, Bruce",ME,R,"Poliquin, Bruce",,Mr. POLIQUIN,Bruce Poliquin
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,P000034,"Pallone, Frank",NJ,D,"Pallone, Frank",Frank Pallone,Mr. PALLONE,"Frank Pallone, Jr."
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,V000131,"Veasey, Marc A.",TX,D,"Veasey, Marc A.",Marc Veasey,Mr. VEASEY,Marc A. Veasey
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,M001180,"McKinley, David B.",WV,R,"McKinley, David B.",David McKinley,Mr. McKINLEY,David B. McKinley
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,E000291,"Ellmers, Renee L.",NC,R,"Ellmers, Renee L.",Renee Ellmers,Mrs. ELLMERS of North Carolina,Renee L. Ellmers
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,M001166,"McNerney, Jerry",CA,D,"McNerney, Jerry",,Mr. McNERNEY,Jerry McNerney
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,J000032,"Jackson Lee, Sheila",TX,D,"Jackson Lee, Sheila",,Ms. JACKSON LEE,Sheila Jackson Lee
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,K000380,"Kildee, Daniel T.",MI,D,"Kildee, Daniel T.",Daniel Kildee,Mr. KILDEE,Daniel T. Kildee
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,G000559,"Garamendi, John",CA,D,"Garamendi, John",,Mr. GARAMENDI,John Garamendi
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,Z000018,"Zinke, Ryan K.",MT,R,"Zinke, Ryan K.",Ryan Zinke,Mr. ZINKE,Ryan K. Zinke
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,G000410,"Green, Gene",TX,D,"Green, Gene",,Mr. GENE GREEN of Texas,Gene Green
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,T000472,"Takano, Mark",CA,D,"Takano, Mark",,Mr. TAKANO,Mark Takano
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,B001292,"Beyer, Donald S.",VA,D,"Beyer, Donald S.",Donald Beyer,Mr. BEYER,"Donald S. Beyer, Jr."
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,B001292,"Beyer, Donald S.",VA,D,"Beyer, Donald S.",Donald S. Beyer,Mr. BEYER,"Donald S. Beyer, Jr."
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,W000413,"Whitfield, Ed",KY,R,"Whitfield, Ed",Edward Whitfield,Mr. WHITFIELD,Ed Whitfield
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,S001145,"Schakowsky, Janice D.",IL,D,"Schakowsky, Janice D.",Janice Schakowsky,Ms. SCHAKOWSKY,Janice D. Schakowsky
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,L000566,"Latta, Robert E.",OH,R,"Latta, Robert E.",Robert Latta,Mr. LATTA,Robert E. Latta
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,B001284,"Brooks, Susan W.",IN,R,"Brooks, Susan W.",Susan Brooks,Mrs. BROOKS of Indiana,Susan W. Brooks
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,C001066,"Castor, Kathy",FL,D,"Castor, Kathy",,Ms. CASTOR of Florida,Kathy Castor
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,P000598,"Polis, Jared",CO,D,"Polis, Jared",,Mr. POLIS,Jared Polis
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,L000564,"Lamborn, Doug",CO,R,"Lamborn, Doug",,Mr. LAMBORN,Doug Lamborn
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,B000213,"Barton, Joe",TX,R,"Barton, Joe",Joe L. Barton,Mr. BARTON,Joe Barton
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,F000461,"Flores, Bill",TX,R,"Flores, Bill",,Mr. FLORES,Bill Flores
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,W000813,"Walorski, Jackie",IN,R,"Walorski, Jackie",,Mrs. WALORSKI,Jackie Walorski
+CREC-2015-12-02-pt1-PgH8894-2,CREC-2015-12-02,,SPEAKING,H,114,C000714,"Conyers, John, Jr.",MI,D,"Conyers, John, Jr.",John Conyers,Mr. CONYERS,"John Conyers, Jr."
+CREC-2015-12-02-pt1-PgH8951,CREC-2015-12-02,,SPEAKING,H,114,S000250,"Sessions, Pete",TX,R,"Sessions, Pete",,Mr. SESSIONS,Pete Sessions
+CREC-2015-12-02-pt1-PgH8951-2,CREC-2015-12-02,,SPEAKING,H,114,R000576,"Ruppersberger, C. A. Dutch",MD,D,"Ruppersberger, C. A. Dutch",C. Ruppersberger,Mr. RUPPERSBERGER,C. A. Dutch Ruppersberger
+CREC-2015-12-02-pt1-PgH8951-2,CREC-2015-12-02,,SPEAKING,H,114,C001063,"Cuellar, Henry",TX,D,"Cuellar, Henry",,Mr. CUELLAR,Henry Cuellar
+CREC-2015-12-02-pt1-PgH8952,CREC-2015-12-02,,SPEAKING,H,114,C001096,"Cramer, Kevin",ND,R,"Cramer, Kevin",,Mr. CRAMER,Kevin Cramer
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,C001096,"Cramer, Kevin",ND,R,"Cramer, Kevin",,Mr. CRAMER,Kevin Cramer
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,U000031,"Upton, Fred",MI,R,"Upton, Fred",,Mr. UPTON,Fred Upton
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,P000034,"Pallone, Frank",NJ,D,"Pallone, Frank",Frank Pallone,Mr. PALLONE,"Frank Pallone, Jr."
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,D000614,"Duffy, Sean P.",WI,R,"Duffy, Sean P.",Sean Duffy,Mr. DUFFY,Sean P. Duffy
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,G000565,"Gosar, Paul A.",AZ,R,"Gosar, Paul A.",Paul Gosar,Mr. GOSAR,Paul A. Gosar
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,J000288,"Johnson, Henry C. ""Hank""",GA,D,"Johnson, Henry C. ""Hank""",Henry Johnson,Mr. JOHNSON of Georgia,"Henry C. ""Hank"" Johnson, Jr."
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,J000288,"Johnson, Henry C. ""Hank""",GA,D,"Johnson, Henry C. ""Hank""","Henry C. ""Hank"" Johnson",Mr. JOHNSON of Georgia,"Henry C. ""Hank"" Johnson, Jr."
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,R000603,"Rouzer, David",NC,R,"Rouzer, David",,Mr. ROUZER,David Rouzer
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,S001195,"Smith, Jason",MO,R,"Smith, Jason",,Mr. SMITH of Missouri,Jason Smith
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,C001066,"Castor, Kathy",FL,D,"Castor, Kathy",,Ms. CASTOR of Florida,Kathy Castor
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,D000623,"DeSaulnier, Mark",CA,D,"DeSaulnier, Mark",,Mr. DeSAULNIER,Mark DeSaulnier
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,L000480,"Lowey, Nita M.",NY,D,"Lowey, Nita M.",Nita Lowey,Mrs. LOWEY,Nita M. Lowey
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,D000610,"Deutch, Theodore E.",FL,D,"Deutch, Theodore E.",Theodore Deutch,Mr. DEUTCH,Theodore E. Deutch
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,G000556,"Grayson, Alan",FL,D,"Grayson, Alan",,Mr. GRAYSON,Alan Grayson
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,J000032,"Jackson Lee, Sheila",TX,D,"Jackson Lee, Sheila",,Ms. JACKSON LEE,Sheila Jackson Lee
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,M001188,"Meng, Grace",NY,D,"Meng, Grace",,Ms. MENG,Grace Meng
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,R000487,"Royce, Edward R.",CA,R,"Royce, Edward R.",Ed Royce,Mr. ROYCE,Edward R. Royce
+CREC-2015-12-02-pt1-PgH8952-2,CREC-2015-12-02,,SPEAKING,H,114,N000188,"Norcross, Donald",NJ,D,"Norcross, Donald",,Mr. NORCROSS,Donald Norcross
+CREC-2015-12-02-pt1-PgH8965,CREC-2015-12-02,,SPEAKING,H,114,G000552,"Gohmert, Louie",TX,R,"Gohmert, Louie",,Mr. GOHMERT,Louie Gohmert
+CREC-2015-12-02-pt1-PgH8968,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8968-2,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8968-3,CREC-2015-12-02,,SPEAKING,H,114,G000552,"Gohmert, Louie",TX,R,"Gohmert, Louie",,Mr. GOHMERT,Louie Gohmert
+CREC-2015-12-02-pt1-PgH8970,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8968-4,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8970-2,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971-2,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971-3,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971-4,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971-5,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971-6,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971-7,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971-8,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971-10,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971-9,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971-11,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971-12,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971-13,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971-14,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgH8971-15,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8247-2,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS-FrontMatter-15,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8247,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8247-3,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8247-4,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8247-5,CREC-2015-12-02,,SPEAKING,S,114,M000355,"McConnell, Mitch",KY,R,"McConnell, Mitch",,Mr. McCONNELL,Mitch McConnell
+CREC-2015-12-02-pt1-PgS8248,CREC-2015-12-02,,SPEAKING,S,114,M000355,"McConnell, Mitch",KY,R,"McConnell, Mitch",,Mr. McCONNELL,Mitch McConnell
+CREC-2015-12-02-pt1-PgS8248-2,CREC-2015-12-02,,SPEAKING,S,114,M000355,"McConnell, Mitch",KY,R,"McConnell, Mitch",,Mr. McCONNELL,Mitch McConnell
+CREC-2015-12-02-pt1-PgS8248-3,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8248-4,CREC-2015-12-02,,SPEAKING,S,114,R000146,"Reid, Harry",NV,D,"Reid, Harry",Harry M. Reid,Mr. REID,Harry Reid
+CREC-2015-12-02-pt1-PgS8248-5,CREC-2015-12-02,,SPEAKING,S,114,R000146,"Reid, Harry",NV,D,"Reid, Harry",Harry M. Reid,Mr. REID,Harry Reid
+CREC-2015-12-02-pt1-PgS8250,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8249,CREC-2015-12-02,,SPEAKING,S,114,R000146,"Reid, Harry",NV,D,"Reid, Harry",Harry M. Reid,Mr. REID,Harry Reid
+CREC-2015-12-02-pt1-PgS8298,CREC-2015-12-02,,SPEAKING,S,114,M000355,"McConnell, Mitch",KY,R,"McConnell, Mitch",,Mr. McCONNELL,Mitch McConnell
+CREC-2015-12-02-pt1-PgS8298-2,CREC-2015-12-02,,SPEAKING,S,114,E000285,"Enzi, Michael B.",WY,R,"Enzi, Michael B.",Michael Enzi,Mr. ENZI,Michael B. Enzi
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,E000285,"Enzi, Michael B.",WY,R,"Enzi, Michael B.",Michael Enzi,Mr. ENZI,Michael B. Enzi
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,M001111,"Murray, Patty",WA,D,"Murray, Patty",,Mrs. MURRAY,Patty Murray
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,J000293,"Johnson, Ron",WI,R,"Johnson, Ron",,Mr. JOHNSON,Ron Johnson
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,B000711,"Boxer, Barbara",CA,D,"Boxer, Barbara",,Mrs. BOXER,Barbara Boxer
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,L000575,"Lankford, James",OK,R,"Lankford, James",,Mr. LANKFORD,James Lankford
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,B001277,"Blumenthal, Richard",CT,D,"Blumenthal, Richard",,Mr. BLUMENTHAL,Richard Blumenthal
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,W000779,"Wyden, Ron",OR,D,"Wyden, Ron",,Mr. WYDEN,Ron Wyden
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,S001141,"Sessions, Jeff",AL,R,"Sessions, Jeff",,Mr. SESSIONS,Jeff Sessions
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,C001056,"Cornyn, John",TX,R,"Cornyn, John",,Mr. CORNYN,John Cornyn
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,C000141,"Cardin, Benjamin L.",MD,D,"Cardin, Benjamin L.",Ben Cardin,Mr. CARDIN,Benjamin L. Cardin
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,R000307,"Roberts, Pat",KS,R,"Roberts, Pat",,Mr. ROBERTS,Pat Roberts
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,H001042,"Hirono, Mazie K.",HI,D,"Hirono, Mazie K.",Mazie Hirono,Ms. HIRONO,Mazie K. Hirono
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,C000542,"Coats, Daniel",IN,R,"Coats, Daniel",Daniel Ray Coats,Mr. COATS,Daniel Coats
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,F000463,"Fischer, Deb",NE,R,"Fischer, Deb",,Mrs. FISCHER,Deb Fischer
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,T000461,"Toomey, Patrick",PA,R,"Toomey, Patrick",Patrick Toomey,Mr. TOOMEY,Patrick J. Toomey
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,P000612,"Perdue, David",GA,R,"Perdue, David",David Alfred Perdue,Mr. PERDUE,David Perdue
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,C001088,"Coons, Christopher A.",DE,D,"Coons, Christopher A.",Christopher Coons,Mr. COONS,Christopher A. Coons
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,M001169,"Murphy, Christopher",CT,D,"Murphy, Christopher",Christopher S. Murphy,Mr. MURPHY,Christopher Murphy
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,B000944,"Brown, Sherrod",OH,D,"Brown, Sherrod",,Mr. BROWN,Sherrod Brown
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,S000770,"Stabenow, Debbie",MI,D,"Stabenow, Debbie",,Ms. STABENOW,Debbie Stabenow
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,B000575,"Blunt, Roy",MO,R,"Blunt, Roy",,Mr. BLUNT,Roy Blunt
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,T000250,"Thune, John",SD,R,"Thune, John",,Mr. THUNE,John Thune
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,C000880,"Crapo, Mike",ID,R,"Crapo, Mike",,Mr. CRAPO,Mike Crapo
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,H000338,"Hatch, Orrin G.",UT,R,"Hatch, Orrin G.",Orrin Hatch,Mr. HATCH,Orrin G. Hatch
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,H000338,"Hatch, Orrin G.",UT,R,"Hatch, Orrin G.",Orrin Grant Hatch,Mr. HATCH,Orrin G. Hatch
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,G000562,"Gardner, Cory",CO,R,"Gardner, Cory",,Mr. GARDNER,Cory Gardner
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,N000032,"Nelson, Bill",FL,D,"Nelson, Bill",Clarence Nelson,Mr. NELSON,Bill Nelson
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,N000032,"Nelson, Bill",FL,D,"Nelson, Bill",Clarence William Nelson,Mr. NELSON,Bill Nelson
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,A000360,"Alexander, Lamar",TN,R,"Alexander, Lamar",,Mr. ALEXANDER,Lamar Alexander
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,I000055,"Isakson, Johnny",GA,R,"Isakson, Johnny",,Mr. ISAKSON,Johnny Isakson
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,C001075,"Cassidy, Bill",LA,R,"Cassidy, Bill",,Mr. CASSIDY,Bill Cassidy
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,M001176,"Merkley, Jeff",OR,D,"Merkley, Jeff",,Mr. MERKLEY,Jeff Merkley
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,R000122,"Reed, Jack",RI,D,"Reed, Jack",John Reed,Mr. REED,Jack Reed
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,R000122,"Reed, Jack",RI,D,"Reed, Jack",John F. Reed,Mr. REED,Jack Reed
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,W000817,"Warren, Elizabeth",MA,D,"Warren, Elizabeth",Elizabeth A. Warren,Ms. WARREN,Elizabeth Warren
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,H001061,"Hoeven, John",ND,R,"Hoeven, John",,Mr. HOEVEN,John Hoeven
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,T000464,"Tester, Jon",MT,D,"Tester, Jon",,Mr. TESTER,Jon Tester
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,P000449,"Portman, Rob",OH,R,"Portman, Rob",,Mr. PORTMAN,Rob Portman
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,D000563,"Durbin, Richard J.",IL,D,"Durbin, Richard J.",Richard Durbin,Mr. DURBIN,Richard J. Durbin
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,I000024,"Inhofe, James M.",OK,R,"Inhofe, James M.",Jim Inhofe,Mr. INHOFE,James M. Inhofe
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,L000577,"Lee, Mike",UT,R,"Lee, Mike",,Mr. LEE,Mike Lee
+CREC-2015-12-02-pt1-PgS8250-2,CREC-2015-12-02,,SPEAKING,S,114,D000618,"Daines, Steve",MT,R,"Daines, Steve",,Mr. DAINES,Steve Daines
+CREC-2015-12-02-pt1-PgS8299,CREC-2015-12-02,,SPEAKING,S,114,E000285,"Enzi, Michael B.",WY,R,"Enzi, Michael B.",Michael Enzi,Mr. ENZI,Michael B. Enzi
+CREC-2015-12-02-pt1-PgS8302,CREC-2015-12-02,,SPEAKING,S,114,F000062,"Feinstein, Dianne",CA,D,"Feinstein, Dianne",,Mrs. FEINSTEIN,Dianne Feinstein
+CREC-2015-12-02-pt1-PgS8301,CREC-2015-12-02,,SPEAKING,S,114,M000303,"McCain, John",AZ,R,"McCain, John",John Sidney McCain,Mr. McCAIN,John McCain
+CREC-2015-12-02-pt1-PgS8302-2,CREC-2015-12-02,,SPEAKING,S,114,C000141,"Cardin, Benjamin L.",MD,D,"Cardin, Benjamin L.",Ben Cardin,Mr. CARDIN,Benjamin L. Cardin
+CREC-2015-12-02-pt1-PgS8302-3,CREC-2015-12-02,,SPEAKING,S,114,S001184,"Scott, Tim",SC,R,"Scott, Tim",,Mr. SCOTT,Tim Scott
+CREC-2015-12-02-pt1-PgS8303,CREC-2015-12-02,,SPEAKING,S,114,C000141,"Cardin, Benjamin L.",MD,D,"Cardin, Benjamin L.",Ben Cardin,Mr. CARDIN,Benjamin L. Cardin
+CREC-2015-12-02-pt1-PgS8303-3,CREC-2015-12-02,,SPEAKING,S,114,C000141,"Cardin, Benjamin L.",MD,D,"Cardin, Benjamin L.",Ben Cardin,Mr. CARDIN,Benjamin L. Cardin
+CREC-2015-12-02-pt1-PgS8303-2,CREC-2015-12-02,,SPEAKING,S,114,W000779,"Wyden, Ron",OR,D,"Wyden, Ron",,Mr. WYDEN,Ron Wyden
+CREC-2015-12-02-pt1-PgS8304,CREC-2015-12-02,,SPEAKING,S,114,B001261,"Barrasso, John",WY,R,"Barrasso, John",,Mr. BARRASSO,John Barrasso
+CREC-2015-12-02-pt1-PgS8304-3,CREC-2015-12-02,,SPEAKING,S,114,B001261,"Barrasso, John",WY,R,"Barrasso, John",,Mr. BARRASSO,John Barrasso
+CREC-2015-12-02-pt1-PgS8304-2,CREC-2015-12-02,,SPEAKING,S,114,B001261,"Barrasso, John",WY,R,"Barrasso, John",,Mr. BARRASSO,John Barrasso
+CREC-2015-12-02-pt1-PgS8304-4,CREC-2015-12-02,,SPEAKING,S,114,B001261,"Barrasso, John",WY,R,"Barrasso, John",,Mr. BARRASSO,John Barrasso
+CREC-2015-12-02-pt1-PgS8305,CREC-2015-12-02,,SPEAKING,S,114,B001261,"Barrasso, John",WY,R,"Barrasso, John",,Mr. BARRASSO,John Barrasso
+CREC-2015-12-02-pt1-PgS8305-2,CREC-2015-12-02,,SPEAKING,S,114,B001261,"Barrasso, John",WY,R,"Barrasso, John",,Mr. BARRASSO,John Barrasso
+CREC-2015-12-02-pt1-PgS8305-3,CREC-2015-12-02,,SPEAKING,S,114,S001184,"Scott, Tim",SC,R,"Scott, Tim",,Mr. SCOTT,Tim Scott
+CREC-2015-12-02-pt1-PgS8305-4,CREC-2015-12-02,,SPEAKING,S,114,S001184,"Scott, Tim",SC,R,"Scott, Tim",,Mr. SCOTT,Tim Scott
+CREC-2015-12-02-pt1-PgS8305-5,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8305-7,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8305-6,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8305-8,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8305-9,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8306,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8306-2,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8307,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8307-2,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8308,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8308-3,CREC-2015-12-02,,SPEAKING,S,114,J000293,"Johnson, Ron",WI,R,"Johnson, Ron",,Mr. JOHNSON,Ron Johnson
+CREC-2015-12-02-pt1-PgS8308-2,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgS8308-4,CREC-2015-12-02,,SPEAKING,S,114,M001111,"Murray, Patty",WA,D,"Murray, Patty",,Mrs. MURRAY,Patty Murray
+CREC-2015-12-02-pt1-PgS8309,CREC-2015-12-02,,SPEAKING,S,114,L000575,"Lankford, James",OK,R,"Lankford, James",,Mr. LANKFORD,James Lankford
+CREC-2015-12-02-pt1-PgS8310,CREC-2015-12-02,,SPEAKING,S,114,T000461,"Toomey, Patrick",PA,R,"Toomey, Patrick",Patrick Toomey,Mr. TOOMEY,Patrick J. Toomey
+CREC-2015-12-02-pt1-PgS8311,CREC-2015-12-02,,SPEAKING,S,114,G000562,"Gardner, Cory",CO,R,"Gardner, Cory",,Mr. GARDNER,Cory Gardner
+CREC-2015-12-02-pt1-PgS8311-2,CREC-2015-12-02,,SPEAKING,S,114,G000562,"Gardner, Cory",CO,R,"Gardner, Cory",,Mr. GARDNER,Cory Gardner
+CREC-2015-12-02-pt1-PgS8311-3,CREC-2015-12-02,,SPEAKING,S,114,D000563,"Durbin, Richard J.",IL,D,"Durbin, Richard J.",Richard Durbin,Mr. DURBIN,Richard J. Durbin
+CREC-2015-12-02-pt1-PgS8311-4,CREC-2015-12-02,,SPEAKING,S,114,H001041,"Heller, Dean",NV,R,"Heller, Dean",,Mr. HELLER,Dean Heller
+CREC-2015-12-02-pt1-PgS8312,CREC-2015-12-02,,SPEAKING,S,114,M000303,"McCain, John",AZ,R,"McCain, John",John Sidney McCain,Mr. McCAIN,John McCain
+CREC-2015-12-02-pt1-PgS8311-5,CREC-2015-12-02,,SPEAKING,S,114,B000944,"Brown, Sherrod",OH,D,"Brown, Sherrod",,Mr. BROWN,Sherrod Brown
+CREC-2015-12-02-pt1-PgS8313-2,CREC-2015-12-02,,SPEAKING,S,114,R000146,"Reid, Harry",NV,D,"Reid, Harry",Harry M. Reid,Mr. REID,Harry Reid
+CREC-2015-12-02-pt1-PgS8313,CREC-2015-12-02,,SPEAKING,S,114,C001035,"Collins, Susan M.",ME,R,"Collins, Susan M.",Susan Collins,Ms. COLLINS,Susan M. Collins
+CREC-2015-12-02-pt1-PgS8313-3,CREC-2015-12-02,,SPEAKING,S,114,H001042,"Hirono, Mazie K.",HI,D,"Hirono, Mazie K.",Mazie Hirono,Ms. HIRONO,Mazie K. Hirono
+CREC-2015-12-02-pt1-PgS8318-2,CREC-2015-12-02,,SPEAKING,S,114,F000444,"Flake, Jeff",AZ,R,"Flake, Jeff",,Mr. FLAKE,Jeff Flake
+CREC-2015-12-02-pt1-PgS8318,CREC-2015-12-02,,SPEAKING,S,114,C000542,"Coats, Daniel",IN,R,"Coats, Daniel",Daniel Ray Coats,Mr. COATS,Daniel Coats
+CREC-2015-12-02-pt1-PgS8319,CREC-2015-12-02,,SPEAKING,S,114,S001141,"Sessions, Jeff",AL,R,"Sessions, Jeff",,Mr. SESSIONS,Jeff Sessions
+CREC-2015-12-02-pt1-PgS8318-3,CREC-2015-12-02,,SPEAKING,S,114,F000444,"Flake, Jeff",AZ,R,"Flake, Jeff",,Mr. FLAKE,Jeff Flake
+CREC-2015-12-02-pt1-PgS8319-2,CREC-2015-12-02,,SPEAKING,S,114,E000285,"Enzi, Michael B.",WY,R,"Enzi, Michael B.",Michael Enzi,Mr. ENZI,Michael B. Enzi
+CREC-2015-12-02-pt1-PgS8319-2,CREC-2015-12-02,,SPEAKING,S,114,M001176,"Merkley, Jeff",OR,D,"Merkley, Jeff",,Mr. MERKLEY,Jeff Merkley
+CREC-2015-12-02-pt1-PgS8319-3,CREC-2015-12-02,,SPEAKING,S,114,M000355,"McConnell, Mitch",KY,R,"McConnell, Mitch",,Mr. McCONNELL,Mitch McConnell
+CREC-2015-12-02-pt1-PgS8319-4,CREC-2015-12-02,,SPEAKING,S,114,M000355,"McConnell, Mitch",KY,R,"McConnell, Mitch",,Mr. McCONNELL,Mitch McConnell
+CREC-2015-12-02-pt1-PgS8319-5,CREC-2015-12-02,,SPEAKING,S,114,M000355,"McConnell, Mitch",KY,R,"McConnell, Mitch",,Mr. McCONNELL,Mitch McConnell
+CREC-2015-12-02-pt1-PgS8319-6,CREC-2015-12-02,,SPEAKING,S,114,M000355,"McConnell, Mitch",KY,R,"McConnell, Mitch",,Mr. McCONNELL,Mitch McConnell
+CREC-2015-12-02-pt1-PgS8319-7,CREC-2015-12-02,,SPEAKING,S,114,E000295,"Ernst, Joni",IA,R,"Ernst, Joni",,Mrs. ERNST,Joni Ernst
+CREC-2015-12-02-pt1-PgS8319-7,CREC-2015-12-02,,SPEAKING,S,114,T000476,"Tillis, Thomas",NC,R,"Tillis, Thomas",Thomas Tillis,Mr. TILLIS,Thom Tillis
+CREC-2015-12-02-pt1-PgS8319-7,CREC-2015-12-02,,SPEAKING,S,114,T000476,"Tillis, Thomas",NC,R,"Tillis, Thomas",Thomas Roland Tillis,Mr. TILLIS,Thom Tillis
+CREC-2015-12-02-pt1-PgS8321,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgE1693-2,CREC-2015-12-02,,SPEAKING,H,114,K000188,"Kind, Ron",WI,D,"Kind, Ron",,Mr. KIND,Ron Kind
+CREC-2015-12-02-pt1-PgE1693-3,CREC-2015-12-02,,SPEAKING,H,114,M001179,"Marino, Tom",PA,R,"Marino, Tom",,Mr. MARINO,Tom Marino
+CREC-2015-12-02-pt1-PgE1693-4,CREC-2015-12-02,,SPEAKING,H,114,B001296,"Boyle, Brendan F.",PA,D,"Boyle, Brendan F.",Brendan Boyle,Mr. BRENDAN F. BOYLE of Pennsylvania,Brendan F. Boyle
+CREC-2015-12-02-pt1-PgE1693-5,CREC-2015-12-02,,SPEAKING,H,114,M001181,"Meehan, Patrick",PA,R,"Meehan, Patrick",,Mr. MEEHAN,Patrick Meehan
+CREC-2015-12-02-pt1-PgE1694,CREC-2015-12-02,,SPEAKING,H,114,W000804,"Wittman, Robert J.",VA,R,"Wittman, Robert J.",Robert Wittman,Mr. WITTMAN,Robert J. Wittman
+CREC-2015-12-02-pt1-PgE1694-2,CREC-2015-12-02,,SPEAKING,H,114,T000468,"Titus, Dina",NV,D,"Titus, Dina",,Ms. TITUS,Dina Titus
+CREC-2015-12-02-pt1-PgE1694-3,CREC-2015-12-02,,SPEAKING,H,114,K000381,"Kilmer, Derek",WA,D,"Kilmer, Derek",,Mr. KILMER,Derek Kilmer
+CREC-2015-12-02-pt1-PgE1694-4,CREC-2015-12-02,,SPEAKING,H,114,R000589,"Rigell, E. Scott",VA,R,"Rigell, E. Scott",E. Rigell,Mr. RIGELL,E. Scott Rigell
+CREC-2015-12-02-pt1-PgE1695,CREC-2015-12-02,,SPEAKING,H,114,B001260,"Buchanan, Vern",FL,R,"Buchanan, Vern",,Mr. BUCHANAN,Vern Buchanan
+CREC-2015-12-02-pt1-PgE1695-2,CREC-2015-12-02,,SPEAKING,H,114,T000460,"Thompson, Mike",CA,D,"Thompson, Mike",,Mr. THOMPSON of California,Mike Thompson
+CREC-2015-12-02-pt1-PgE1695-3,CREC-2015-12-02,,SPEAKING,H,114,G000560,"Graves, Tom",GA,R,"Graves, Tom",,Mr. GRAVES of Georgia,Tom Graves
+CREC-2015-12-02-pt1-PgE1695-4,CREC-2015-12-02,,SPEAKING,H,114,M001158,"Marchant, Kenny",TX,R,"Marchant, Kenny",,Mr. MARCHANT,Kenny Marchant
+CREC-2015-12-02-pt1-PgE1695-5,CREC-2015-12-02,,SPEAKING,H,114,D000624,"Dingell, Debbie",MI,D,"Dingell, Debbie",,Mrs. DINGELL,Debbie Dingell
+CREC-2015-12-02-pt1-PgE1695-6,CREC-2015-12-02,,SPEAKING,H,114,S000480,"Slaughter, Louise McIntosh",NY,D,"Slaughter, Louise McIntosh",Louise Slaughter,Ms. SLAUGHTER,Louise McIntosh Slaughter
+CREC-2015-12-02-pt1-PgE1695-6,CREC-2015-12-02,,SPEAKING,H,114,S000480,"Slaughter, Louise McIntosh",NY,D,"Slaughter, Louise McIntosh",Louise M. Slaughter,Ms. SLAUGHTER,Louise McIntosh Slaughter
+CREC-2015-12-02-pt1-PgE1696,CREC-2015-12-02,,SPEAKING,H,114,S001195,"Smith, Jason",MO,R,"Smith, Jason",,Mr. SMITH of Missouri,Jason Smith
+CREC-2015-12-02-pt1-PgE1696-2,CREC-2015-12-02,,SPEAKING,H,114,D000533,"Duncan, John J., Jr.",TN,R,"Duncan, John J., Jr.",John Duncan,Mr. DUNCAN of Tennessee,"John J. Duncan, Jr."
+CREC-2015-12-02-pt1-PgE1696-2,CREC-2015-12-02,,SPEAKING,H,114,D000533,"Duncan, John J., Jr.",TN,R,"Duncan, John J., Jr.",John J. Duncan,Mr. DUNCAN of Tennessee,"John J. Duncan, Jr."
+CREC-2015-12-02-pt1-PgE1696-3,CREC-2015-12-02,,SPEAKING,H,114,T000460,"Thompson, Mike",CA,D,"Thompson, Mike",,Mr. THOMPSON of California,Mike Thompson
+CREC-2015-12-02-pt1-PgE1696-4,CREC-2015-12-02,,SPEAKING,H,114,T000473,"Takai, Mark",HI,D,"Takai, Mark",,Mr. TAKAI,Mark Takai
+CREC-2015-12-02-pt1-PgE1697-2,CREC-2015-12-02,,SPEAKING,H,114,B001297,"Buck, Ken",CO,R,"Buck, Ken",,Mr. BUCK,Ken Buck
+CREC-2015-12-02-pt1-PgE1697,CREC-2015-12-02,,SPEAKING,H,114,C000714,"Conyers, John, Jr.",MI,D,"Conyers, John, Jr.",John Conyers,Mr. CONYERS,"John Conyers, Jr."
+CREC-2015-12-02-pt1-PgE1697-3,CREC-2015-12-02,,SPEAKING,H,114,H001056,"Herrera Beutler, Jaime",WA,R,"Herrera Beutler, Jaime",,Ms. HERRERA BEUTLER,Jaime Herrera Beutler
+CREC-2015-12-02-pt1-PgE1696-5,CREC-2015-12-02,,SPEAKING,H,114,C001077,"Coffman, Mike",CO,R,"Coffman, Mike",,Mr. COFFMAN,Mike Coffman
+CREC-2015-12-02-pt1-PgE1697-4,CREC-2015-12-02,,SPEAKING,H,114,L000582,"Lieu, Ted",CA,D,"Lieu, Ted",,Mr. TED LIEU of California,Ted Lieu
+CREC-2015-12-02-pt1-PgE1697-5,CREC-2015-12-02,,SPEAKING,H,114,W000795,"Wilson, Joe",SC,R,"Wilson, Joe",,Mr. WILSON of South Carolina,Joe Wilson
+CREC-2015-12-02-pt1-PgE1698,CREC-2015-12-02,,SPEAKING,H,114,S001195,"Smith, Jason",MO,R,"Smith, Jason",,Mr. SMITH of Missouri,Jason Smith
+CREC-2015-12-02-pt1-PgE1698-2,CREC-2015-12-02,,SPEAKING,H,114,S001188,"Stutzman, Marlin A.",IN,R,"Stutzman, Marlin A.",Marlin Stutzman,Mr. STUTZMAN,Marlin A. Stutzman
+CREC-2015-12-02-pt1-PgE1698-3,CREC-2015-12-02,,SPEAKING,H,114,T000460,"Thompson, Mike",CA,D,"Thompson, Mike",,Mr. THOMPSON of California,Mike Thompson
+CREC-2015-12-02-pt1-PgE1699,CREC-2015-12-02,,SPEAKING,H,114,S001187,"Stivers, Steve",OH,R,"Stivers, Steve",,Mr. STIVERS,Steve Stivers
+CREC-2015-12-02-pt1-PgE1698-4,CREC-2015-12-02,,SPEAKING,H,114,J000126,"Johnson, Eddie Bernice",TX,D,"Johnson, Eddie Bernice",Eddie Johnson,Ms. EDDIE BERNICE JOHNSON of Texas,Eddie Bernice Johnson
+CREC-2015-12-02-pt1-PgE1699-2,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgD1263,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgD1263-2,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgD1265,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgD1267,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgD1268,CREC-2015-12-02,,,,,,,,,,,,
+CREC-2015-12-02-pt1-PgD1269,CREC-2015-12-02,,,,,,,,,,,,

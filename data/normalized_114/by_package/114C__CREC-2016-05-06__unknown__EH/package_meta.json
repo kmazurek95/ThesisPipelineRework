@@ -1,0 +1,12 @@
+{
+  "packageId": "CREC-2016-05-06",
+  "congress": 114,
+  "date": null,
+  "chambers": "EH",
+  "counts": {
+    "granules_core": 35,
+    "granule_references": 81,
+    "granule_committees": 49,
+    "granule_members": 35
+  }
+}

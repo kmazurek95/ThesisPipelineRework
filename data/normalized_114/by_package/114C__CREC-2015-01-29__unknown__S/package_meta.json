@@ -1,0 +1,12 @@
+{
+  "packageId": "CREC-2015-01-29",
+  "congress": 114,
+  "date": null,
+  "chambers": "S",
+  "counts": {
+    "granules_core": 74,
+    "granule_references": 155,
+    "granule_committees": 131,
+    "granule_members": 130
+  }
+}

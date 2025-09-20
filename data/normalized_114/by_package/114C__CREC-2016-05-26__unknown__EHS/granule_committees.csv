@@ -1,0 +1,576 @@
+granuleId,packageId,committees,authorityId,chamber,committeeName,type
+CREC-2016-05-26-pt1-PgH3269-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3269-6,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3269-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3269,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3269-7,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH-FrontMatter,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3269-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3269-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3270-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3270,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3270-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3270-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3270-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3280,CREC-2016-05-26,,hsap00,H,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgH3270-6,CREC-2016-05-26,,hsru00,H,Committee on Rules,S
+CREC-2016-05-26-pt1-PgH3270-6,CREC-2016-05-26,,hsap00,H,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgH3270-6,CREC-2016-05-26,,hsif00,H,Committee on Energy and Commerce,S
+CREC-2016-05-26-pt1-PgH3283,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3284,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3285,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3285-2,CREC-2016-05-26,,hsif00,H,Committee on Energy and Commerce,S
+CREC-2016-05-26-pt1-PgH3285-2,CREC-2016-05-26,,hsag00,H,Committee on Agriculture,S
+CREC-2016-05-26-pt1-PgH3285-2,CREC-2016-05-26,,hsii00,H,Committee on Natural Resources,S
+CREC-2016-05-26-pt1-PgH3285-2,CREC-2016-05-26,,hssy00,H,"Committee on Science, Space, and Technology",S
+CREC-2016-05-26-pt1-PgH3285-2,CREC-2016-05-26,,hspw00,H,Committee on Transportation and Infrastructure,S
+CREC-2016-05-26-pt1-PgH3285-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3285-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3285-6,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3285-7,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3285-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3285-8,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3286,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3286-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3286-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3286-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3286-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3287,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3286-6,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3287-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3287-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3287-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3287-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3288,CREC-2016-05-26,,hlig00,H,House Permanent Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgH3287-6,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3290,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3288-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3293,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3293-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3293-3,CREC-2016-05-26,,hsag00,H,Committee on Agriculture,S
+CREC-2016-05-26-pt1-PgH3293-3,CREC-2016-05-26,,hsif00,H,Committee on Energy and Commerce,S
+CREC-2016-05-26-pt1-PgH3293-3,CREC-2016-05-26,,hsfa00,H,Committee on Foreign Affairs,S
+CREC-2016-05-26-pt1-PgH3293-3,CREC-2016-05-26,,hsgo00,H,Committee on Oversight and Government Reform,S
+CREC-2016-05-26-pt1-PgH3293-3,CREC-2016-05-26,,hsju00,H,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgH3293-3,CREC-2016-05-26,,hspw00,H,Committee on Transportation and Infrastructure,S
+CREC-2016-05-26-pt1-PgH3293-3,CREC-2016-05-26,,hssm00,H,Committee on Small Business,S
+CREC-2016-05-26-pt1-PgH3293-4,CREC-2016-05-26,,hsba00,H,Committee on Financial Services,S
+CREC-2016-05-26-pt1-PgH3293-5,CREC-2016-05-26,,hsha00,H,Committee on House Administration,S
+CREC-2016-05-26-pt1-PgH3293-5,CREC-2016-05-26,,hsvr00,H,Committee on Veterans' Affairs,S
+CREC-2016-05-26-pt1-PgH3293-5,CREC-2016-05-26,,hshm00,H,Committee on Homeland Security,S
+CREC-2016-05-26-pt1-PgH3293-5,CREC-2016-05-26,,hsju00,H,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgH3293-5,CREC-2016-05-26,,hsgo00,H,Committee on Oversight and Government Reform,S
+CREC-2016-05-26-pt1-PgH3293-5,CREC-2016-05-26,,hswm00,H,Committee on Ways and Means,S
+CREC-2016-05-26-pt1-PgH3293-5,CREC-2016-05-26,,hsed00,H,Committee on Education and the Workforce,S
+CREC-2016-05-26-pt1-PgH3293-5,CREC-2016-05-26,,hsif00,H,Committee on Energy and Commerce,S
+CREC-2016-05-26-pt1-PgH3293-5,CREC-2016-05-26,,hsas00,H,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgH3293-5,CREC-2016-05-26,,hsii00,H,Committee on Natural Resources,S
+CREC-2016-05-26-pt1-PgH3293-5,CREC-2016-05-26,,hspw00,H,Committee on Transportation and Infrastructure,S
+CREC-2016-05-26-pt1-PgH3293-5,CREC-2016-05-26,,hsfa00,H,Committee on Foreign Affairs,S
+CREC-2016-05-26-pt1-PgH3293-5,CREC-2016-05-26,,hsru00,H,Committee on Rules,S
+CREC-2016-05-26-pt1-PgH3293-5,CREC-2016-05-26,,hlse00,H,Select Committee on Aging,L
+CREC-2016-05-26-pt1-PgH3295,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3295-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3295-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3295-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3295-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3295-6,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3295-7,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3295-8,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3295-9,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3295-10,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3295-11,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3295-12,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-6,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-7,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-8,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-10,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-9,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-11,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-12,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-13,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-15,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-14,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-16,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-17,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-18,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-19,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-20,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-21,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-23,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-22,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-24,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-25,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3297,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgH3296-26,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3231,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS-FrontMatter-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3231-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3231-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3231-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3231-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3231-6,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3231-7,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3232,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3232-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3234-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3232-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3234,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3234-3,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3253,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3253-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3255,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3256,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3256-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3255-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3255-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3257,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3257-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3258,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3259,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3266-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3269,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3265,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3261,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3266,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3267,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3270,CREC-2016-05-26,,ssju00,S,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgS3270,CREC-2016-05-26,,hsju00,H,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgS3272,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3273,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3277,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3273-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3276,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3274,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3275,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3278,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3278-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3278-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3279,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3280,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3280-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3281,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3280-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3282,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3282-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3283,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3284,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3283-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3284-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3285,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3284-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3285-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3285-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3285-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3286-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3286,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3286-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3286-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3286-5,CREC-2016-05-26,,ssaf00,S,Committee on Agriculture,S
+CREC-2016-05-26-pt1-PgS3287,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3287-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3287-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3289,CREC-2016-05-26,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2016-05-26-pt1-PgS3289,CREC-2016-05-26,,sshr00,S,"Committee on Health, Education, Labor, and Pensions",S
+CREC-2016-05-26-pt1-PgS3289,CREC-2016-05-26,,ssju00,S,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgS3287-4,CREC-2016-05-26,,ssaf00,S,"Committee on Agriculture, Nutrition, and Forestry",S
+CREC-2016-05-26-pt1-PgS3287-4,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3287-4,CREC-2016-05-26,,ssbk00,S,"Committee on Banking, Housing, and Urban Affairs",S
+CREC-2016-05-26-pt1-PgS3287-4,CREC-2016-05-26,,ssev00,S,Committee on Environment and Public Works,S
+CREC-2016-05-26-pt1-PgS3287-4,CREC-2016-05-26,,ssfi00,S,Committee on Finance,S
+CREC-2016-05-26-pt1-PgS3287-4,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3287-4,CREC-2016-05-26,,sshr00,S,"Committee on Health, Education, Labor, and Pensions",S
+CREC-2016-05-26-pt1-PgS3287-4,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3287-4,CREC-2016-05-26,,ssju00,S,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgS3287-4,CREC-2016-05-26,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2016-05-26-pt1-PgS3290,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3290,CREC-2016-05-26,,ssap00,S,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3290,CREC-2016-05-26,,sssb00,S,Committee on Small Business and Entrepreneurship,S
+CREC-2016-05-26-pt1-PgS3291,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3290-2,CREC-2016-05-26,,ssev00,S,Committee on Environment and Public Works,S
+CREC-2016-05-26-pt1-PgS3290-2,CREC-2016-05-26,,sshr00,S,"Committee on Health, Education, Labor, and Pensions",S
+CREC-2016-05-26-pt1-PgS3290-2,CREC-2016-05-26,,ssbk00,S,"Committee on Banking, Housing, and Urban Affairs",S
+CREC-2016-05-26-pt1-PgS3290-2,CREC-2016-05-26,,ssfi00,S,Committee on Finance,S
+CREC-2016-05-26-pt1-PgS3290-2,CREC-2016-05-26,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2016-05-26-pt1-PgS3290-2,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3290-2,CREC-2016-05-26,,ssap00,S,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3290-2,CREC-2016-05-26,,ssju00,S,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgS3290-2,CREC-2016-05-26,,ssva00,S,Committee on Veterans' Affairs,S
+CREC-2016-05-26-pt1-PgS3290-2,CREC-2016-05-26,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2016-05-26-pt1-PgS3290-2,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3290-2,CREC-2016-05-26,,sssb00,S,Committee on Small Business and Entrepreneurship,S
+CREC-2016-05-26-pt1-PgS3290-2,CREC-2016-05-26,,slia00,S,Committee on Indian Affairs,O
+CREC-2016-05-26-pt1-PgS3291-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3295,CREC-2016-05-26,,slia00,S,Committee on Indian Affairs,O
+CREC-2016-05-26-pt1-PgS3294-2,CREC-2016-05-26,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2016-05-26-pt1-PgS3294,CREC-2016-05-26,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2016-05-26-pt1-PgS3294,CREC-2016-05-26,,slia00,S,Committee on Indian Affairs,O
+CREC-2016-05-26-pt1-PgS3296,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3297,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3297-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3298,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3301,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3300-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3300-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3300-3,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3300-3,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3300-3,CREC-2016-05-26,,slin00,S,Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgS3300-3,CREC-2016-05-26,,hlig00,H,House Permanent Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,slin00,S,Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,hlig00,H,House Permanent Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,hsfa00,H,Committee on Foreign Affairs,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,ssva00,S,Committee on Veterans' Affairs,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,hsvr00,H,Committee on Veterans' Affairs,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,ssap00,S,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,ssju00,S,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,sssb00,S,Committee on Small Business and Entrepreneurship,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,hssm00,H,Committee on Small Business,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,sssb00,S,Committee on Small Business,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,hsap00,H,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,hsas00,H,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,hssy00,H,Committee on Science and Technology,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,ssfi00,S,Committee on Finance,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,ssbk00,S,"Committee on Banking, Housing, and Urban Affairs",S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,hsii00,H,Committee on Natural Resources,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,sseg00,S,Committee on Interior and Insular Affairs,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,sshr00,S,"Committee on Health, Education, Labor, and Pensions",S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,hsgo00,H,Committee on Oversight and Government Reform,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,hsed00,H,Committee on Education and the Workforce,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,ssev00,S,Committee on Environment and Public Works,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,hspw00,H,Committee on Transportation and Infrastructure,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,hshm00,H,Committee on Homeland Security,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,hsju00,H,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgS3300,CREC-2016-05-26,,hsba00,H,Committee on Financial Services,S
+CREC-2016-05-26-pt1-PgS3301-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3301-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3301-4,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3301-4,CREC-2016-05-26,,hsfa00,H,Committee on Foreign Affairs,S
+CREC-2016-05-26-pt1-PgS3302-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3302,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3303,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3302-3,CREC-2016-05-26,,ssva00,S,Committee on Veterans' Affairs,S
+CREC-2016-05-26-pt1-PgS3302-3,CREC-2016-05-26,,hsvr00,H,Committee on Veterans' Affairs,S
+CREC-2016-05-26-pt1-PgS3304-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3304,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3304-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3304-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3304-5,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3304-5,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3304-5,CREC-2016-05-26,,ssap00,S,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3304-5,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3304-5,CREC-2016-05-26,,ssju00,S,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgS3305,CREC-2016-05-26,,sssb00,S,Committee on Small Business and Entrepreneurship,S
+CREC-2016-05-26-pt1-PgS3305,CREC-2016-05-26,,hssm00,H,Committee on Small Business,S
+CREC-2016-05-26-pt1-PgS3305,CREC-2016-05-26,,ssap00,S,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3305,CREC-2016-05-26,,sssb00,S,Committee on Small Business,S
+CREC-2016-05-26-pt1-PgS3305,CREC-2016-05-26,,hsap00,H,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3310,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3310-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3310-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3310-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3310-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3310-6,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3310-6,CREC-2016-05-26,,hsas00,H,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3311,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3311-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3311-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3312-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3312,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3312-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3312-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3312-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3312-6,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3313,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3313-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3313-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3313-3,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3313-3,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3313-3,CREC-2016-05-26,,hsfa00,H,Committee on Foreign Affairs,S
+CREC-2016-05-26-pt1-PgS3313-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3314,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3314-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3314-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3315,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3314-4,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3314-4,CREC-2016-05-26,,hssy00,H,Committee on Science and Technology,S
+CREC-2016-05-26-pt1-PgS3314-4,CREC-2016-05-26,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2016-05-26-pt1-PgS3315-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3315-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3316,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3316-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3316-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3316-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3317,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3317-2,CREC-2016-05-26,,ssfi00,S,Committee on Finance,S
+CREC-2016-05-26-pt1-PgS3317-2,CREC-2016-05-26,,ssbk00,S,"Committee on Banking, Housing, and Urban Affairs",S
+CREC-2016-05-26-pt1-PgS3317-2,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3317-2,CREC-2016-05-26,,hsfa00,H,Committee on Foreign Affairs,S
+CREC-2016-05-26-pt1-PgS3318,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3318-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3319-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3319,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3318-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3319-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3320,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3319-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3320-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3320-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3321-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3321-2,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3321-2,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3321-2,CREC-2016-05-26,,slin00,S,Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgS3320-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3321,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3321-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3322,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3322-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3322-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3322-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3322-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3323-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3323,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3323-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3323-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3325-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3325,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3325-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3326,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3326,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3326,CREC-2016-05-26,,ssap00,S,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3326,CREC-2016-05-26,,hsap00,H,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3326-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3326-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3327,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3327-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3327-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3327-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3328,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3329,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3329-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3329-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3330,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3330,CREC-2016-05-26,,ssap00,S,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3330,CREC-2016-05-26,,slin00,S,Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgS3330,CREC-2016-05-26,,hlig00,H,House Permanent Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgS3331,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3331,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3331,CREC-2016-05-26,,hsfa00,H,Committee on Foreign Affairs,S
+CREC-2016-05-26-pt1-PgS3331-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3331-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3332,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3332-2,CREC-2016-05-26,,sseg00,S,Committee on Energy and Natural Resources,S
+CREC-2016-05-26-pt1-PgS3332-2,CREC-2016-05-26,,hsii00,H,Committee on Natural Resources,S
+CREC-2016-05-26-pt1-PgS3332-2,CREC-2016-05-26,,sseg00,S,Committee on Interior and Insular Affairs,S
+CREC-2016-05-26-pt1-PgS3334,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3334,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3334,CREC-2016-05-26,,ssap00,S,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3334,CREC-2016-05-26,,hsap00,H,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3335,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3335,CREC-2016-05-26,,ssap00,S,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3335,CREC-2016-05-26,,hsap00,H,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3334-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3334-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3335-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3336,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3336-2,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3336-2,CREC-2016-05-26,,sshr00,S,"Committee on Health, Education, Labor, and Pensions",S
+CREC-2016-05-26-pt1-PgS3336-2,CREC-2016-05-26,,hsgo00,H,Committee on Oversight and Government Reform,S
+CREC-2016-05-26-pt1-PgS3336-2,CREC-2016-05-26,,hsed00,H,Committee on Education and the Workforce,S
+CREC-2016-05-26-pt1-PgS3339,CREC-2016-05-26,,ssap00,S,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3339,CREC-2016-05-26,,ssva00,S,Committee on Veterans' Affairs,S
+CREC-2016-05-26-pt1-PgS3339,CREC-2016-05-26,,hsvr00,H,Committee on Veterans' Affairs,S
+CREC-2016-05-26-pt1-PgS3340,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3340,CREC-2016-05-26,,hsgo00,H,Committee on Oversight and Government Reform,S
+CREC-2016-05-26-pt1-PgS3340,CREC-2016-05-26,,ssev00,S,Committee on Environment and Public Works,S
+CREC-2016-05-26-pt1-PgS3340,CREC-2016-05-26,,hspw00,H,Committee on Transportation and Infrastructure,S
+CREC-2016-05-26-pt1-PgS3343-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3343,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3343-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3345,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3345-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3345-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3345-4,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3345-4,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3345-4,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3345-4,CREC-2016-05-26,,hshm00,H,Committee on Homeland Security,S
+CREC-2016-05-26-pt1-PgS3346,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3346-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3347-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3347,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3348,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3353,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3348-2,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3348-2,CREC-2016-05-26,,ssju00,S,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgS3348-2,CREC-2016-05-26,,hshm00,H,Committee on Homeland Security,S
+CREC-2016-05-26-pt1-PgS3348-2,CREC-2016-05-26,,hsju00,H,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgS3349,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3349,CREC-2016-05-26,,hsgo00,H,Committee on Oversight and Government Reform,S
+CREC-2016-05-26-pt1-PgS3353-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3353-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3353-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3353-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3353-6,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3353-7,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3354,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3354-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3355,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3355-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3355-3,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3355-3,CREC-2016-05-26,,hsas00,H,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3355-3,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3355-3,CREC-2016-05-26,,hsgo00,H,Committee on Oversight and Government Reform,S
+CREC-2016-05-26-pt1-PgS3357,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3357,CREC-2016-05-26,,hshm00,H,Committee on Homeland Security,S
+CREC-2016-05-26-pt1-PgS3373-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3374,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3374-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3373,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3373,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3373,CREC-2016-05-26,,ssap00,S,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3373,CREC-2016-05-26,,slin00,S,Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgS3373,CREC-2016-05-26,,hlig00,H,House Permanent Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,hshm00,H,Committee on Homeland Security,S
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,ssap00,S,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,hsap00,H,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,ssju00,S,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,hsju00,H,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,hsgo00,H,Committee on Oversight and Government Reform,S
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,slin00,S,Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,ssbk00,S,"Committee on Banking, Housing, and Urban Affairs",S
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,hlig00,H,House Permanent Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,hsas00,H,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,hsfa00,H,Committee on Foreign Affairs,S
+CREC-2016-05-26-pt1-PgS3358,CREC-2016-05-26,,hsba00,H,Committee on Financial Services,S
+CREC-2016-05-26-pt1-PgS3375,CREC-2016-05-26,,ssaf00,S,"Committee on Agriculture, Nutrition, and Forestry",S
+CREC-2016-05-26-pt1-PgS3375,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3375,CREC-2016-05-26,,ssju00,S,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgS3375,CREC-2016-05-26,,sssb00,S,Committee on Small Business and Entrepreneurship,S
+CREC-2016-05-26-pt1-PgS3375,CREC-2016-05-26,,slin00,S,Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgS3375,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgS3376,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3375-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3377-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3376-2,CREC-2016-05-26,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2016-05-26-pt1-PgS3376-2,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgS3376-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3377-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3377-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3377,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3378,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3378-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3378-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3378-6,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3378-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3378-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3378-7,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3378-9,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3378-8,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3378-10,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3378-11,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3378-12,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgS3381,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3378-13,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3379,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3380,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3381-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3381-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3381-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3381-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3382,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE799-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgS3382-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE799-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE799-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE800-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE800,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE800-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE800-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE800-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE801,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE801-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE801-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE802,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE802-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE802-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE802-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE803,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE803-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE803-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE804-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE804,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE804-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE804-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE804-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE805,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE805-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE805-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE805-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE805-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE805-6,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE805-7,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE806,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE806-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE806-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE806-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE806-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE807-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE807,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE807-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE807-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE808,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE808-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE808-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE808-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE808-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE808-6,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE808-7,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE808-8,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE809,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE809-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE809-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE810-2,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE810-3,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE809-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE810,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE810-4,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE810-5,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgE810-6,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgD596,CREC-2016-05-26,,ssaf00,S,"Committee on Agriculture, Nutrition, and Forestry",S
+CREC-2016-05-26-pt1-PgD596,CREC-2016-05-26,,ssap00,S,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgD596,CREC-2016-05-26,,ssfr00,S,Committee on Foreign Relations,S
+CREC-2016-05-26-pt1-PgD596,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgD596,CREC-2016-05-26,,sssb00,S,Committee on Small Business and Entrepreneurship,S
+CREC-2016-05-26-pt1-PgD596,CREC-2016-05-26,,slin00,S,Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgD594,CREC-2016-05-26,,sshr00,S,"Committee on Health, Education, Labor, and Pensions",S
+CREC-2016-05-26-pt1-PgD594,CREC-2016-05-26,,ssga00,S,Committee on Homeland Security and Governmental Affairs,S
+CREC-2016-05-26-pt1-PgD594,CREC-2016-05-26,,ssju00,S,Committee on the Judiciary,S
+CREC-2016-05-26-pt1-PgD594,CREC-2016-05-26,,sscm00,S,"Committee on Commerce, Science, and Transportation",S
+CREC-2016-05-26-pt1-PgD594,CREC-2016-05-26,,ssas00,S,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgD597,CREC-2016-05-26,,hsap00,H,Committee on Appropriations,S
+CREC-2016-05-26-pt1-PgD597,CREC-2016-05-26,,hsif00,H,Committee on Energy and Commerce,S
+CREC-2016-05-26-pt1-PgD597,CREC-2016-05-26,,hsag00,H,Committee on Agriculture,S
+CREC-2016-05-26-pt1-PgD597,CREC-2016-05-26,,hsii00,H,Committee on Natural Resources,S
+CREC-2016-05-26-pt1-PgD597,CREC-2016-05-26,,hssy00,H,"Committee on Science, Space, and Technology",S
+CREC-2016-05-26-pt1-PgD597,CREC-2016-05-26,,hspw00,H,Committee on Transportation and Infrastructure,S
+CREC-2016-05-26-pt1-PgD597,CREC-2016-05-26,,hlig00,H,House Permanent Select Committee on Intelligence,L
+CREC-2016-05-26-pt1-PgD598,CREC-2016-05-26,,hsas00,H,Committee on Armed Services,S
+CREC-2016-05-26-pt1-PgD598,CREC-2016-05-26,,hsfa00,H,Committee on Foreign Affairs,S
+CREC-2016-05-26-pt1-PgD598,CREC-2016-05-26,,hshm00,H,Committee on Homeland Security,S
+CREC-2016-05-26-pt1-PgD598,CREC-2016-05-26,,hsgo00,H,Committee on Oversight and Government Reform,S
+CREC-2016-05-26-pt1-PgD598,CREC-2016-05-26,,hssy00,H,"Committee on Science, Space, and Technology",S
+CREC-2016-05-26-pt1-PgD598,CREC-2016-05-26,,hssm00,H,Committee on Small Business,S
+CREC-2016-05-26-pt1-PgD599,CREC-2016-05-26,,,,,
+CREC-2016-05-26-pt1-PgD599-2,CREC-2016-05-26,,jspr00,J,Joint Committee on Printing,J

@@ -14,6 +14,29 @@ For each DataFrame chunk the script:
     exist
 
 At the end a small JSON summary is written to data/normalized/summary.json.
+
+# How to Run This Script
+
+This script processes raw legislative data and normalizes it.
+
+## Example Command:
+```powershell
+python .\interest_group_analysis\2.data_processing\1.process_and_normalize.py `
+  --raw-dir data\raw\govinfo_114_run2 `
+  --out-dir data\normalized\normalized_114_run2 `
+  --split-by package `
+  --only-congress 114 `
+  --emit-search-text `
+  --clean
+```
+
+## Arguments:
+- `--raw-dir`: Directory containing raw data.
+- `--out-dir`: Directory to save normalized data.
+- `--split-by`: Split output by `package`.
+- `--only-congress`: Filter data for a specific Congress.
+- `--emit-search-text`: Include a normalized `search_text` column.
+- `--clean`: Remove existing outputs before processing.
 """
 
 from __future__ import annotations
@@ -54,7 +77,7 @@ BY_PACKAGE_DIR: Path = OUT_DIR / "by_package"
 # --- New CLI knobs ---
 ONLY_CONGRESS: Optional[int] = None          # e.g., 114
 EMIT_SEARCH_TEXT: bool = False               # create search-ready text column
-PREFER_TEXT_ORDER = ["text_readability", "parsed_text", "text_bs4"]
+PREFER_TEXT_ORDER = ["text_for_speaker", "text_readability", "parsed_text"]
 
 
 def _maybe_clean_out_dir(out_dir: Path):
@@ -183,51 +206,98 @@ def parse_pkg_filename(name: str) -> tuple[Optional[int], Optional[int]]:
     return int(m.group(1)), int(m.group(2))
 
 
-def build_main_table(df: pd.DataFrame) -> pd.DataFrame:
-    # canonical columns to preserve if present
-    canonical = [
-        "granuleId",
-        "packageId",
-        "package_number",
-        "congress",
-        "date",
-        "url",
-        "title",
-        "subject",
-        "type",
-        "summary",
-        "parsed_text",
-        "text_readability",
-        "text_bs4",
-    ]
-    cols = [c for c in canonical if c in df.columns]
-    main = df[cols].copy()
+# Helper functions for normalization
 
-    # add provenance
+def derive_chamber_from_granule_id(granule_id: str) -> str | None:
+    gid = (granule_id or "").upper()
+    if "PGH" in gid: return "H"
+    if "PGS" in gid: return "S"
+    if "PGE" in gid: return "E"
+    return None
+
+def unpack_download_cols(df: pd.DataFrame) -> pd.DataFrame:
+    """Ensure txtLink and pdfLink exist, parsed from the 'download' column if needed."""
+    if "txtLink" not in df.columns: df["txtLink"] = None
+    if "pdfLink" not in df.columns: df["pdfLink"] = None
+
+    def _empty(s: pd.Series) -> pd.Series:
+        return s.isna() | (s.astype(str).str.strip() == "")
+
+    if "download" in df.columns:
+        def _pull(row, key):
+            d = parse_json_field(row.get("download"))
+            return d.get(key) if isinstance(d, dict) else None
+
+        mask_txt = _empty(df["txtLink"])
+        if mask_txt.any():
+            df.loc[mask_txt, "txtLink"] = df.loc[mask_txt].apply(_pull, axis=1, args=("txtLink",))
+        mask_pdf = _empty(df["pdfLink"])
+        if mask_pdf.any():
+            df.loc[mask_pdf, "pdfLink"] = df.loc[mask_pdf].apply(_pull, axis=1, args=("pdfLink",))
+    return df
+
+def coalesce_date(df: pd.DataFrame) -> pd.DataFrame:
+    """Create a single 'date' column from granuleDate or dateIssued."""
+    if "date" not in df.columns:
+        df["date"] = None
+    if "granuleDate" in df.columns:
+        df.loc[df["date"].isna() | (df["date"] == ""), "date"] = df["granuleDate"]
+    if "dateIssued" in df.columns:
+        df.loc[df["date"].isna() | (df["date"] == ""), "date"] = df["dateIssued"]
+    df["date"] = df["date"].astype(str).str.slice(0, 10)
+    return df
+
+def build_main_table(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Produce the normalized 'granules_core' rowset with exactly the requested columns:
+      KEEP (main): granuleId, packageId, date (granuleDate or dateIssued),
+                   title, collectionCode, granuleClass, chamber, pagePrefix, bookNumber,
+                   detailsLink, txtLink, pdfLink, packageLink,
+                   text_readability, text_bs4, parsed_text
+      OPTIONAL (also carried in main): relatedLink, docClass, category, lastModified, collectionName
+    """
+    df = coalesce_date(df)
+    df = unpack_download_cols(df)
+    # Derive chamber when missing or empty
+    if "chamber" not in df.columns:
+        df["chamber"] = None
+    needs_chamber = df["chamber"].isna() | (df["chamber"].astype(str).str.strip() == "")
+    df.loc[needs_chamber, "chamber"] = df.loc[needs_chamber, "granuleId"].astype(str).map(derive_chamber_from_granule_id)
+    if "text_for_speaker" not in df.columns and "text_bs4" in df.columns:
+        df["text_for_speaker"] = df["text_bs4"]
+
+    keep_cols_ordered = [
+        "granuleId", "packageId", "date",
+        "title", "collectionCode", "granuleClass", "chamber", "pagePrefix", "bookNumber",
+        "detailsLink", "txtLink", "pdfLink", "packageLink",
+        "text_readability", "text_bs4", "parsed_text",
+        "relatedLink", "docClass", "category", "lastModified", "collectionName",
+    ]
+
+    cols_present = [c for c in keep_cols_ordered if c in df.columns]
+    main = df[cols_present].copy()
+
+    for c in keep_cols_ordered:
+        if c not in main.columns:
+            main[c] = None
+    main = main[keep_cols_ordered]
+
     if "__source_file" in df.columns:
         main["__source_file"] = df["__source_file"]
 
-    # compute text lengths
-    def _len_col(s):
+    def _len_series(s: pd.Series) -> pd.Series:
         return s.fillna("").astype(str).map(len)
+    main["text_readability_len"] = _len_series(main["text_readability"])
+    main["text_bs4_len"] = _len_series(main["text_bs4"])
+    main["parsed_text_len"] = _len_series(main["parsed_text"])
 
-    if "parsed_text" in main.columns:
-        main["parsed_text_len"] = _len_col(main["parsed_text"])
-    if "text_readability" in main.columns:
-        main["text_readability_len"] = _len_col(main["text_readability"])
-    if "text_bs4" in main.columns:
-        main["text_bs4_len"] = _len_col(main["text_bs4"])
-
-    # Optional: emit a single search-ready text column for fast dictionary matching
     if EMIT_SEARCH_TEXT:
-        # pick first non-empty among preferred text fields
-        def pick_text(row):
+        def pick_text_row(row):
             for col in PREFER_TEXT_ORDER:
                 if col in row and isinstance(row[col], str) and row[col].strip():
                     return row[col]
             return ""
-        text = main.apply(pick_text, axis=1)
-        # normalize for matching: lowercase + compress whitespace
+        text = main.apply(pick_text_row, axis=1)
         text = text.astype(str).str.lower().str.replace(r"\s+", " ", regex=True).str.strip()
         main["search_text"] = text
         main["search_text_len"] = main["search_text"].map(len)
@@ -553,13 +623,12 @@ def chambers_from(df: pd.DataFrame) -> str:
 def build_pkg_dir_name(df_any: pd.DataFrame) -> str:
     pkg = df_any.get("packageId")
     congress = df_any.get("congress")
-    date_col = df_any.get("date")
     # coerce scalars from first non-null
     pkgid = safe_slug(str(pkg.dropna().iloc[0])) if isinstance(pkg, pd.Series) else safe_slug(str(pkg))
     cong = str(int(congress.dropna().iloc[0])) if isinstance(congress, pd.Series) and not congress.dropna().empty else (str(congress) if congress else "UNK")
-    date_str = date_col.dropna().iloc[0] if isinstance(date_col, pd.Series) and not date_col.dropna().empty else None
     chambers = chambers_from(df_any if isinstance(df_any, pd.DataFrame) else pd.DataFrame())
-    return f"{cong}C__{pkgid}__{yyyymmdd(date_str)}__{chambers}"
+    # Drop date component; packageId already encodes date context
+    return f"{cong}C__{pkgid}__{chambers}"
 
 
 def main():
@@ -633,3 +702,4 @@ def main_with_params(raw_dir: Path, out_dir: Path, chunksize: int = CHUNKSIZE,
 
 if __name__ == "__main__":
     main()
+

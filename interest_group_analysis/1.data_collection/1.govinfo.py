@@ -1,44 +1,39 @@
-"""
-Functions to fetch legislative transcripts from the GovInfo API.
+r"""Collect Congressional Record (CREC) transcripts from the GovInfo API.
 
-This module downloads transcripts and associated metadata for multiple sessions of Congress.
-It now extracts and saves BOTH readability-lxml and BeautifulSoup text fields for each document.
+PowerShell example:
+    & .\.venv\Scripts\Activate.ps1
+    $env:GOVINFO_API_KEY = "<YOUR_REAL_API_KEY>"
+    $OUT = "data\raw\govinfo_114_run2"
+    python .\interest_group_analysis\1.data_collection\1.govinfo.py `
+      --out-dir $OUT `
+      --congresses 114 `
+      --start-date 2015-01-06 `
+      --end-date 2017-01-03 `
+      --page-size 300 `
+      --workers 3
+
+Arguments:
+    --out-dir        Output directory (will be created).
+    --congresses     Comma-separated list (e.g. 114,115).
+    --start-date     ISO8601 start; date portion used for /published endpoint.
+    --end-date       ISO8601 end (optional; inferred if omitted).
+    --page-size      Packages per page (<=1000 recommended).
+    --workers        Thread workers for granule fetches.
+    --max-packages   Optional per‑congress cap (debugging).
+
+Features:
+    * Deterministic package ordering + manifest for stable resume.
+    * Two text variants: text_for_speaker (line preserving) & text_readability (readability-lxml).
+    * Progress persistence (progress.json), raw response archival (optional).
+    * Backoff + retry on rate limiting/5xx.
+    * Combined CSV plus per-package CSV artifacts.
 """
 
 from __future__ import annotations
 
-# Long descriptive note moved here from an accidental inline insertion.
-# Keep this at module top so it's easy to find and edit.
-MODULE_NOTE = (
-    """
-    Download and process legislative transcripts from the GovInfo API, saving extracted text and metadata to disk.
-
-    This function retrieves Congressional Record transcripts for specified congress sessions, downloads and parses the transcript text using both readability-lxml and BeautifulSoup extraction methods, and saves the results as CSV and JSON files. It supports resuming from previous progress, parallel downloading, and error logging.
-
-    Args:
-        output_dir (Path): Directory where output files and progress will be saved.
-        congresses (list[int] | None, optional): List of congress numbers to process. Defaults to [114, 115] if None.
-        start_date (str, optional): ISO8601 date string to start collecting from. Defaults to "2015-01-01T00:00:00Z".
-        page_size (int, optional): Number of packages to fetch per API request. Defaults to 1000.
-        workers (int, optional): Number of threads for parallel granule downloads. Defaults to 8.
-        max_packages_per_congress (int | None, optional): Maximum number of packages to process per congress. If None, no limit.
-
-    Returns:
-        None
-
-    Side Effects:
-        - Creates output_dir and subdirectories as needed.
-        - Writes CSV and JSON files with extracted transcript data.
-        - Maintains a progress file to support resuming.
-        - Logs errors to an error log file.
-        - Saves raw API responses for debugging.
-
-    Notes:
-        - Requires GOVINFO_API_KEY to be set in the config module.
-        - Uses both readability-lxml and BeautifulSoup for text extraction, saving both results.
-        - Handles API pagination and retries on network errors.
-    """
-)
+# Developer notes:
+# - Removed duplicate top-level docstrings & MODULE_NOTE to satisfy future import placement.
+# - If extended narrative documentation is needed, consider adding a README in this folder.
 
 import gzip
 import logging
@@ -48,10 +43,18 @@ import random
 import time
 import os
 import json
+import re
 
 import requests
-
-from .. import config
+ 
+# Allow running as a package module or as a standalone script
+try:
+    from .. import config  # type: ignore
+except Exception:
+    # Avoid importing the package __init__ (which imports heavy modules).
+    # Fallback: read the API key from env so this script can run standalone.
+    class config:  # type: ignore
+        GOVINFO_API_KEY = os.getenv("GOVINFO_API_KEY")
 
 # No hard-coded package limit: pass max_packages_per_congress=None to collect everything
 
@@ -66,7 +69,7 @@ def fetch_legislative_transcripts(
     max_packages_per_congress: int | None = None,
     initial_offset_mark: str | None = "*",
     dry_run: bool = False,
-    save_raw: bool = True,
+    save_raw: bool = False,
 ) -> None:
     """Download Congressional Record transcripts (CREC) and metadata.
 
@@ -173,6 +176,8 @@ def fetch_legislative_transcripts(
 
     from functools import wraps
     # Rate-limit aware request with limited retries & jitter.
+    session = requests.Session()
+
     def make_request(url: str, params: dict[str, Any] | None = None) -> dict[str, Any]:
         if dry_run:
             return {}
@@ -181,8 +186,14 @@ def fetch_legislative_transcripts(
         while True:
             attempt += 1
             start_t = time.time()
-            logging.info("GET %s params=%s", url, params)
-            resp = requests.get(url, params=params, timeout=30)
+            logging.debug("GET %s params=%s", url, params)
+
+            # Ensure api_key is present on every request (nextPage often omits it)
+            req_params = dict(params or {})
+            if api_key and "api_key" not in req_params and "api_key=" not in url:
+                req_params["api_key"] = api_key
+
+            resp = session.get(url, params=req_params, timeout=30)
             elapsed = (time.time() - start_t) * 1000
             status = resp.status_code
             if status == 429 or 500 <= status < 600:
@@ -231,8 +242,8 @@ def fetch_legislative_transcripts(
         except Exception:
             return ""
 
-    def extract_text_bs(html: str) -> str:
-        """Extract full-page text using BeautifulSoup with basic boilerplate removal."""
+    def extract_text_bs_lines(html: str) -> str:
+        """Extract text preserving line boundaries for turn-cue regexes."""
         try:
             try:
                 soup = BeautifulSoup(html, "lxml")
@@ -243,8 +254,14 @@ def fetch_legislative_transcripts(
                 for el in soup.select(selector):
                     el.decompose()
 
-            text = soup.get_text(separator=" ", strip=True)
-            return " ".join(text.split()) if text else ""
+            # Preserve line breaks and normalize per-line whitespace
+            raw = soup.get_text(separator="\n")
+            lines: list[str] = []
+            for ln in raw.splitlines():
+                ln = re.sub(r"\s+", " ", ln).strip()
+                if ln:
+                    lines.append(ln)
+            return "\n".join(lines)
         except Exception:
             return ""
 
@@ -302,12 +319,32 @@ def fetch_legislative_transcripts(
         try:
             detail_json = make_request(link, params={"api_key": api_key})
             save_raw_response(detail_json, output_dir, f"granule_{link.split('/')[-1]}")
-            download_link = detail_json.get("download", {}).get("txtLink")
+            # Carry forward useful metadata safely (keys vary by record type)
+            meta = detail_json or {}
+            pkg_id   = meta.get("packageId") or meta.get("package", {}).get("packageId")
+            gran_id  = meta.get("granuleId") or meta.get("granule", {}).get("granuleId")
+            title    = meta.get("title") or meta.get("granule", {}).get("title")
+            date     = meta.get("date") or meta.get("granule", {}).get("date")
+            coll     = meta.get("collectionCode") or meta.get("collection", {}).get("collectionCode")
+            chamber  = meta.get("chamber") or meta.get("granule", {}).get("chamber")
+            section  = meta.get("section") or meta.get("granule", {}).get("section")
+            detail_json["packageId"] = pkg_id
+            detail_json["granuleId"] = gran_id
+            detail_json["title"] = title
+            detail_json["date"] = date
+            detail_json["collectionCode"] = coll
+            if chamber is not None:
+                detail_json["chamber"] = chamber
+            if section is not None:
+                detail_json["section"] = section
+
+            download_link = meta.get("download", {}).get("txtLink")
             if download_link:
                 dl_params = None
                 if "api.govinfo.gov" in download_link and "api_key=" not in download_link:
                     dl_params = {"api_key": api_key}
-                txt_resp = requests.get(download_link, params=dl_params, timeout=30)
+                txt_resp = session.get(download_link, params=dl_params, timeout=30)
+                detail_json["txtLink_used"] = download_link
                 if txt_resp.status_code == 200:
                     ctype = (txt_resp.headers.get("Content-Type") or "").lower()
                     body = txt_resp.text or ""
@@ -316,15 +353,24 @@ def fetch_legislative_transcripts(
                     is_json = "application/json" in ctype or body.strip().startswith("{")
 
                     if (is_html_ct or is_html_link) and not is_json:
-                        # Save BOTH extraction methods as separate fields
-                        detail_json["text_readability"] = extract_text_readability(body)
-                        detail_json["text_bs4"] = extract_text_bs(body)
-                        # Optional: for backward compatibility, you may keep "parsed_text" as preferred
-                        detail_json["parsed_text"] = detail_json["text_readability"] or detail_json["text_bs4"]
+                        # Speaker-friendly text (preserve lines) and readability for prose
+                        text_for_speaker = extract_text_bs_lines(body)
+                        text_readability = extract_text_readability(body)
+                        detail_json["text_for_speaker"] = text_for_speaker
+                        detail_json["text_readability"] = text_readability
+                        detail_json["parsed_text"] = text_readability or text_for_speaker
                     elif is_json:
                         logging.debug("txtLink returned JSON/error for %s: %s", download_link, body[:200])
                     else:
-                        logging.debug("txtLink not HTML for %s (Content-Type=%s); skipping parsed_text", download_link, ctype)
+                        # Plain text fallback: preserve line breaks
+                        if body:
+                            detail_json["text_for_speaker"] = "\n".join(
+                                ln.strip() for ln in body.splitlines() if ln.strip()
+                            )
+                            detail_json["text_readability"] = ""
+                            detail_json["parsed_text"] = detail_json["text_for_speaker"]
+                        else:
+                            logging.debug("txtLink not HTML for %s (Content-Type=%s); no body", download_link, ctype)
             return detail_json
         except Exception as exc:  # noqa: BLE001
             error_message = f"Error fetching granule details for {link}: {exc}"
@@ -348,7 +394,7 @@ def fetch_legislative_transcripts(
         mock = [{
             "granuleId": "TEST-GRANULE-1",
             "text_readability": "Sample readability text.",
-            "text_bs4": "Sample bs4 text.",
+            "text_for_speaker": "Mr. SMITH.\nThe PRESIDING OFFICER:\nSample line one.\nSample line two.",
             "parsed_text": "Sample readability text.",
         }]
         df = pd.DataFrame(mock)
@@ -432,6 +478,54 @@ def fetch_legislative_transcripts(
                 logging.error("Error fetching packages page for congress %s: %s", congress, exc)
                 break
 
+        # ------------------------------------------------------------------
+        # Persist a deterministic package order for bulletproof resume
+        # ------------------------------------------------------------------
+        if packages:
+            def _pkg_date_key(p: dict[str, Any]) -> str:
+                pid = (p.get("packageId") or p.get("packageLink", "")).split("/")[-1]
+                m = re.search(r"CREC-(\d{4}-\d{2}-\d{2})", pid)
+                return m.group(1) if m else "9999-99-99"
+
+            # Sort packages by date embedded in packageId for deterministic order
+            try:
+                packages.sort(key=_pkg_date_key)  # type: ignore[arg-type]
+            except Exception as exc:  # noqa: BLE001
+                logging.debug("Package sort failed; proceeding unsorted: %s", exc)
+
+            manifest_path = output_dir / f"packages_{congress}.json"
+            try:
+                if manifest_path.exists():
+                    # Load the saved order to keep resumes stable
+                    with manifest_path.open("r", encoding="utf-8") as mf:
+                        saved = json.load(mf)
+                    saved_ids = {p.get("packageId") for p in saved if isinstance(p, dict)}
+                    # Filter to saved IDs to ensure exact same sequence
+                    packages = [p for p in packages if p.get("packageId") in saved_ids]
+                    logging.info("Loaded existing package manifest %s (%d ids)", manifest_path, len(saved_ids))
+                else:
+                    # Save the exact ordered list once for deterministic resumes
+                    minimal = [
+                        {"packageId": p.get("packageId"), "packageLink": p.get("packageLink")}
+                        for p in packages
+                    ]
+                    with manifest_path.open("w", encoding="utf-8") as mf:
+                        json.dump(minimal, mf, indent=2)
+                    logging.info("Wrote package manifest to %s (%d entries)", manifest_path, len(minimal))
+            except Exception as exc:  # noqa: BLE001
+                logging.warning("Could not persist/load package manifest: %s", exc)
+
+            # Informative range log after ordering/filtering
+            if packages:
+                first_id = packages[0].get("packageId") or packages[0].get("packageLink")
+                last_id = packages[-1].get("packageId") or packages[-1].get("packageLink")
+                logging.info(
+                    "Package range (sorted): first=%s  last=%s  count=%d",
+                    first_id,
+                    last_id,
+                    len(packages),
+                )
+
         if not packages:
             logging.warning("No packages returned for congress %s", congress)
             continue
@@ -480,8 +574,18 @@ def fetch_legislative_transcripts(
                             granule_results.append(result)
                 if granule_results:
                     df = pd.DataFrame(granule_results)
-                    # Normalize whitespace in text columns
-                    for col in ["text_readability", "text_bs4", "parsed_text"]:
+                    # add congress column for easy grouping downstream
+                    df["congress"] = congress
+                    # Normalize: preserve newlines in text_for_speaker, flatten others
+                    if "text_for_speaker" in df.columns:
+                        df["text_for_speaker"] = (
+                            df["text_for_speaker"]
+                            .astype(str)
+                            .str.replace(r"[ \t]+", " ", regex=True)
+                            .str.replace(r"\n{3,}", "\n\n", regex=True)
+                            .str.strip()
+                        )
+                    for col in ["text_readability", "parsed_text"]:
                         if col in df.columns:
                             df[col] = (
                                 df[col]
@@ -489,6 +593,14 @@ def fetch_legislative_transcripts(
                                 .str.replace(r"\s+", " ", regex=True)
                                 .str.strip()
                             )
+                    # Ensure key metadata fields exist
+                    wanted_cols = [
+                        "packageId","granuleId","title","date","collectionCode","chamber","section",
+                        "txtLink_used","text_for_speaker","text_readability","parsed_text"
+                    ]
+                    for c in wanted_cols:
+                        if c not in df.columns:
+                            df[c] = None
                     out_csv = output_dir / f"package_{congress}_{idx}.csv"
                     df.to_csv(out_csv, index=False)
                     all_dataframes.append(df)
@@ -501,7 +613,16 @@ def fetch_legislative_transcripts(
                 continue
     if all_dataframes:
         combined = pd.concat(all_dataframes, ignore_index=True)
-        for col in ["text_readability", "text_bs4", "parsed_text"]:
+        # Preserve newlines in text_for_speaker, flatten other text fields
+        if "text_for_speaker" in combined.columns:
+            combined["text_for_speaker"] = (
+                combined["text_for_speaker"]
+                .astype(str)
+                .str.replace(r"[ \t]+", " ", regex=True)
+                .str.replace(r"\n{3,}", "\n\n", regex=True)
+                .str.strip()
+            )
+        for col in ["text_readability", "parsed_text"]:
             if col in combined.columns:
                 combined[col] = (
                     combined[col]
@@ -521,3 +642,36 @@ def fetch_legislative_transcripts(
             len(pkg_files),
             len(combined),
         )
+
+
+if __name__ == "__main__":
+    import argparse
+    from pathlib import Path
+
+    ap = argparse.ArgumentParser(description="Fetch CREC transcripts (GovInfo)")
+    ap.add_argument("--out-dir", required=True)
+    ap.add_argument("--congresses", default="114")  # comma-separated like 114,115
+    ap.add_argument("--start-date", default="2015-01-06T00:00:00Z")
+    ap.add_argument("--end-date", default="2017-01-03T00:00:00Z")
+    ap.add_argument("--page-size", type=int, default=1000)
+    ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--max-packages", type=int, default=None)
+    ap.add_argument("--initial-offset-mark", default="*")
+    ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--no-save-raw", dest="save_raw", action="store_false")
+
+    args = ap.parse_args()
+    congress_list = [int(x) for x in args.congresses.split(",") if x.strip()]
+
+    fetch_legislative_transcripts(
+        output_dir=Path(args.out_dir),
+        congresses=congress_list,
+        start_date=args.start_date,
+        end_date=args.end_date,
+        page_size=args.page_size,
+        workers=args.workers,
+        max_packages_per_congress=args.max_packages,
+        initial_offset_mark=args.initial_offset_mark,
+        dry_run=args.dry_run,
+        save_raw=args.save_raw,
+    )

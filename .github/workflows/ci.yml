@@ -15,22 +15,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install libtirpc-dev
+        run: sudo apt-get update && sudo apt-get install -y libtirpc-dev
+
+      - name: Install R
+        run: sudo apt-get update && sudo apt-get install -y r-base
+
+      - name: Add R to PATH
+        run: echo "PATH=/usr/bin:$PATH" >> $GITHUB_ENV
+
+      - name: Set R_HOME
+        run: echo "R_HOME=$(R RHOME)" >> $GITHUB_ENV
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-
-      # Step 1: Install R
-      - name: Install R
-        run: sudo apt-get update && sudo apt-get install -y r-base
-
-      # Step 2: Add R to PATH
-      - name: Add R to PATH
-        run: echo "PATH=/usr/bin:$PATH" >> $GITHUB_ENV
-
-      # Step 3: Set R_HOME
-      - name: Set R_HOME
-        run: echo "R_HOME=$(R RHOME)" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: |

@@ -1,3 +1,66 @@
+r"""
+Speaker Attribution CLI — How to run
+
+This script attaches speakers to extracted mentions from Congressional Record text.
+It uses normalized granule text and optional member metadata to attribute the likely
+speaker for each mention (by character offset).
+
+Prerequisites
+- Python 3.9+ (use the repo's .venv if available)
+- Packages: pandas, tqdm, psutil (installed via requirements.txt)
+
+Quick setup (PowerShell)
+        # From repo root
+        python -m venv .venv
+        .\.venv\Scripts\Activate.ps1
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+Inputs
+- --mentions-jsonl: JSONL with at least granuleId and mention_char_start
+- --normalized-dir: directory containing by_package/**/granules_core.csv
+- --members-csv (optional): member metadata (first_name,last_name,bioguide_id,chamber,party,...)
+
+Basic run
+        $PY = ".\.venv\Scripts\python.exe"
+        $mentions = "data\processed\mentions_114_run2\mentions.jsonl"
+        $norm     = "data\normalized\normalized_114_run2"
+        $out      = "data\processed\mentions_and_speaker_114"
+
+        $PY .\interest_group_analysis\2.data_processing\3.attach_speakers.py `
+            --mentions-jsonl $mentions `
+            --normalized-dir $norm `
+            --out-dir $out `
+            --save-csv `
+            --qa-jsonl
+
+Faster run (parallel + resume)
+        $PY .\interest_group_analysis\2.data_processing\3.attach_speakers.py `
+            --mentions-jsonl $mentions `
+            --normalized-dir $norm `
+            --out-dir $out `
+            --save-csv `
+            --qa-jsonl `
+            --parallel `
+            --workers 6 `
+            --resume
+
+Useful flags
+- --only-granules-with-members: keep only granules with member metadata
+- --drop-unknown-speaker: exclude unresolved attributions
+
+Outputs (in --out-dir)
+- mentions_with_speakers.jsonl (always)
+- mentions_with_speakers.csv (if --save-csv)
+- speaker_qc.jsonl (if --qa-jsonl)
+- processed_granules.jsonl (resume manifest when --resume)
+
+Monitoring & performance
+- INFO logs include timing and memory snapshots (psutil)
+- Progress bars show granule attribution progress and ETA
+- Reduce memory by using --parallel with reasonable --workers or lowering batch sizes
+"""
+
 from __future__ import annotations
 import re
 def load_granule_members(normalized_dir: Path) -> dict[str, list[dict]]:
@@ -87,12 +150,20 @@ def refine_spans_with_members(spans, gid, members_by_gid):
 import argparse
 import json
 import logging
+import time
+import multiprocessing
+from concurrent.futures import ProcessPoolExecutor
+from functools import partial
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 import pandas as pd
 from tqdm import tqdm
 import csv  # NEW
+try:
+    import psutil  # For memory tracking
+except Exception:  # pragma: no cover
+    psutil = None
 
 from speaker_attribution import (
     build_member_patterns,
@@ -102,30 +173,6 @@ from speaker_attribution import (
 
 LOGGER = logging.getLogger("attach_speakers")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s: %(message)s")
-
-r"""
-# How to Run This Script
-
-This script attaches speakers to mentions in legislative data.
-
-## Example Command:
-```powershell
-python .\interest_group_analysis\2.data_processing\3.attach_speakers.py `
-  --mentions-jsonl data\processed\mentions_114_run2\mentions.jsonl `
-  --normalized-dir data\normalized\normalized_114_run2 `
-  --out-dir data\processed\mentions_and_speaker_114 `
-  --save-csv `
-  --qa-jsonl
-```
-
-## Arguments:
-- `--mentions-jsonl`: Path to the JSONL file containing mentions.
-- `--normalized-dir`: Directory containing normalized data.
-- `--out-dir`: Directory to save the output.
-- `--save-csv`: Save the output in CSV format.
-- `--qa-jsonl`: Save QA results in JSONL format.
-"""
-
 
 def pick_text_row(r: Dict[str, str]) -> tuple[str, str]:
     for k in (
@@ -142,6 +189,15 @@ def pick_text_row(r: Dict[str, str]) -> tuple[str, str]:
     return "", ""
 
 
+def log_memory_usage():
+    """Log current memory usage of the process"""
+    if psutil is None:
+        LOGGER.info("Memory usage: psutil not installed; skipping snapshot")
+        return
+    process = psutil.Process()
+    memory_info = process.memory_info()
+    LOGGER.info(f"Memory usage: {memory_info.rss / 1024 / 1024:.1f} MB")
+
 def parse_args():
     p = argparse.ArgumentParser(description="Attach speaker attribution to mentions using char offsets.")
     p.add_argument("--mentions-jsonl", type=Path, required=True, help="Input mentions JSONL with char offsets.")
@@ -152,6 +208,9 @@ def parse_args():
     p.add_argument("--qa-jsonl", action="store_true", help="Write per-granule QA jsonl with spans and summary counts.")
     p.add_argument("--only-granules-with-members", action="store_true", help="Skip mentions from granules that have no members metadata")
     p.add_argument("--drop-unknown-speaker", action="store_true", help="Drop mentions when speaker attribution remains UNKNOWN")
+    p.add_argument("--parallel", action="store_true", help="Use multiprocessing to speed up speaker attribution")
+    p.add_argument("--workers", type=int, default=max(1, multiprocessing.cpu_count() - 1), help="Number of worker processes to use if --parallel is enabled")
+    p.add_argument("--batch-size", type=int, default=10000, help="Number of mentions to process in each batch")
     # NEW:
     p.add_argument("--resume", action="store_true", help="Resume using processed_granules.jsonl manifest; append outputs")
     p.add_argument("--manifest", type=Path, default=None, help="Path to processed manifest (defaults to out_dir/processed_granules.jsonl)")
@@ -182,6 +241,8 @@ def stream_granules_text(
     Fast path: if package_ids provided, only read those by_package/*/granules_core.csv files.
     Falls back to scanning all by_package if package_ids is None or no matches found.
     """
+    # Log memory usage at the start
+    log_memory_usage()
     wanted_cols = ["granuleId", "text_for_speaker", "text_bs4", "parsed_text", "text_readability"]
     out: Dict[str, str] = {}
     sources: Dict[str, Optional[str]] = {}
@@ -322,15 +383,51 @@ def append_processed(manifest: Path, gid: str):
         f.write(json.dumps({"granuleId": str(gid)}) + "\n")
 
 
+def log_memory_usage():
+    process = psutil.Process()
+    memory_info = process.memory_info()
+    LOGGER.info(f"Memory usage: {memory_info.rss / 1024 / 1024:.1f} MB")
+
 def main():
+    start_time = time.time()
     args = parse_args()
     args.out_dir.mkdir(parents=True, exist_ok=True)
     manifest_path = args.manifest or (args.out_dir / "processed_granules.jsonl")
+    log_memory_usage()  # Initial memory snapshot
 
+    # Prepare output targets and reset if not resuming
+    out_jsonl = args.out_dir / "mentions_with_speakers.jsonl"
+    out_csv = args.out_dir / "mentions_with_speakers.csv"
+    qa_path = args.out_dir / "speaker_qc.jsonl"
+    if not args.resume:
+        try:
+            if out_jsonl.exists():
+                out_jsonl.unlink()
+            if out_csv.exists() and args.save_csv:
+                out_csv.unlink()
+            if qa_path.exists() and args.qa_jsonl:
+                qa_path.unlink()
+            if manifest_path.exists():
+                manifest_path.unlink()
+        except Exception:
+            pass
+    
+    # Load already processed granules if resuming
+    processed_granules = set()
+    if args.resume and manifest_path.exists():
+        processed_granules = load_processed_set(manifest_path)
+        LOGGER.info("Resuming processing. Skipping %d already processed granules.", len(processed_granules))
+    
     df = read_jsonl(args.mentions_jsonl)
-    if df.empty:
-        LOGGER.error("No mentions in input: %s", args.mentions_jsonl)
-        return
+    # Filter out already processed granules
+    if args.resume and processed_granules:
+        before_count = len(df)
+        df = df[~df["granuleId"].astype(str).isin(processed_granules)]
+        LOGGER.info("Filtered out %d mentions from %d already processed granules",
+                   before_count - len(df), len(processed_granules))
+        if df.empty:
+            LOGGER.error("No mentions remain after filtering for already processed granules")
+            return
 
     required_cols = {"granuleId", "mention_char_start"}
     if not required_cols.issubset(df.columns):
@@ -362,6 +459,8 @@ def main():
     pkg_ids = set(df["packageId"].dropna().astype(str)) if "packageId" in df.columns else None
     LOGGER.info("Loading texts for %d granules from %s packages...", len(needed), (len(pkg_ids) if pkg_ids else "ALL"))
     text_by_gid, source_by_gid = stream_granules_text(args.normalized_dir, needed, pkg_ids)
+    LOGGER.info("Loaded %d granule texts", len(text_by_gid))
+    log_memory_usage()
 
     if args.members_csv and Path(args.members_csv).exists():
         try:
@@ -375,151 +474,327 @@ def main():
 
     # Precompute speaker spans per granule
     spans_cache: Dict[str, List] = {}
-    for gid, txt in text_by_gid.items():
-        spans = iter_speaker_spans(txt or "", members_idx)
-        # NEW: Enhance spans with granule member information
-        spans = refine_spans_with_members(spans, gid, members_by_gid)
-        # Belt-and-suspenders: if no spans, try a liney alternative from normalized CSV (text_bs4) when available
-        if not spans:
-            try:
-                by_pkg = args.normalized_dir / "by_package"
-                for core in by_pkg.glob("**/granules_core.csv"):
-                    for chunk in pd.read_csv(core, chunksize=5000, dtype=str, keep_default_na=False):
-                        cand = chunk.loc[chunk["granuleId"].astype(str) == str(gid)]
-                        if not cand.empty:
-                            raw_bs4 = cand.iloc[0].get("text_bs4", "")
-                            if isinstance(raw_bs4, str) and raw_bs4.strip() and raw_bs4 != txt:
-                                spans = iter_speaker_spans(raw_bs4, members_idx)
-                                spans = refine_spans_with_members(spans, gid, members_by_gid)
+    total_granules = len(text_by_gid)
+    LOGGER.info(f"Starting span precomputation for {total_granules} granules...")
+    log_memory_usage()
+    
+    # Track stats for reporting
+    spans_found = 0
+    spans_from_bs4 = 0
+    single_speaker_defaults = 0
+    
+    # Use tqdm with position=0 to ensure it appears at the bottom of the terminal
+    with tqdm(text_by_gid.items(), total=total_granules, desc="Precomputing spans", position=0, leave=True) as pbar:
+        for i, (gid, txt) in enumerate(pbar):
+            spans = iter_speaker_spans(txt or "", members_idx)
+            # NEW: Enhance spans with granule member information
+            spans = refine_spans_with_members(spans, gid, members_by_gid)
+            
+            # Belt-and-suspenders: try a liney alternative from normalized CSV (text_bs4) when available
+            if not spans:
+                try:
+                    by_pkg = args.normalized_dir / "by_package"
+                    for core in by_pkg.glob("**/granules_core.csv"):
+                        for chunk in pd.read_csv(core, chunksize=5000, dtype=str, keep_default_na=False):
+                            cand = chunk.loc[chunk["granuleId"].astype(str) == str(gid)]
+                            if not cand.empty:
+                                raw_bs4 = cand.iloc[0].get("text_bs4", "")
+                                if isinstance(raw_bs4, str) and raw_bs4.strip() and raw_bs4 != txt:
+                                    spans = iter_speaker_spans(raw_bs4, members_idx)
+                                    spans = refine_spans_with_members(spans, gid, members_by_gid)
+                                    if spans:
+                                        spans_from_bs4 += 1
+                                break
+                        if spans:
                             break
-                    if spans:
-                        break
-            except Exception:
-                pass
-        # If no spans but we have granule members, create a default span for single-speaker granules
-        if not spans and gid in members_by_gid and len(members_by_gid[gid]) == 1:
-            member = members_by_gid[gid][0]
-            name = f"{member.get('first_name', '').title()} {member.get('last_name', '').title()}".strip()
-            spans = [type('SpeakerSpan', (), {})()]
-            spans[0].start = 0
-            spans[0].end = len(txt or "")
-            spans[0].raw_label = name
-            spans[0].canonical_name = name
-            spans[0].bioguide_id = member.get("bioguide_id")
-        spans_cache[gid] = spans
+                except Exception:
+                    pass
+            
+            # If no spans but we have granule members, create a default span for single-speaker granules
+            if not spans and gid in members_by_gid and len(members_by_gid[gid]) == 1:
+                member = members_by_gid[gid][0]
+                name = f"{member.get('first_name', '').title()} {member.get('last_name', '').title()}".strip()
+                spans = [type('SpeakerSpan', (), {})()]
+                spans[0].start = 0
+                spans[0].end = len(txt or "")
+                spans[0].raw_label = name
+                spans[0].canonical_name = name
+                spans[0].bioguide_id = member.get("bioguide_id")
+                single_speaker_defaults += 1
+            
+            spans_cache[gid] = spans
+            if spans:
+                spans_found += 1
+                
+            # Update progress bar description with some stats
+            if (i + 1) % 10 == 0:
+                pbar.set_postfix(found=f"{spans_found}/{i+1}", bs4=spans_from_bs4, defaults=single_speaker_defaults)
+            
+            if (i + 1) % 500 == 0:
+                LOGGER.info("Precomputed spans for %d/%d granules (%.1f%%): found=%d, from_bs4=%d, defaults=%d", 
+                           i + 1, total_granules, 100*(i+1)/total_granules, spans_found, spans_from_bs4, single_speaker_defaults)
+                log_memory_usage()
+
+    # Log span precomputation summary
+    spans_with_speakers = sum(1 for spans in spans_cache.values() if any(span.canonical_name for span in spans))
+    LOGGER.info(f"Span precomputation complete. Stats:")
+    LOGGER.info(f"  - Total granules: {len(text_by_gid)}")
+    LOGGER.info(f"  - Granules with any spans: {sum(1 for spans in spans_cache.values() if spans)}")
+    LOGGER.info(f"  - Granules with identified speakers: {spans_with_speakers}")
+    LOGGER.info(f"  - Coverage: {spans_with_speakers/len(text_by_gid)*100:.1f}%")
+    log_memory_usage()
 
     # Progress over granules with ETA
     granule_keys = [str(k) for k in df["granuleId"].astype(str).unique()]
-    pbar = tqdm(total=len(granule_keys), desc="Attributing (granules)", unit="granule")
+    
+    # Initialize counters for tracking attribution quality
+    unknown_speakers = 0
+    resolved_speakers = 0
+    
+    LOGGER.info(f"Processing {len(granule_keys)} unique granules with {len(df)} total mentions")
+    log_memory_usage()
+    
+    # We'll stream results per granule instead of holding everything in memory
+    
+    # Process granules in parallel or sequentially based on args
+    if args.parallel:
+        LOGGER.info(f"Using parallel processing with {args.workers} workers")
+        # Create a partial function with the precomputed data
+        process_func = partial(
+            process_granule, 
+            text_by_gid=text_by_gid, 
+            spans_cache=spans_cache,
+            members_by_gid=members_by_gid
+        )
+        
+        # Group by granuleId and convert to list of (granule_id, dataframe) tuples
+        granule_groups = [(gid, g) for gid, g in df.groupby("granuleId")]
+        
+        # Use ProcessPoolExecutor to parallelize over granules
+        with ProcessPoolExecutor(max_workers=args.workers) as executor:
+            iterator = executor.map(process_func, granule_groups)
+            for (gid, _), batch_results in tqdm(zip(granule_groups, iterator), total=len(granule_groups),
+                                               desc="Attributing (granules)", unit="granule"):
+                # Optionally drop unknowns before writing
+                if args.drop_unknown_speaker:
+                    batch_results = [r for r in batch_results if r.get("speaker_raw") != "UNKNOWN"]
 
-    speaker_rows: List[Dict] = []
-    for gid, g in df.groupby("granuleId"):
-        gid = str(gid)
-        pbar.set_postfix_str(gid[-22:])  # show tail of current gid
-        pbar.update(1)
-        spans = spans_cache.get(gid, [])
-        text_missing = gid not in text_by_gid or not text_by_gid.get(gid)
-        single_member = None
-        if not spans and gid in members_by_gid and len(members_by_gid[gid]) == 1:
-            member = members_by_gid[gid][0]
-            single_member = f"{member.get('first_name', '').title()} {member.get('last_name', '').title()}".strip()
-        for _, r in g.iterrows():
-            rec = r.to_dict()
-            if text_missing:
-                rec.update({
-                    "speaker_raw": "UNKNOWN",
-                    "speaker_canonical": None,
-                    "speaker_bioguide": None,
-                    "speaker_method": "no_text",
-                    "speaker_confidence": 0.0,
-                })
-                speaker_rows.append(rec)
-                continue
-            try:
-                offset = int(r.get("mention_char_start"))
-            except Exception:
-                rec.update({
-                    "speaker_raw": "UNKNOWN",
-                    "speaker_canonical": None,
-                    "speaker_bioguide": None,
-                    "speaker_method": "no_offset",
-                    "speaker_confidence": 0.0,
-                })
-                speaker_rows.append(rec)
-                continue
-            # If we have spans, use them to attribute speaker
-            if spans:
-                s, method, conf = assign_speaker_for_offset(offset, spans)
-                rec.update({
-                    "speaker_raw": s.raw_label,
-                    "speaker_canonical": s.canonical_name,
-                    "speaker_bioguide": s.bioguide_id,
-                    "speaker_method": method,
-                    "speaker_confidence": conf,
-                })
-            # If no spans but single member, use that
-            elif single_member:
-                member = members_by_gid[gid][0]
-                rec.update({
-                    "speaker_raw": single_member,
-                    "speaker_canonical": single_member,
-                    "speaker_bioguide": member.get("bioguide_id"),
-                    "speaker_method": "sole_granule_member",
-                    "speaker_confidence": 0.7,
-                })
-            else:
-                rec.update({
-                    "speaker_raw": "UNKNOWN",
-                    "speaker_canonical": None,
-                    "speaker_bioguide": None,
-                    "speaker_method": "no_speaker_cues",
-                    "speaker_confidence": 0.0,
-                })
-            speaker_rows.append(rec)
-    pbar.close()
+                # Update counters
+                for row in batch_results:
+                    if row.get("speaker_raw") == "UNKNOWN":
+                        unknown_speakers += 1
+                    else:
+                        resolved_speakers += 1
 
-    out_df = pd.DataFrame(speaker_rows)
-    # Optional: filter out rows with unknown speakers
-    if args.drop_unknown_speaker and not out_df.empty:
-        before_count = len(out_df)
-        out_df = out_df[out_df["speaker_raw"] != "UNKNOWN"]
-        LOGGER.info("Filtered from %d to %d mentions (dropping unknown speakers)",
-                   before_count, len(out_df))
-    if out_df.empty:
-        LOGGER.error("No output rows produced. Check inputs.")
-        return
+                # Stream writes
+                append_jsonl(batch_results, out_jsonl)
+                if args.save_csv and batch_results:
+                    write_csv_append(pd.DataFrame(batch_results), out_csv)
 
-    out_jsonl = args.out_dir / "mentions_with_speakers.jsonl"
-    save_jsonl(out_df, out_jsonl)
-    if args.save_csv:
-        out_csv = args.out_dir / "mentions_with_speakers.csv"
-        out_df.to_csv(out_csv, index=False, encoding="utf-8-sig")
-    LOGGER.info("Wrote %s (%d rows)", out_jsonl, len(out_df))
+                # Stream QA per granule
+                if args.qa_jsonl:
+                    spans = spans_cache.get(str(gid), [])
+                    counts: Dict[str, int] = {}
+                    for r in batch_results:
+                        m = r.get("speaker_method")
+                        counts[m] = counts.get(m, 0) + 1
+                    span_snap = [
+                        {"start": getattr(s, 'start', None), "end": getattr(s, 'end', None),
+                         "raw": getattr(s, 'raw_label', None), "canon": getattr(s, 'canonical_name', None)}
+                        for s in spans[:5]
+                    ]
+                    first_cue = spans[0].raw_label if spans else None
+                    last_cue = spans[-1].raw_label if spans else None
+                    common_src = source_by_gid.get(str(gid))
+                    with qa_path.open("a", encoding="utf-8") as f:
+                        f.write(json.dumps({
+                            "granuleId": str(gid),
+                            "counts": counts,
+                            "n": int(len(batch_results)),
+                            "spans_sample": span_snap,
+                            "n_spans": len(spans),
+                            "first_cue": first_cue,
+                            "last_cue": last_cue,
+                            "text_source": common_src,
+                        }, ensure_ascii=False) + "\n")
 
-    if args.qa_jsonl:
-        qa_path = args.out_dir / "speaker_qc.jsonl"
-        with qa_path.open("w", encoding="utf-8") as f:
-            for gid, g in out_df.groupby("granuleId"):
-                counts = g["speaker_method"].value_counts(dropna=False).to_dict()
+                # Update manifest per granule
+                if args.resume:
+                    append_processed(manifest_path, str(gid))
+    else:
+        # Sequential processing (original logic)
+        pbar = tqdm(total=len(granule_keys), desc="Attributing (granules)", unit="granule")
+        
+        for gid, g in df.groupby("granuleId"):
+            gid = str(gid)
+            pbar.set_postfix_str(gid[-22:])  # show tail of current gid
+            pbar.update(1)
+            
+            batch_results = process_granule((gid, g), text_by_gid, spans_cache, members_by_gid)
+            if args.drop_unknown_speaker:
+                batch_results = [r for r in batch_results if r.get("speaker_raw") != "UNKNOWN"]
+            
+            # Update counters
+            for row in batch_results:
+                if row.get("speaker_raw") == "UNKNOWN":
+                    unknown_speakers += 1
+                else:
+                    resolved_speakers += 1
+            
+            # Update manifest for successful granule if resuming
+            if args.resume:
+                append_processed(manifest_path, gid)
+
+            # Stream writes
+            append_jsonl(batch_results, out_jsonl)
+            if args.save_csv and batch_results:
+                write_csv_append(pd.DataFrame(batch_results), out_csv)
+
+            # Stream QA per granule
+            if args.qa_jsonl:
                 spans = spans_cache.get(str(gid), [])
+                counts: Dict[str, int] = {}
+                for r in batch_results:
+                    m = r.get("speaker_method")
+                    counts[m] = counts.get(m, 0) + 1
                 span_snap = [
-                    {"start": getattr(s, 'start', None), "end": getattr(s, 'end', None), "raw": getattr(s, 'raw_label', None), "canon": getattr(s, 'canonical_name', None)}
+                    {"start": getattr(s, 'start', None), "end": getattr(s, 'end', None),
+                     "raw": getattr(s, 'raw_label', None), "canon": getattr(s, 'canonical_name', None)}
                     for s in spans[:5]
                 ]
                 first_cue = spans[0].raw_label if spans else None
                 last_cue = spans[-1].raw_label if spans else None
                 common_src = source_by_gid.get(str(gid))
-                f.write(json.dumps({
-                    "granuleId": gid,
-                    "counts": counts,
-                    "n": int(len(g)),
-                    "spans_sample": span_snap,
-                    "n_spans": len(spans),
-                    "first_cue": first_cue,
-                    "last_cue": last_cue,
-                    "text_source": common_src,
-                }, ensure_ascii=False) + "\n")
-        LOGGER.info("Wrote QA summary to %s", qa_path)
+                with qa_path.open("a", encoding="utf-8") as f:
+                    f.write(json.dumps({
+                        "granuleId": str(gid),
+                        "counts": counts,
+                        "n": int(len(batch_results)),
+                        "spans_sample": span_snap,
+                        "n_spans": len(spans),
+                        "first_cue": first_cue,
+                        "last_cue": last_cue,
+                        "text_source": common_src,
+                    }, ensure_ascii=False) + "\n")
+                
+        pbar.close()
+        
+    LOGGER.info(f"Speaker attribution complete: {resolved_speakers} resolved, {unknown_speakers} unknown")
+    log_memory_usage()
+
+    # We streamed outputs per granule; log where files are
+    if out_jsonl.exists():
+        try:
+            n_lines = sum(1 for _ in out_jsonl.open("r", encoding="utf-8"))
+            LOGGER.info("Wrote %s (%d rows)", out_jsonl, n_lines)
+        except Exception:
+            LOGGER.info("Wrote %s", out_jsonl)
+    if args.save_csv and out_csv.exists():
+        LOGGER.info("Wrote %s (CSV)", out_csv)
+    if args.qa_jsonl and qa_path.exists():
+        LOGGER.info("Wrote QA summaries to %s", qa_path)
+
+    # Report final timing and results
+    total_mentions = len(df)
+    elapsed = time.time() - start_time
+    mentions_per_sec = total_mentions/elapsed if elapsed > 0 else 0
+    
+    LOGGER.info("Processed %d mentions in %.2f seconds (%.1f mentions/sec)",
+               total_mentions, elapsed, mentions_per_sec)
+    LOGGER.info("Speaker attribution results: %d resolved, %d unknown (%.1f%%)",
+               resolved_speakers, unknown_speakers, 
+               100 * resolved_speakers / total_mentions if total_mentions > 0 else 0)
+
+
+def process_granule(granule_data: Tuple[str, pd.DataFrame], text_by_gid: Dict[str, str], 
+                spans_cache: Dict[str, List], members_by_gid: Dict[str, List]) -> List[Dict]:
+    """Process a single granule for parallel execution"""
+    gid, g = granule_data  # Unpack the tuple (granule_id, dataframe_slice)
+    gid = str(gid)
+    
+    speaker_rows = []
+    spans = spans_cache.get(gid, [])
+    text_missing = gid not in text_by_gid or not text_by_gid.get(gid)
+    single_member = None
+    if not spans and gid in members_by_gid and len(members_by_gid[gid]) == 1:
+        member = members_by_gid[gid][0]
+        single_member = f"{member.get('first_name', '').title()} {member.get('last_name', '').title()}".strip()
+    
+    for _, r in g.iterrows():
+        rec = r.to_dict()
+        if text_missing:
+            rec.update({
+                "speaker_raw": "UNKNOWN",
+                "speaker_canonical": None,
+                "speaker_bioguide": None,
+                "speaker_method": "no_text",
+                "speaker_confidence": 0.0,
+            })
+            speaker_rows.append(rec)
+            continue
+        try:
+            offset = int(r.get("mention_char_start"))
+        except Exception:
+            rec.update({
+                "speaker_raw": "UNKNOWN",
+                "speaker_canonical": None,
+                "speaker_bioguide": None,
+                "speaker_method": "no_offset",
+                "speaker_confidence": 0.0,
+            })
+            speaker_rows.append(rec)
+            continue
+        
+        # If we have spans, use them to attribute speaker
+        if spans:
+            s, method, conf = assign_speaker_for_offset(offset, spans)
+            rec.update({
+                "speaker_raw": s.raw_label,
+                "speaker_canonical": s.canonical_name,
+                "speaker_bioguide": s.bioguide_id,
+                "speaker_method": method,
+                "speaker_confidence": conf,
+            })
+        # If no spans but single member, use that
+        elif single_member:
+            member = members_by_gid[gid][0]
+            rec.update({
+                "speaker_raw": single_member,
+                "speaker_canonical": single_member,
+                "speaker_bioguide": member.get("bioguide_id"),
+                "speaker_method": "sole_granule_member",
+                "speaker_confidence": 0.7,
+            })
+        else:
+            rec.update({
+                "speaker_raw": "UNKNOWN",
+                "speaker_canonical": None,
+                "speaker_bioguide": None,
+                "speaker_method": "no_speaker_cues",
+                "speaker_confidence": 0.0,
+            })
+        speaker_rows.append(rec)
+    return speaker_rows
+
+def process_in_batches(df, batch_size=10000):
+    """Process a dataframe in batches to conserve memory"""
+    total_rows = len(df)
+    results = []
+    
+    for start in range(0, total_rows, batch_size):
+        end = min(start + batch_size, total_rows)
+        LOGGER.info(f"Processing batch {start//batch_size + 1} ({start}-{end} of {total_rows})")
+        batch_df = df.iloc[start:end]
+        batch_results = []
+        
+        # Process each granule in the batch
+        for gid, g in batch_df.groupby("granuleId"):
+            batch_results.extend(process_granule((gid, g), {}, {}, {}))
+            
+        # Save intermediate results
+        results.extend(batch_results)
+        
+    return results
 
 
 if __name__ == "__main__":

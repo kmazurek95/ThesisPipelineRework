@@ -47,6 +47,9 @@ Thumbs.db
 *.env
 !.env.example
 
+# Ignore the real .env file
+.env
+
 # -----------------------------
 # Logs / debug scratch
 # -----------------------------

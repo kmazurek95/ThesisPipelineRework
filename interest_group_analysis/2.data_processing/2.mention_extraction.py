@@ -5,7 +5,7 @@ This script extracts mentions from normalized legislative data.
 
 ## Example Command:
 ```powershell
-python .\interest_group_analysis\2.data_processing\3.mention_extraction.py normalized `
+python .\interest_group_analysis\2.data_processing\2.mention_extraction.py normalized `
   --normalized-dir data\normalized\normalized_114_run2 `
   --out-dir data\processed\mentions_114_run2
 ```

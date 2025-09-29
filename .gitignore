@@ -60,12 +60,25 @@ debug_output.txt
 # -----------------------------
 data/raw/
 data/processed/
+data/normalized/
 
 # Ignore common data files at the top of data/
 data/*.csv
 data/*.xlsx
 data/*.json
 data/*.sqlite3
+data/*.jsonl
+
+# Ignore common normalized artifacts recursively
+data/**/by_package/
+data/**/granules_core.csv
+data/**/granule_members.csv
+data/**/granule_committees.csv
+data/**/granule_references.csv
+data/**/package_meta.json
+
+# QA HTML snapshots
+qa_*.html
 
 # Keep these explicitly
 !data/.gitkeep

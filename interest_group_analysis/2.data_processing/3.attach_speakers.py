@@ -92,6 +92,7 @@ from typing import Dict, List, Optional
 
 import pandas as pd
 from tqdm import tqdm
+import csv  # NEW
 
 from speaker_attribution import (
     build_member_patterns,
@@ -151,6 +152,9 @@ def parse_args():
     p.add_argument("--qa-jsonl", action="store_true", help="Write per-granule QA jsonl with spans and summary counts.")
     p.add_argument("--only-granules-with-members", action="store_true", help="Skip mentions from granules that have no members metadata")
     p.add_argument("--drop-unknown-speaker", action="store_true", help="Drop mentions when speaker attribution remains UNKNOWN")
+    # NEW:
+    p.add_argument("--resume", action="store_true", help="Resume using processed_granules.jsonl manifest; append outputs")
+    p.add_argument("--manifest", type=Path, default=None, help="Path to processed manifest (defaults to out_dir/processed_granules.jsonl)")
     return p.parse_args()
 
 
@@ -191,7 +195,13 @@ def stream_granules_text(
 
     by_pkg = normalized_dir / "by_package"
     if not by_pkg.exists():
-        raise FileNotFoundError(f"Expected {by_pkg} to exist with granules_core.csv files")
+        # NEW: allow passing the by_package folder itself or any folder containing granules_core.csv
+        if normalized_dir.name == "by_package":
+            by_pkg = normalized_dir
+        elif list(normalized_dir.rglob("granules_core.csv")):
+            by_pkg = normalized_dir
+        else:
+            raise FileNotFoundError(f"Expected {by_pkg} to exist with granules_core.csv files")
 
     # Build list of CSVs to open
     csv_paths: List[Path] = []
@@ -273,11 +283,49 @@ def save_jsonl(df: pd.DataFrame, path: Path):
         for rec in df.to_dict(orient="records"):
             f.write(json.dumps(rec, ensure_ascii=False) + "\n")
 
+# NEW: streaming append helpers and resume manifest
+def append_jsonl(records: List[Dict], path: Path):
+    if not records:
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as f:
+        for rec in records:
+            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+
+def write_csv_append(df: pd.DataFrame, path: Path):
+    header = not path.exists()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(path, mode="a", index=False, encoding="utf-8-sig", header=header)
+
+def load_processed_set(manifest: Path) -> set[str]:
+    if not manifest.exists():
+        return set()
+    done = set()
+    with manifest.open("r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                obj = json.loads(line)
+                gid = obj.get("granuleId")
+                if gid:
+                    done.add(str(gid))
+            except Exception:
+                # also accept plain text lines
+                done.add(line)
+    return done
+
+def append_processed(manifest: Path, gid: str):
+    manifest.parent.mkdir(parents=True, exist_ok=True)
+    with manifest.open("a", encoding="utf-8") as f:
+        f.write(json.dumps({"granuleId": str(gid)}) + "\n")
 
 
 def main():
     args = parse_args()
     args.out_dir.mkdir(parents=True, exist_ok=True)
+    manifest_path = args.manifest or (args.out_dir / "processed_granules.jsonl")
 
     df = read_jsonl(args.mentions_jsonl)
     if df.empty:
@@ -300,7 +348,7 @@ def main():
     # Load granule members data
     members_by_gid = load_granule_members(args.normalized_dir)
 
-    # Optional: filter to only include granules with identified members
+    # Optional filter by members
     if args.only_granules_with_members and members_by_gid:
         before_count = len(df)
         df = df[df["granuleId"].astype(str).isin(set(members_by_gid.keys()))]
@@ -312,11 +360,7 @@ def main():
 
     needed = set(df["granuleId"].dropna().astype(str))
     pkg_ids = set(df["packageId"].dropna().astype(str)) if "packageId" in df.columns else None
-    LOGGER.info(
-        "Loading texts for %d granules from %s packages...",
-        len(needed),
-        (len(pkg_ids) if pkg_ids else "ALL"),
-    )
+    LOGGER.info("Loading texts for %d granules from %s packages...", len(needed), (len(pkg_ids) if pkg_ids else "ALL"))
     text_by_gid, source_by_gid = stream_granules_text(args.normalized_dir, needed, pkg_ids)
 
     if args.members_csv and Path(args.members_csv).exists():
@@ -364,10 +408,15 @@ def main():
             spans[0].bioguide_id = member.get("bioguide_id")
         spans_cache[gid] = spans
 
-    # Assign per mention, grouped by granule for efficiency
+    # Progress over granules with ETA
+    granule_keys = [str(k) for k in df["granuleId"].astype(str).unique()]
+    pbar = tqdm(total=len(granule_keys), desc="Attributing (granules)", unit="granule")
+
     speaker_rows: List[Dict] = []
     for gid, g in df.groupby("granuleId"):
         gid = str(gid)
+        pbar.set_postfix_str(gid[-22:])  # show tail of current gid
+        pbar.update(1)
         spans = spans_cache.get(gid, [])
         text_missing = gid not in text_by_gid or not text_by_gid.get(gid)
         single_member = None
@@ -427,6 +476,7 @@ def main():
                     "speaker_confidence": 0.0,
                 })
             speaker_rows.append(rec)
+    pbar.close()
 
     out_df = pd.DataFrame(speaker_rows)
     # Optional: filter out rows with unknown speakers

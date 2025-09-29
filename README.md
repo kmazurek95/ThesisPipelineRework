@@ -12,7 +12,7 @@ Here’s a tightened, clearer README you can drop in right now. I also added a s
 * **Stable:** data collection, strict mention extraction, and sample fixtures for quick demos.
 * **Performance note:** speaker attribution is CPU-intensive on full runs (hours on a typical laptop).
 * **Original thesis code:** see the archived repo used for the Master’s thesis results:
-  `https://github.com/<your-username>/<old-repo-name>`
+  `https://github.com/kmazurek95/MastersThesis_InterestGroupAnalysis`
 
 ---
 

@@ -14,20 +14,37 @@ jobs:
         python-version: [3.11, 3.13]
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+
+      # Step 1: Install R
+      - name: Install R
+        run: sudo apt-get update && sudo apt-get install -y r-base
+
+      # Step 2: Add R to PATH
+      - name: Add R to PATH
+        run: echo "PATH=/usr/bin:$PATH" >> $GITHUB_ENV
+
+      # Step 3: Set R_HOME
+      - name: Set R_HOME
+        run: echo "R_HOME=$(R RHOME)" >> $GITHUB_ENV
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
       - name: Run tests
         run: |
           python -m pytest -q
+
       - name: Smoke normalize sample data
         run: |
           python -m interest_group_analysis.data_processing.process_and_normalize --raw-dir data/sample --out-dir data/normalized/sample --clean
+
       - name: Run mention extraction (sample)
         run: |
           python -m interest_group_analysis.data_processing.mention_extraction --source-dir data/sample --interest-csv data/sample/interest_groups.csv --out-dir data/processed/sample --no-resume

@@ -32,3 +32,6 @@ rpy2>=3.5
 
 # Monitoring
 psutil>=5.9
+
+# Testing
+pytest>=7.0

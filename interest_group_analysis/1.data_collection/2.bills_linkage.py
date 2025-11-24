@@ -71,11 +71,12 @@ import requests
 from requests.adapters import HTTPAdapter, Retry
 
 # ---- CONFIG ----
+# Define variables that will be used globally
 GOVINFO_API_KEY = None  # override or import from your config module
 RATE_LIMIT_DELAY = 0.35  # ~3 req/sec
 TIMEOUT = 30
 BILL_REF_CSV_NAME = "references.csv"  # if you already have a curated bill list
-MENTIONS_JSONL = "mentions_with_speakers.jsonl"  # or your mentions file path
+MENTIONS_JSONL = "mentions.jsonl"  # or your mentions file path
 OUTPUT_META = "bill_metadata.parquet"
 OUTPUT_META_JSONL = "bill_metadata.jsonl"
 OUTPUT_LINKS = "mention_bill_links.parquet"
@@ -407,9 +408,10 @@ if __name__ == "__main__":
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     )
     
+    # Update API key if provided
     if args.api_key:
-        global GOVINFO_API_KEY
-        GOVINFO_API_KEY = args.api_key
+        # Use a better pattern to update module-level variables
+        globals()['GOVINFO_API_KEY'] = args.api_key
     
     # Run the pipeline
     run_end_to_end(

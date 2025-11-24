@@ -1,0 +1,13 @@
+{
+  "generated_at_utc": "2025-11-18T05:08:06Z",
+  "seed": 98,
+  "input_file": "data\\processed\\114\\2025-11-17\\analytic_windows.jsonl",
+  "labeled_file": null,
+  "n_available": 52690,
+  "n_sampled": 700,
+  "stratify_by": [],
+  "outputs": {
+    "csv": "data\\labeling\\2025-11-17_batch1\\LABELING_WINDOWS__20251118T050806Z.csv",
+    "jsonl": "data\\labeling\\2025-11-17_batch1\\LABELING_WINDOWS__20251118T050806Z.jsonl"
+  }
+}

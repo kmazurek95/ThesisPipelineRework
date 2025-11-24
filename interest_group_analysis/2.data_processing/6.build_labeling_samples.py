@@ -1,4 +1,19 @@
 #!/usr/bin/env python3
+"""
+Sample analytic_windows rows into a labeling batch.
+
+Usage (example):
+  python 6.build_labeling_samples.py \
+    --data data/processed/114/latest/analytic_windows.jsonl \
+    --out  data/labeling/2025-11-17_batch1 \
+    --n    700 \
+    --seed 98 \
+    --mask-if-missing
+
+Takes analytic_windows.(jsonl|csv) as input, optionally removes already-labeled
+windows, ensures both `text_for_labeler` and `text_for_model` columns exist,
+and writes a timestamped CSV + JSONL + meta.json.
+"""
 from __future__ import annotations
 
 import argparse, json, logging, re, hashlib, unicodedata, datetime as dt
@@ -30,7 +45,7 @@ def read_table(path: Path) -> pd.DataFrame:
         rows = []
         with path.open("r", encoding="utf-8") as f:
             for line in f:
-                line=line.strip()
+                line = line.strip()
                 if line:
                     rows.append(json.loads(line))
         return pd.DataFrame(rows)
@@ -59,22 +74,46 @@ def compute_window_id(row: pd.Series) -> str:
 def mask_org_mentions(text: str, forms: List[str]) -> str:
     if not isinstance(text, str):
         return ""
-    forms = sorted({f for f in forms if isinstance(f,str) and f.strip()}, key=len, reverse=True)
+    forms = sorted({f for f in forms if isinstance(f, str) and f.strip()}, key=len, reverse=True)
     for f in forms:
         text = re.sub(rf"\b{re.escape(f)}\b", "[ORG]", text, flags=re.IGNORECASE)
     return text
 
 def ensure_text_for_model(df: pd.DataFrame, mask_if_missing: bool) -> pd.DataFrame:
+    """
+    Ensure a `text_for_model` column exists.
+
+    If `mask_if_missing` is False, we simply copy one of:
+      window_text -> text_for_labeler -> paragraph
+    in that order.
+
+    If `mask_if_missing` is True, we try to mask organization forms
+    (from `variations_in_window` if present) inside the base text.
+    """
     df = df.copy()
     if "text_for_model" in df.columns and df["text_for_model"].notna().any():
         return df
-    if not mask_if_missing:
-        df["text_for_model"] = df.get("window_text", df.get("text_for_labeler", ""))
+
+    # choose a base text column
+    base_col = None    # window_text > text_for_labeler > paragraph
+    for col in ("window_text", "text_for_labeler", "paragraph"):
+        if col in df.columns:
+            base_col = col
+            break
+
+    if base_col is None:
+        df["text_for_model"] = ""
         return df
+
+    if not mask_if_missing:
+        df["text_for_model"] = df[base_col].fillna("")
+        return df
+
     # Try masking using variations_in_window if present
     forms_col = "variations_in_window" if "variations_in_window" in df.columns else None
+
     def _mk(row):
-        base = row.get("window_text") or row.get("text_for_labeler") or ""
+        base = row.get(base_col) or ""
         forms = row.get(forms_col) if forms_col else []
         if isinstance(forms, str):
             try:
@@ -82,6 +121,7 @@ def ensure_text_for_model(df: pd.DataFrame, mask_if_missing: bool) -> pd.DataFra
             except Exception:
                 forms = [forms]
         return mask_org_mentions(base, forms or [])
+
     df["text_for_model"] = df.apply(_mk, axis=1)
     return df
 
@@ -127,16 +167,22 @@ def main():
         LOGGER.error("No rows in input.")
         return
 
-    # 2) Ensure stable window_id (if upstream didn’t write it)
+    # 2) Ensure stable window_id (if upstream didn't write it)
     if "window_id" not in df.columns:
         df["window_id"] = df.apply(compute_window_id, axis=1)
 
     # 3) Ensure labeler/model text
-    # prefer existing columns:
+    # normalize columns so we always have both window_text and text_for_labeler
     if "window_text" not in df.columns and "text_for_labeler" in df.columns:
         df["window_text"] = df["text_for_labeler"]
-    elif "window_text" not in df.columns and "paragraph" in df.columns:
-        df["window_text"] = df["paragraph"]
+    elif "window_text" in df.columns and "text_for_labeler" not in df.columns:
+        df["text_for_labeler"] = df["window_text"]
+    elif "window_text" not in df.columns and "text_for_labeler" not in df.columns:
+        if "paragraph" in df.columns:
+            df["window_text"] = df["text_for_labeler"] = df["paragraph"]
+        else:
+            df["window_text"] = df["text_for_labeler"] = ""
+
     df = ensure_text_for_model(df, mask_if_missing=args.mask_if_missing)
 
     # 4) Remove overlap with already labeled items

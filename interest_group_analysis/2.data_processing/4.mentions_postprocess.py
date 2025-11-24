@@ -155,6 +155,11 @@ def build_analytic_units(raw: pd.DataFrame, prefix_file: Optional[Path]) -> pd.D
     # Ensure paragraph text
     if 'paragraph' not in raw.columns:
         raw['paragraph'] = raw.get('sentence', '')
+    
+    # Ensure sentence exists for aggregation, otherwise reuse paragraph
+    if 'sentence' not in raw.columns:
+        raw['sentence'] = raw['paragraph']
+    
     raw['paragraph_original'] = raw['paragraph']
 
     # Clean paragraph text
@@ -353,8 +358,8 @@ def merge_overlapping_ranges(ranges):
     return merged
 
 
-# Compile variations into a regex pattern
-def compile_union(variations: list[str]) -> Optional[re.Pattern]:
+# Compile variations into a regex pattern (simple version for window processing)
+def compile_union_simple(variations: list[str]) -> Optional[re.Pattern]:
     alts = [re.escape(v) for v in variations if isinstance(v, str) and v.strip()]
     if not alts:
         return None
@@ -366,7 +371,7 @@ def enumerate_mentions(paragraph: str, variations: list[str], sent_spans: list[t
     out = []
     if not paragraph or not variations:
         return out
-    pat = compile_union(variations)
+    pat = compile_union_simple(variations)
     if pat is None:
         return out
     idx = 0
@@ -401,9 +406,9 @@ def build_windows_with_mentions(raw: pd.DataFrame, prefix_file: Optional[Path], 
 
     if 'uuid_paragraph' not in df.columns:
         df['uuid_paragraph'] = [str(uuid.uuid4()) for _ in range(len(df))]
-    def mk_block_id(r):
-        return f"{r.get('packageId','')}/{r.get('granuleId','')}"
-    df['source_block_id'] = df.apply(mk_block_id, axis=1)
+    
+    # Treat each paragraph as its own block
+    df['source_block_id'] = df['uuid_paragraph']
 
     prefixes = load_prefixes(prefix_file)
     df['cleaned_paragraph'] = df['paragraph'].apply(lambda p: clean_paragraph(p or '', prefixes))

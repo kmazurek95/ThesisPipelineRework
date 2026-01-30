@@ -1,0 +1,185 @@
+# =============================================================================
+# Interest Group Analysis Pipeline Configuration
+# =============================================================================
+# This file centralizes all pipeline settings. Modify paths and parameters here
+# instead of editing individual scripts.
+
+# -----------------------------------------------------------------------------
+# Project Settings
+# -----------------------------------------------------------------------------
+project:
+  name: "Interest Group Analysis"
+  version: "2.0.0"
+  target_congresses: [114, 115]
+
+# -----------------------------------------------------------------------------
+# Directory Paths (relative to project root)
+# -----------------------------------------------------------------------------
+paths:
+  # Input data
+  raw_data: "data/raw"
+  normalized_data: "data/normalized"
+
+  # Processing outputs
+  processed_data: "data/processed"
+  mentions_dir: "data/processed/mentions_114"
+
+  # Classification
+  labeled_data: "data/combined_labeled.csv"
+  classifier_output: "results_classifier"
+
+  # Integration
+  merged_data: "data/MergedData"
+
+  # Analysis outputs
+  outputs: "outputs"
+  figures: "outputs/figures"
+
+# -----------------------------------------------------------------------------
+# Pipeline Stages
+# -----------------------------------------------------------------------------
+stages:
+  # Stage 1: Data Collection
+  collection:
+    enabled: true
+    govinfo:
+      start_date: "2015-01-06"
+      end_date: "2017-01-03"
+    fetch_bills: true
+    fetch_members: true
+    fetch_policy: true
+
+  # Stage 2: Data Processing
+  processing:
+    enabled: true
+    normalize:
+      clean: false
+      emit_search_text: true
+    mentions:
+      resume: true
+      only_canonical_names: true
+      strict_current_acronym: true
+      threads: 6
+    speakers:
+      save_csv: true
+      qa_jsonl: true
+
+  # Stage 3: Classification
+  classification:
+    enabled: true
+    model: "logreg"  # Options: logreg, linsvm
+    threshold_optimization: true
+    use_combined_labels: true
+
+  # Stage 4: Integration
+  integration:
+    enabled: true
+    # Files to load for merging
+    input_files:
+      - "labeled_mentions.json"
+      - "crec_committees.csv"
+      - "crec_links.csv"
+      - "crec_members.csv"
+      - "crec_references.csv"
+      - "granules_core.csv"
+      - "bill_metadata.csv"
+      - "bill_classifications.csv"
+      - "provided_speakers.csv"
+      - "identified_speakers.csv"
+      - "issue_saliency.csv"
+      - "bio_data.csv"
+      - "committee_policy_areas.csv"
+    # Output settings
+    output_format:
+      csv: true
+      json: true
+
+  # Stage 5: Analysis
+  analysis:
+    enabled: true
+    regression:
+      model_type: "probit"  # Options: probit, logit, ols
+      multi_level: true
+    visualizations:
+      - "top_orgs_by_prominence"
+      - "lobbying_vs_prominence"
+      - "overlap_vs_prominence"
+      - "heatmap_issue_org"
+      - "ideology_vs_prominence"
+
+# -----------------------------------------------------------------------------
+# Multi-Level Data Configuration
+# -----------------------------------------------------------------------------
+multi_level:
+  # Level 1: Individual mention (base level)
+  level1:
+    id_column: "uuid_mention"
+    group_columns: ["org_id", "granuleId", "speaker_bioGuideId"]
+
+  # Level 2: Organization aggregation
+  level2:
+    id_column: "org_id"
+    aggregations:
+      - column: "prominence"
+        functions: ["mean", "sum", "count"]
+      - column: "issue_area"
+        functions: ["nunique", "mode"]
+
+  # Level 3: Politician aggregation
+  level3:
+    id_column: "speaker_bioGuideId"
+    aggregations:
+      - column: "prominence"
+        functions: ["mean", "sum", "count"]
+      - column: "org_id"
+        functions: ["nunique"]
+
+  # Level 4: Policy area aggregation
+  level4:
+    id_column: "issue_area"
+    aggregations:
+      - column: "prominence"
+        functions: ["mean", "sum", "count"]
+      - column: "org_id"
+        functions: ["nunique"]
+
+# -----------------------------------------------------------------------------
+# Data Validation Rules
+# -----------------------------------------------------------------------------
+validation:
+  # Check after each stage
+  checkpoints:
+    after_collection:
+      - check: "file_exists"
+        path: "data/raw/govinfo_114"
+      - check: "min_files"
+        path: "data/raw/govinfo_114"
+        min_count: 100
+
+    after_processing:
+      - check: "file_exists"
+        path: "data/processed/mentions_114/mentions.jsonl"
+      - check: "min_rows"
+        path: "data/processed/mentions_114/mentions.jsonl"
+        min_count: 1000
+
+    after_classification:
+      - check: "file_exists"
+        path: "results_classifier/prominence_pipeline.joblib"
+      - check: "file_exists"
+        path: "data/processed/mentions_114/labeled_mentions.csv"
+
+    after_integration:
+      - check: "file_exists"
+        path: "data/MergedData/level1.csv"
+      - check: "min_rows"
+        path: "data/MergedData/level1.csv"
+        min_count: 10000
+
+# -----------------------------------------------------------------------------
+# Logging Configuration
+# -----------------------------------------------------------------------------
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/pipeline.log"

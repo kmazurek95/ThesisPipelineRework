@@ -170,10 +170,35 @@ def save_jsonl(df: pd.DataFrame, output_path: str) -> None:
 
 def main():
     """Run the classification pipeline."""
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Classify interest group mentions")
+    parser.add_argument(
+        "--mentions", "-m",
+        default=r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\data\intermediate\mentions_114\mentions.jsonl",
+        help="Path to mentions JSONL file"
+    )
+    parser.add_argument(
+        "--model", "-M",
+        default=r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\results_classifier\prominence_pipeline.joblib",
+        help="Path to trained model"
+    )
+    parser.add_argument(
+        "--output", "-o",
+        default=None,
+        help="Output path (default: same dir as mentions with 'labeled_' prefix)"
+    )
+    args = parser.parse_args()
+
     # Define paths
-    mentions_path = r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\data\processed\mentions_114\mentions.jsonl"
-    model_path = r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\results_classifier\prominence_pipeline.joblib"
-    output_path = r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\data\processed\mentions_114\labeled_mentions.jsonl"
+    mentions_path = args.mentions
+    model_path = args.model
+    if args.output:
+        output_path = args.output
+    else:
+        # Default: labeled_mentions.jsonl in same directory
+        mentions_dir = Path(mentions_path).parent
+        output_path = str(mentions_dir / "labeled_mentions.jsonl")
     
     # Create results directory if it doesn't exist
     output_dir = Path(output_path).parent

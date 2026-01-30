@@ -1,41 +1,120 @@
-Here’s a tightened, clearer README you can drop in right now. I also added a short, dated “Project status” block at the top so visitors immediately know what’s in progress and what’s stable.
+# Interest Group Prominence in Congressional Speech
+
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+> **A complete data science pipeline for analyzing how interest groups are mentioned in U.S. Congressional speech, featuring ML-based prominence classification, multi-level statistical analysis, and reproducible research workflows.**
+
+<p align="center">
+  <img src="outputs/figures/fig3_lobbying_prominence.png" alt="Lobbying vs Prominence" width="600"/>
+</p>
 
 ---
 
-# Interest-Group Analysis Toolkit
+## Overview
 
-> A modular, **reproducible** pipeline for collecting, processing, and analyzing U.S. Congressional text and related signals (GovInfo transcripts, Congress APIs, Google Trends). The toolkit normalizes raw inputs, extracts **interest-group** mentions with strict matching, and produces clean outputs for downstream modeling (e.g., prominence classification, aggregation, dashboards).
+This project analyzes **25,000+ interest group mentions** in the 114th U.S. Congress (2015-2017) to understand:
 
-## Project status (Sept 29, 2025)
+- **Which organizations** receive prominent vs. passing mentions in floor speeches
+- **What predicts prominence**: lobbying expenditure, organization type, speaker characteristics
+- **Partisan patterns**: Do Democrats and Republicans mention groups differently?
 
-* **Revamp in progress:** speaker attribution and prominence **classification** are being refactored for reliability and speed.
-* **Stable:** data collection, strict mention extraction, and sample fixtures for quick demos.
-* **Performance note:** speaker attribution is CPU-intensive on full runs (hours on a typical laptop).
-* **Original thesis code:** see the archived repo used for the Master’s thesis results:
-  `https://github.com/kmazurek95/MastersThesis_InterestGroupAnalysis`
+### Key Findings
+
+| Finding | Evidence |
+|---------|----------|
+| **Lobbying predicts prominence** | +7.1% per log unit increase (p < 0.001) |
+| **Senators > Representatives** | +37% higher odds of prominent mentions |
+| **Democrats give fewer prominent mentions** | -26% compared to Republicans |
+| **Single-issue groups get noticed** | +34% higher prominence rate |
+
+---
+
+## Project Context
+
+### Master's Thesis Revamp
+
+This repository is a **complete rewrite** of the data pipeline originally developed for my Master's thesis in Political Science. The original thesis examined how interest groups gain visibility in congressional discourse.
+
+**What's new in this version:**
+- Modular, production-ready Python codebase (vs. research scripts)
+- Automated ML classification pipeline (F1 = 0.91)
+- Multi-level statistical analysis framework
+- Congress.gov API integration for bill/member metadata
+- Comprehensive data validation and testing
+- Professional documentation and reproducibility
+
+**Original thesis repository:** [MastersThesis_InterestGroupAnalysis](https://github.com/kmazurek95/MastersThesis_InterestGroupAnalysis)
 
 ---
 
 ## Features
 
-**Data Collection**
+### Data Pipeline
 
-* Fetch Congressional Record transcripts (GovInfo API).
-* Retrieve bill/session metadata (Congress APIs).
-* Pull member info and auxiliary context.
-* Gather policy salience signals (Google Trends).
+```
+Raw Data                    Processing                    Analysis
+─────────────────────────────────────────────────────────────────────
+Congressional Record  ──►  Normalize & Parse     ──►  Level 1: Mentions
+(GovInfo API)              Extract Mentions           Level 2: Organizations
+                           Attribute Speakers         Level 3: Politicians
+Congress.gov APIs     ──►  Classify Prominence        Level 4: Policy Areas
+(Bills, Members)           Merge Metadata
+                                                       ↓
+Interest Group Data   ──►  Match Organizations    ──►  Regression Models
+(WRS 2011)                                            Visualizations
+```
 
-**Data Processing**
+### Technical Highlights
 
-* Normalize raw JSON/HTML into tidy, versioned CSV/Parquet.
-* Strictly extract & deduplicate **interest-group** mentions (canonical names + acronyms only).
-* Link mentions to congressional speakers (attribution pipeline).
-* Post-process mentions (highlighting spans, rollups, exports).
+- **ETL Pipeline**: Modular stages for collection, processing, classification, integration
+- **ML Classification**: TF-IDF + Logistic Regression for prominence prediction (91% F1)
+- **Multi-level Modeling**: Hierarchical data structure for nested analysis
+- **API Integration**: GovInfo, Congress.gov, Google Trends
+- **Validation Framework**: Automated data quality checks at each pipeline stage
 
-**Analysis**
+---
 
-* Aggregate mention frequencies by org, chamber, party, date.
-* Join to salience metrics by year/topic for modeling (e.g., prominence).
+## Quick Start
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/kmazurek95/ThesisPipelineRework.git
+cd ThesisPipelineRework
+
+# Create virtual environment
+python -m venv .venv
+source .venv/bin/activate  # Linux/Mac
+# or: .venv\Scripts\activate  # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### Run the Analysis
+
+```bash
+# Validate data integrity
+python scripts/validate_data.py
+
+# Build analysis datasets (requires raw data)
+python -m interest_group_analysis.4_integration.build_analysis_dataset
+
+# Generate figures and tables
+python -m interest_group_analysis.5_analysis.descriptive_analysis
+python -m interest_group_analysis.5_analysis.regression_analysis
+```
+
+### Interactive Notebook
+
+For an interactive walkthrough with visualizations:
+
+```bash
+jupyter notebook notebooks/Analysis_Showcase.ipynb
+```
 
 ---
 
@@ -43,158 +122,192 @@ Here’s a tightened, clearer README you can drop in right now. I also added a s
 
 ```
 ThesisPipelineRework/
-├─ README.md                     # You are here
-├─ LICENSE
-├─ pyproject.toml / requirements.txt
-├─ .env.example                  # Template for API keys & settings
-├─ .gitignore                    # Excludes raw/processed data
-├─ scripts/                      # Entry-point scripts (collection/processing)
-│  ├─ 1.collect_govinfo.py
-│  └─ ...more
-├─ interest_group_analysis/      # Project modules/pipelines
-│  ├─ 1.data_collection/
-│  │  └─ interest_group_prep.py  # Preps org list (canonical + acronym)
-│  └─ 2.data_processing/
-│     ├─ 3.mention_extraction.py # Strict mention extraction
-│     └─ 3.attach_speakers.py    # Speaker attribution
-├─ data/
-│  ├─ README.md                  # What belongs in data/, how to obtain it
-│  ├─ sample/                    # Small fixtures for tests/demos (checked in)
-│  ├─ raw/                       # (ignored) API dumps & HTML/JSON
-│  └─ processed/                 # (ignored) normalized CSVs, mentions
-└─ results/
-   ├─ .gitkeep
-   └─ README.md                  # What outputs mean & how to reproduce
-```
-
-> `data/raw/` and `data/processed/` are **git-ignored** to keep the repo lean. Use `data/sample/` for tiny fixtures committed to version control.
-
----
-
-## Installation
-
-> Python **3.10+** recommended.
-
-```bash
-# clone
-git clone https://github.com/<you>/ThesisPipelineRework.git
-cd ThesisPipelineRework
-
-# create & activate a virtual environment
-python -m venv .venv
-# Windows PowerShell
-. .\.venv\Scripts\Activate.ps1
-# macOS/Linux
-source .venv/bin/activate
-
-# install dependencies
-pip install -r requirements.txt
-# or, if using pyproject:
-# pip install -e .
+├── interest_group_analysis/     # Core Python package
+│   ├── 1.data_collection/       # API data collection modules
+│   ├── 2.data_processing/       # ETL and normalization
+│   ├── 3.classification/        # ML prominence classifier
+│   ├── 4_integration/           # Data merging pipeline
+│   └── 5_analysis/              # Statistical analysis
+│
+├── scripts/                     # Standalone utility scripts
+│   ├── validate_data.py         # Data quality validation
+│   ├── collect_bills.py         # Congress.gov bill fetcher
+│   └── collect_members.py       # Member metadata fetcher
+│
+├── notebooks/                   # Jupyter notebooks
+│   └── Analysis_Showcase.ipynb  # Interactive analysis demo
+│
+├── data/                        # Data directory (see data/README.md)
+│   ├── reference/               # Static reference files
+│   ├── training/                # ML training data
+│   ├── raw/                     # Raw API outputs (gitignored)
+│   ├── intermediate/            # Processing artifacts (gitignored)
+│   └── output/                  # Final analysis datasets
+│
+├── outputs/                     # Analysis outputs
+│   ├── figures/                 # Generated visualizations
+│   └── tables/                  # Regression results, summaries
+│
+├── results_classifier/          # Trained ML model artifacts
+│
+└── tests/                       # Unit and integration tests
 ```
 
 ---
 
-## Configuration
+## Data
 
-Copy the example env and add your tokens (GovInfo, Congress, etc.):
+### Output Datasets
 
-```bash
-cp .env.example .env
-# then edit .env
+| File | Level | Rows | Description |
+|------|-------|------|-------------|
+| `level1.csv` | Mention | 25,106 | Individual mention-level data |
+| `level2_org.csv` | Organization | 1,679 | Aggregated by interest group |
+| `level3_politician.csv` | Politician | 490 | Aggregated by Congress member |
+| `level4_policy.csv` | Policy | 18 | Aggregated by policy area |
+
+### Key Variables
+
+**Outcome:**
+- `prominence_prediction`: Binary (0/1) ML-classified prominence
+
+**Organization Characteristics:**
+- `LOBBYING11`: Total lobbying expenditure (2011)
+- `CATEGORY`: Interest group type (trade, labor, single-issue, etc.)
+- `FOUNDED`: Organization founding year
+
+**Speaker Characteristics:**
+- `party`: D/R/I
+- `chamber`: H (House) / S (Senate)
+- `bioGuideId`: Unique Congress member identifier
+
+**Context:**
+- `issue_area`: Policy domain (21 CAP categories)
+- `salience`: Google Trends-based issue salience
+
+---
+
+## Methodology
+
+### Prominence Classification
+
+Interest group mentions are classified as **high prominence** (substantive discussion) vs. **low prominence** (passing reference) using:
+
+1. **Text Features**: TF-IDF on surrounding paragraph context
+2. **Model**: Logistic Regression with L2 regularization
+3. **Training**: 907 manually labeled examples
+4. **Performance**: 91% F1-score (5-fold cross-validation)
+
+### Statistical Models
+
+**Model 1: Mention-Level (Logistic)**
+```
+P(High Prominence) ~ log(Lobbying) + Party + Chamber + Org_Type
+```
+
+**Model 2: Organization-Level (OLS)**
+```
+Avg_Prominence ~ log(Lobbying) + log(Mentions) + Org_Type
+```
+
+**Model 3: Politician-Level (OLS)**
+```
+Avg_Prominence ~ Party + Chamber + log(Mentions)
 ```
 
 ---
 
-## Quick Start
+## Results
 
-### 1) Prepare Interest-Group List
+### Visualizations
 
-**Input:** `data/Interest_groups_manually_validated.xlsx`
-Required columns: `org_id`, `original_name_2`, `current_name_2`, `acronym_2`
+<table>
+<tr>
+<td><img src="outputs/figures/fig1_mentions_over_time.png" width="400"/><br/><em>Mentions Over Time</em></td>
+<td><img src="outputs/figures/fig2_org_categories.png" width="400"/><br/><em>Organization Categories</em></td>
+</tr>
+<tr>
+<td><img src="outputs/figures/fig4_party_patterns.png" width="400"/><br/><em>Party Patterns</em></td>
+<td><img src="outputs/figures/fig5_policy_heatmap.png" width="400"/><br/><em>Policy Area Heatmap</em></td>
+</tr>
+</table>
 
-The prep script:
+### Regression Summary
 
-* fills `current_name_2` where blank using `original_name_2`
-* keeps only `org_id`, `interest_group`, `acronym`
-* writes `data/interest_groups_list.csv`
+| Variable | Model 1 (Logit) | Model 2 (OLS) | Model 3 (OLS) |
+|----------|-----------------|---------------|---------------|
+| log_lobbying | 0.071*** | 0.013*** | - |
+| is_democrat | -0.259*** | - | -0.091*** |
+| is_senate | 0.370*** | - | 0.083** |
+| is_labor | 0.136** | 0.025 | - |
+| is_single_issue | 0.343*** | 0.096* | - |
+| **N** | 22,248 | 748 | 390 |
 
-**Windows PowerShell**
-
-```powershell
-Set-Location .\interest_group_analysis\1.data_collection
-python .\interest_group_prep.py `
-  --in  "..\..\data\Interest_groups_manually_validated.xlsx" `
-  --out "..\..\data\interest_groups_list.csv"
-```
-
-### 2) Extract Mentions (strict: canonical + acronym only)
-
-**Inputs:**
-
-* Normalized Congressional text under `data/normalized_<run>/` **or**
-* Raw JSON/JSONL under `data/raw/`
-
-**Windows PowerShell (normalized mode)**
-
-```powershell
-Set-Location .\interest_group_analysis\2.data_processing
-python .\3.mention_extraction.py normalized `
-  --normalized-dir "..\..\data\normalized_114" `
-  --interest-csv   "..\..\data\interest_groups_list.csv" `
-  --out-dir        "..\..\data\processed\mentions_114" `
-  --threads 6 --resume `
-  --only-canonical-names `
-  --strict-current-acronym
-```
-
-**Output:**
-`data/processed/mentions_114/mentions.jsonl`
-(each line: `org_id`, `interest_group`, `variation`, `is_acronym`, `sentence`, …)
-
-### 3) Attach Speakers to Mentions
-
-**Inputs:**
-
-* Mention JSONL from step 2
-* Normalized Congressional text with spans
-
-```powershell
-Set-Location .\interest_group_analysis\2.data_processing
-python .\3.attach_speakers.py `
-  --mentions-jsonl ..\..\data\processed\mentions_114\mentions.jsonl `
-  --normalized-dir ..\..\data\normalized\normalized_114 `
-  --out-dir ..\..\data\processed\mentions_and_speaker_114 `
-  --save-csv `
-  --qa-jsonl
-```
-
-**Note:** This step is CPU-intensive on full datasets.
-
-**Outputs:**
-
-* `mentions_with_speakers.jsonl` (main)
-* `mentions_with_speakers.csv` (optional)
-* `speaker_qc.jsonl` (optional QA)
-* `processed_granules.jsonl` (resume state)
+*Significance: \*p<0.05, \*\*p<0.01, \*\*\*p<0.001*
 
 ---
 
-## Reproducibility
+## Technologies
 
-* **Deterministic extraction:** whole-phrase matches only (no fuzzy alt names), reducing false positives.
-* **Versioned sample data:** tiny fixtures in `data/sample/` enable quick end-to-end demos.
-* **Large artifacts ignored:** `.gitignore` excludes raw/processed blobs; provenance is preserved via scripts/configs.
-* **Environment capture:** pin via `requirements.txt` (or `pyproject.toml`) for consistent installs.
+- **Languages**: Python 3.10+
+- **Data Processing**: pandas, numpy
+- **Machine Learning**: scikit-learn, nltk
+- **Statistics**: statsmodels
+- **Visualization**: matplotlib, seaborn
+- **APIs**: requests, python-dotenv
+- **Testing**: pytest
 
 ---
 
-## License
+## Contributing
 
-MIT (see `LICENSE`).
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ---
 
 ## Citation
 
-If this toolkit informs academic work, please cite this repository and upstream data providers (GovInfo, Congress APIs, Google Trends).
+If you use this code or data in academic work, please cite:
+
+```bibtex
+@software{mazurek2025interest,
+  author = {Mazurek, Kaleb},
+  title = {Interest Group Prominence in Congressional Speech},
+  year = {2025},
+  url = {https://github.com/kmazurek95/ThesisPipelineRework}
+}
+```
+
+---
+
+## License
+
+This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
+
+---
+
+## Acknowledgments
+
+- **Data Sources**: GovInfo API, Congress.gov API, Washington Representatives Study (2011)
+- **Original Research**: Master's thesis in Political Science
+- **Tools**: Built with assistance from Claude AI
+
+---
+
+## Contact
+
+**Kaleb Mazurek**
+- GitHub: [@kmazurek95](https://github.com/kmazurek95)
+- LinkedIn: [Connect](https://linkedin.com/in/kalebmazurek)
+
+---
+
+<p align="center">
+  <em>Transforming congressional text into actionable political insights</em>
+</p>

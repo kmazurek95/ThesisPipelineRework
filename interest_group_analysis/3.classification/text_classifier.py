@@ -81,8 +81,16 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import LinearSVC
 import joblib
 
-# If you have this already, reuse it. Otherwise make it identity.
-from ..data_processing.utils import normalise_text
+# Text normalization function - defined locally to avoid import issues with dot-named folders
+import re
+
+def normalise_text(text: str) -> str:
+    """Lowercase and remove non-alphanumeric characters from a string."""
+    if not isinstance(text, str):
+        return ""
+    lower = text.lower()
+    cleaned = re.sub(r"[^a-z0-9]+", " ", lower)
+    return re.sub(r"\s+", " ", cleaned).strip()
 
 REQUIRED_COLS = ["p1_original", "prominence", "org_id"]
 NUM_COLS = ["paragraph_mention_count", "10_or_more_org_mentioned"]
@@ -326,14 +334,24 @@ def run_pipeline(labeled_path: Path = None, unlabeled_path: Path = None, results
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO, 
+    logging.basicConfig(level=logging.INFO,
                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    labeled_path = Path(r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\data\Labeled_Data.csv")
+
+    # Use combined labeled data if available, otherwise fall back to original
+    combined_path = Path(r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\data\combined_labeled.csv")
+    original_path = Path(r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\data\Labeled_Data.csv")
+
+    labeled_path = combined_path if combined_path.exists() else original_path
     out = Path(r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\results_classifier")
-    
+
     # Create results directory if it doesn't exist
     out.mkdir(parents=True, exist_ok=True)
-    
+
+    print(f"Loading labeled data from: {labeled_path}")
     df = load_labeled_df(labeled_path)
+    print(f"Loaded {len(df)} samples")
+    print(f"Class distribution: {df['prominence'].value_counts().to_dict()}")
+
+    print("Training classifier with group-aware CV...")
     best_pipe, f1, ap = train_select(df, model_name="logreg", results_dir=out)
-    print(f"✓ Saved pipeline to {out / 'prominence_pipeline.joblib'} | F1={f1:.3f} AP={ap:.3f}")
+    print(f"[OK] Saved pipeline to {out / 'prominence_pipeline.joblib'} | F1={f1:.3f} AP={ap:.3f}")

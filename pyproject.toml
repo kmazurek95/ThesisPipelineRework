@@ -3,76 +3,150 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ThesisPipelineRework"
-version = "0.1.0"
-description = """
-Pipeline to collect, process, and classify Congressional Record transcripts (CREC) 
-for analyzing interest group prominence in U.S. politics.
-"""
+name = "interest-group-analysis"
+version = "2.0.0"
+description = "A data science pipeline for analyzing interest group prominence in U.S. Congressional speech"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [
   { name = "Kaleb Mazurek", email = "kalebmazurek@gmail.com" }
 ]
+maintainers = [
+  { name = "Kaleb Mazurek", email = "kalebmazurek@gmail.com" }
+]
+keywords = [
+  "political-science",
+  "congress",
+  "interest-groups",
+  "nlp",
+  "text-classification",
+  "data-pipeline",
+  "lobbying",
+  "legislative-analysis"
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+  "Topic :: Text Processing :: Linguistic",
+]
 requires-python = ">=3.10"
 
-# Core dependencies: collection, parsing, preprocessing, ML
+# Core dependencies
 dependencies = [
-  "requests>=2.31.0",
-  "beautifulsoup4>=4.12",
+  "pandas>=2.0",
+  "numpy>=1.23",
+  "tqdm>=4.64",
+  "requests>=2.28",
+  "beautifulsoup4>=4.11",
   "lxml>=4.9",
-  "tqdm>=4.66",
-  "retrying>=1.3.4",
-  "pandas>=2.1",
-  "numpy>=1.26",
-  "scikit-learn>=1.3",
   "nltk>=3.8",
-  "readability-lxml>=0.8",
+  "scikit-learn>=1.3",
+  "matplotlib>=3.7",
+  "seaborn>=0.12",
+  "statsmodels>=0.14",
   "python-dotenv>=1.0",
   "joblib>=1.3",
-  "eli5>=0.13",
-  "xgboost>=2.0",
-  "lightgbm>=4.0",
-  "imbalanced-learn>=0.11",
-  "regex>=2023.10",
+  "retrying>=1.3",
 ]
 
 [project.optional-dependencies]
-# Development dependencies for linting, testing, and type checking
+# Development dependencies
 dev = [
+  "pytest>=7.0",
+  "pytest-cov>=4.0",
   "black>=23.0",
   "flake8>=6.0",
-  "pytest>=7.0",
   "mypy>=1.0",
+  "isort>=5.12",
 ]
 
-# Documentation dependencies for building project docs
+# Jupyter notebook support
+notebook = [
+  "jupyter>=1.0",
+  "ipykernel>=6.0",
+  "nbformat>=5.0",
+]
+
+# Full pipeline (includes optional heavy dependencies)
+full = [
+  "pytrends>=4.9",
+  "rpy2>=3.5",
+  "datasketch>=1.5",
+  "readability-lxml>=0.8.1",
+  "psutil>=5.9",
+  "xgboost>=2.0",
+  "lightgbm>=4.0",
+  "imbalanced-learn>=0.11",
+  "eli5>=0.13",
+]
+
+# Documentation
 docs = [
   "sphinx>=7.0",
   "sphinx-rtd-theme>=1.3",
 ]
 
+[project.urls]
+Homepage = "https://github.com/kmazurek95/ThesisPipelineRework"
+Documentation = "https://github.com/kmazurek95/ThesisPipelineRework#readme"
+Repository = "https://github.com/kmazurek95/ThesisPipelineRework.git"
+Issues = "https://github.com/kmazurek95/ThesisPipelineRework/issues"
+
 [tool.setuptools.packages.find]
-where = ["."]  # Search for packages in the current directory
-include = ["ThesisPipelineRework*"]  # Include all submodules under ThesisPipelineRework
+where = ["."]
+include = ["interest_group_analysis*", "scripts*"]
 
 [tool.black]
 line-length = 100
-target-version = ["py310"]
+target-version = ["py310", "py311", "py312"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | __pycache__
+  | data
+  | outputs
+  | archive
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+skip = [".venv", "data", "outputs", "archive"]
 
 [tool.flake8]
 max-line-length = 100
 extend-ignore = ["E203", "W503"]
-
-[tool.pytest.ini_options]
-minversion = "7.0"
-addopts = "-ra -q"
-testpaths = [
-  "tests",  # Directory containing test files
-]
+exclude = [".venv", "data", "outputs", "archive", "__pycache__"]
 
 [tool.mypy]
 python_version = "3.10"
 warn_return_any = true
 warn_unused_configs = true
 ignore_missing_imports = true
+exclude = [
+  "^data/",
+  "^outputs/",
+  "^archive/",
+  "^\\.venv/",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short -ra"
+filterwarnings = [
+  "ignore::DeprecationWarning",
+  "ignore::UserWarning",
+]

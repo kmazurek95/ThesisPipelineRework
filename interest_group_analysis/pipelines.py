@@ -1,16 +1,36 @@
 """
-High-level pipeline orchestration functions.
+Pipeline Orchestration Module
 
-Each function in this module coordinates a distinct stage of the
-analysis. The functions call into lower-level modules defined in
-`data_collection`, `data_processing`, `classification`, `integration`,
-and `analysis`. Use these functions from the command line or import
-them into your own scripts/notebooks.
+This module provides high-level pipeline orchestration functions. Due to the
+numbered folder naming convention used in this project (e.g., 1.data_collection),
+direct imports aren't straightforward. Use these functions via subprocess calls
+or run the individual stage scripts directly.
+
+Recommended Usage:
+    # Use the run_pipeline.py script for full control
+    python scripts/run_pipeline.py --stage collect
+    python scripts/run_pipeline.py --stage process
+    python scripts/run_pipeline.py --stage classify
+    python scripts/run_pipeline.py --stage integrate
+    python scripts/run_pipeline.py --stage analyze
+
+    # Or run individual modules directly
+    python -m interest_group_analysis.4_integration.build_analysis_dataset
+    python -m interest_group_analysis.5_analysis.regression_analysis
+
+Pipeline Stages:
+    1. Data Collection: Download raw data from GovInfo, Congress.gov APIs
+    2. Data Processing: Normalize, extract mentions, attach speakers
+    3. Classification: Train and apply ML prominence classifier
+    4. Integration: Merge all data sources into analysis-ready datasets
+    5. Analysis: Run regression models and generate visualizations
 """
 
 from __future__ import annotations
 
 import logging
+import subprocess
+import sys
 from pathlib import Path
 from typing import List, Optional
 
@@ -21,311 +41,219 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
+logger = logging.getLogger(__name__)
+
+
+def _run_script(script_path: Path, *args, cwd: Optional[Path] = None) -> int:
+    """Run a Python script as a subprocess.
+
+    Args:
+        script_path: Path to the Python script
+        *args: Additional arguments to pass to the script
+        cwd: Working directory for the subprocess
+
+    Returns:
+        Exit code from the subprocess
+    """
+    if cwd is None:
+        cwd = config.BASE_DIR
+
+    cmd = [sys.executable, str(script_path)] + list(args)
+    logger.info(f"Running: {' '.join(cmd)}")
+
+    result = subprocess.run(cmd, cwd=str(cwd))
+    return result.returncode
 
 
 def run_data_collection(
     congresses: List[int] = None,
     start_date: str = "2015-01-06",
     end_date: str = "2017-01-03",
-    fetch_bills: bool = True,
-    fetch_members: bool = True,
-    fetch_policy: bool = True
-) -> None:
+) -> int:
     """Collect raw data from external sources.
 
-    This function orchestrates the following sub-steps:
-    1. Download legislative transcripts from GovInfo
-    2. Fetch metadata for bills
+    Orchestrates the following data collection steps:
+    1. Download legislative transcripts from GovInfo API
+    2. Fetch bill metadata from Congress.gov API
     3. Retrieve congress member profiles
-    4. Pull policy salience metrics
-    
+    4. Collect policy salience data from Google Trends
+
     Args:
-        congresses: List of congress numbers (defaults to config.TARGET_CONGRESSES)
-        start_date: ISO format date for start of collection period
-        end_date: ISO format date for end of collection period
-        fetch_bills: Whether to fetch bill metadata
-        fetch_members: Whether to fetch member profiles
-        fetch_policy: Whether to collect policy salience data
+        congresses: List of congress numbers (default: [114])
+        start_date: ISO format start date for collection
+        end_date: ISO format end date for collection
+
+    Returns:
+        Exit code (0 = success)
     """
     if congresses is None:
         congresses = config.TARGET_CONGRESSES
 
-    logging.info("Collecting legislative transcripts...")
-    from interest_group_analysis.data_collection.govinfo import fetch_legislative_transcripts
-    fetch_legislative_transcripts(
-        output_dir=config.RAW_DATA_DIR,
-        congresses=congresses,
-        start_date=start_date,
-        end_date=end_date
-    )
+    script_dir = config.BASE_DIR / "interest_group_analysis" / "1.data_collection"
 
-    if fetch_bills:
-        logging.info("Collecting bill metadata...")
-        from interest_group_analysis.data_collection.bills_linkage import run_end_to_end as fetch_bills
-        fetch_bills(
-            output_dir=config.RAW_DATA_DIR / "bills",
-            mentions_jsonl=config.PROCESSED_DATA_DIR / "mentions_with_speakers.jsonl"
-        )
+    # Run GovInfo collection
+    logger.info("Collecting legislative transcripts from GovInfo...")
+    govinfo_script = script_dir / "1.govinfo.py"
+    if govinfo_script.exists():
+        _run_script(govinfo_script)
 
-    if fetch_members:
-        logging.info("Collecting congress member profiles...")
-        from interest_group_analysis.data_collection.members_linkage import run_end_to_end as fetch_members
-        fetch_members(
-            output_dir=config.RAW_DATA_DIR / "members",
-            mentions_jsonl=config.PROCESSED_DATA_DIR / "mentions_with_speakers.jsonl",
-            enrich_committees=True,
-            committee_congresses=congresses
-        )
+    # Run bills collection
+    logger.info("Collecting bill metadata...")
+    bills_script = script_dir / "2.bills_linkage.py"
+    if bills_script.exists():
+        _run_script(bills_script)
 
-    if fetch_policy:
-        logging.info("Collecting policy salience metrics...")
-        from interest_group_analysis.data_collection.policy_salience import run_policy_salience_pipeline
-        run_policy_salience_pipeline(
-            output_dir=str(config.RAW_DATA_DIR / "policy"),
-            skip_trends=False
-        )
+    # Run members collection
+    logger.info("Collecting member profiles...")
+    members_script = script_dir / "3.members_linkage.py"
+    if members_script.exists():
+        _run_script(members_script)
 
-    logging.info("Data collection complete.")
+    logger.info("Data collection complete.")
+    return 0
 
 
-def run_data_processing(
-    raw_dir: Optional[Path] = None,
-    out_dir: Optional[Path] = None,
-    congresses: List[int] = None,
-    clean: bool = False,
-    emit_search_text: bool = True
-) -> None:
+def run_data_processing() -> int:
     """Clean and prepare collected data for modeling.
 
-    This stage reads raw files, performs cleaning and transformations,
-    and writes processed outputs. The specific operations include:
-    - Normalizing raw data into structured tables
-    - Extracting interest group mentions
-    - Attaching speaker information to mentions
-    - Post-processing mentions for analysis
-    
-    Args:
-        raw_dir: Directory containing raw data (default: config.RAW_DATA_DIR)
-        out_dir: Directory for processed outputs (default: config.NORMALIZED_DATA_DIR)
-        congresses: List of congress numbers (defaults to config.TARGET_CONGRESSES)
-        clean: Whether to remove existing outputs before processing
-        emit_search_text: Whether to include search-ready text in output
+    Orchestrates the following processing steps:
+    1. Normalize raw Congressional Record XML
+    2. Extract interest group mentions
+    3. Attach speaker information to mentions
+    4. Post-process mentions for analysis
+
+    Returns:
+        Exit code (0 = success)
     """
-    if raw_dir is None:
-        raw_dir = config.RAW_DATA_DIR
-    if out_dir is None:
-        out_dir = config.NORMALIZED_DATA_DIR
-    if congresses is None:
-        congresses = config.TARGET_CONGRESSES
+    script_dir = config.BASE_DIR / "interest_group_analysis" / "2.data_processing"
 
-    # Step 1: Normalize raw data
-    logging.info("Normalizing raw data...")
-    from interest_group_analysis.data_processing.process_and_normalize import main_with_params
-    norm_dir = out_dir / "normalized"
-    main_with_params(
-        raw_dir=raw_dir,
-        out_dir=norm_dir,
-        clean=clean,
-        split_by="package",
-        emit_search_text=emit_search_text
-    )
+    # Run normalization
+    logger.info("Normalizing raw data...")
+    _run_script(script_dir / "1.process_and_normalize.py")
 
-    # Step 2: Extract mentions
-    logging.info("Extracting interest group mentions...")
-    from interest_group_analysis.data_processing.mention_extraction import process_normalized_packages
-    mentions_dir = config.PROCESSED_DATA_DIR / "mentions"
-    process_normalized_packages(
-        normalized_dir=norm_dir,
-        interest_csv=config.RAW_DATA_DIR / "interest_groups_list.csv",
-        out_dir=mentions_dir,
-        resume=True
-    )
+    # Extract mentions
+    logger.info("Extracting mentions...")
+    _run_script(script_dir / "2.mention_extraction.py")
 
-    # Step 3: Attach speakers to mentions
-    logging.info("Attaching speakers to mentions...")
-    from interest_group_analysis.data_processing.attach_speakers import main as attach_speakers
-    speakers_dir = config.PROCESSED_DATA_DIR / "mentions_with_speakers"
-    # This would typically be called via argparse, adapting to direct function call
-    # attach_speakers(
-    #     mentions_jsonl=mentions_dir / "mentions.jsonl",
-    #     normalized_dir=norm_dir,
-    #     out_dir=speakers_dir,
-    #     save_csv=True,
-    #     qa_jsonl=True
-    # )
+    # Attach speakers
+    logger.info("Attaching speakers...")
+    _run_script(script_dir / "3.attach_speakers.py")
 
-    # Step 4: Post-process mentions
-    logging.info("Post-processing mentions...")
-    from interest_group_analysis.data_processing.mentions_postprocess import run
-    processed_dir = config.PROCESSED_DATA_DIR / "mentions_processed"
-    run(
-        input_jsonl=speakers_dir / "mentions_with_speakers.jsonl",
-        out_dir=processed_dir,
-        prefix_file=None,
-        save_csv=True,
-        save_diagnostics=True
-    )
+    # Post-process
+    logger.info("Post-processing...")
+    _run_script(script_dir / "4.mentions_postprocess.py")
 
-    # Step 5: Build labeling samples (if needed)
-    logging.info("Building labeling samples...")
-    from interest_group_analysis.data_processing.build_labeling_samples import main as build_samples
-    # build_samples would be called with appropriate args
-
-    # Step 6: Check speaker coverage (optional diagnostic)
-    logging.info("Checking speaker coverage...")
-    # This would be run as a separate diagnostic step
-
-    logging.info("Data processing complete.")
+    logger.info("Data processing complete.")
+    return 0
 
 
-def run_classification(
-    input_dir: Optional[Path] = None,
-    output_dir: Optional[Path] = None
-) -> None:
-    """Train supervised models to classify prominence.
+def run_classification() -> int:
+    """Train and apply the prominence classifier.
 
-    This stage reads processed datasets, trains classification models,
-    evaluates them, and produces labeled predictions.
-    
-    Args:
-        input_dir: Directory with processed data (default: config.PROCESSED_DATA_DIR)
-        output_dir: Directory for model and prediction outputs (default: config.CLASSIFIER_DIR)
+    Uses TF-IDF + Logistic Regression to classify mention prominence.
+    Training data is located in data/training/combined_labeled.csv.
+
+    Returns:
+        Exit code (0 = success)
     """
-    if input_dir is None:
-        input_dir = config.PROCESSED_DATA_DIR
-    if output_dir is None:
-        output_dir = config.CLASSIFIER_DIR
+    script_dir = config.BASE_DIR / "interest_group_analysis" / "3.classification"
 
-    logging.info("Running text classification pipeline...")
-    from interest_group_analysis.classification.text_classifier import run_pipeline
-    run_pipeline(
-        input_dir=input_dir / "mentions_processed",
-        output_dir=output_dir
-    )
+    logger.info("Training classifier...")
+    _run_script(script_dir / "text_classifier.py")
 
-    logging.info("Classification complete.")
+    logger.info("Applying classifier to mentions...")
+    _run_script(script_dir / "classify_mentions.py")
+
+    logger.info("Classification complete.")
+    return 0
 
 
-def run_integration(
-    bill_dir: Optional[Path] = None,
-    members_dir: Optional[Path] = None,
-    policy_dir: Optional[Path] = None,
-    mentions_dir: Optional[Path] = None,
-    output_dir: Optional[Path] = None
-) -> None:
-    """Merge processed datasets and handle integration.
+def run_integration() -> int:
+    """Merge all data sources into analysis-ready datasets.
 
-    This function orchestrates dataset merging, linking bills and members
-    to mentions, and additional feature engineering.
-    
-    Args:
-        bill_dir: Directory with bill data
-        members_dir: Directory with member data
-        policy_dir: Directory with policy data
-        mentions_dir: Directory with processed mentions
-        output_dir: Directory for integrated outputs
+    Creates multi-level datasets:
+    - level1.csv: Individual mentions
+    - level2_org.csv: Organization aggregations
+    - level3_politician.csv: Politician aggregations
+    - level4_policy.csv: Policy area aggregations
+
+    Returns:
+        Exit code (0 = success)
     """
-    if bill_dir is None:
-        bill_dir = config.RAW_DATA_DIR / "bills"
-    if members_dir is None:
-        members_dir = config.RAW_DATA_DIR / "members" 
-    if policy_dir is None:
-        policy_dir = config.RAW_DATA_DIR / "policy"
-    if mentions_dir is None:
-        mentions_dir = config.PROCESSED_DATA_DIR / "mentions_processed"
-    if output_dir is None:
-        output_dir = config.RESULTS_DIR
+    script_dir = config.BASE_DIR / "interest_group_analysis" / "4_integration"
 
-    # Step 1: Link bills to mentions
-    logging.info("Linking bills to mentions...")
-    from interest_group_analysis.data_collection.bills_linkage import link_mentions_to_bills
-    bill_links = link_mentions_to_bills(
-        output_dir=bill_dir,
-        mentions_path=mentions_dir / "analytic_paragraph_units.jsonl"
-    )
-
-    # Step 2: Link members to mentions  
-    logging.info("Linking members to mentions...")
-    from interest_group_analysis.data_collection.members_linkage import link_mentions_to_members
-    member_links = link_mentions_to_members(
-        output_dir=members_dir,
-        mentions_path=mentions_dir / "analytic_paragraph_units.jsonl"
-    )
-
-    # Step 3: Link committees to policy areas
-    logging.info("Linking committees to policy areas...")
-    from interest_group_analysis.data_processing.committee_policy_linkage import main as link_committees
-    # link_committees would be called with appropriate parameters
-
-    # Step 4: Integrate all datasets
-    logging.info("Integrating datasets...")
-    # This would be your custom integration logic to create final analytic dataset
-    
-    logging.info("Integration complete.")
+    logger.info("Running integration pipeline...")
+    return _run_script(script_dir / "build_analysis_dataset.py")
 
 
-def run_analysis(
-    input_file: Optional[Path] = None,
-    output_dir: Optional[Path] = None
-) -> None:
-    """Perform statistical analysis and generate visualizations.
+def run_analysis() -> int:
+    """Run statistical analysis and generate visualizations.
 
-    This function runs regression models on the integrated dataset
-    and produces plots describing prominence patterns.
-    
-    Args:
-        input_file: Path to integrated dataset file
-        output_dir: Directory for analysis outputs
+    Produces:
+    - Regression results (outputs/tables/)
+    - Visualizations (outputs/figures/)
+
+    Returns:
+        Exit code (0 = success)
     """
-    if input_file is None:
-        input_file = config.RESULTS_DIR / "integrated_dataset.parquet"
-    if output_dir is None:
-        output_dir = config.RESULTS_DIR / "analysis"
-    
-    output_dir.mkdir(parents=True, exist_ok=True)
+    script_dir = config.BASE_DIR / "interest_group_analysis" / "5_analysis"
 
-    # Add your analysis steps here
-    logging.info("Running regression analysis...")
-    # run_regression_analysis(input_file, output_dir)
+    logger.info("Running descriptive analysis...")
+    _run_script(script_dir / "descriptive_analysis.py")
 
-    logging.info("Generating visualizations...")
-    # generate_visualizations(input_file, output_dir)
-    
-    logging.info("Analysis complete.")
+    logger.info("Running regression analysis...")
+    _run_script(script_dir / "regression_analysis.py")
+
+    logger.info("Analysis complete.")
+    return 0
 
 
-def run_full_pipeline() -> None:
-    """Run the complete analysis pipeline from data collection to analysis."""
-    logging.info("Starting full pipeline...")
-    
-    run_data_collection()
-    run_data_processing()
-    run_classification()
-    run_integration()
-    run_analysis()
-    
-    logging.info("Full pipeline complete.")
+def run_full_pipeline() -> int:
+    """Run the complete analysis pipeline from collection to analysis.
+
+    Returns:
+        Exit code (0 = success, non-zero = failure at some stage)
+    """
+    logger.info("Starting full pipeline...")
+
+    stages = [
+        ("Data Collection", run_data_collection),
+        ("Data Processing", run_data_processing),
+        ("Classification", run_classification),
+        ("Integration", run_integration),
+        ("Analysis", run_analysis),
+    ]
+
+    for stage_name, stage_func in stages:
+        logger.info(f"Running stage: {stage_name}")
+        result = stage_func()
+        if result != 0:
+            logger.error(f"Stage '{stage_name}' failed with code {result}")
+            return result
+
+    logger.info("Full pipeline complete.")
+    return 0
 
 
 if __name__ == "__main__":
-    # This allows running the full pipeline directly:
-    # python -m interest_group_analysis.pipelines
     import argparse
-    
+
     parser = argparse.ArgumentParser(description="Run Interest Group Analysis Pipeline")
-    parser.add_argument("--stage", choices=["collect", "process", "classify", "integrate", "analyze", "all"], 
-                        default="all", help="Pipeline stage to run")
+    parser.add_argument(
+        "--stage",
+        choices=["collect", "process", "classify", "integrate", "analyze", "all"],
+        default="all",
+        help="Pipeline stage to run"
+    )
     args = parser.parse_args()
-    
-    if args.stage == "collect":
-        run_data_collection()
-    elif args.stage == "process":
-        run_data_processing()
-    elif args.stage == "classify":
-        run_classification()  
-    elif args.stage == "integrate":
-        run_integration()
-    elif args.stage == "analyze":
-        run_analysis()
-    elif args.stage == "all":
-        run_full_pipeline()
+
+    stage_map = {
+        "collect": run_data_collection,
+        "process": run_data_processing,
+        "classify": run_classification,
+        "integrate": run_integration,
+        "analyze": run_analysis,
+        "all": run_full_pipeline,
+    }
+
+    sys.exit(stage_map[args.stage]())

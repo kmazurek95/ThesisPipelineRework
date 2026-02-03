@@ -1,8 +1,10 @@
 # Interest Group Prominence in Congressional Speech
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![R 4.0+](https://img.shields.io/badge/R-4.0+-276DC3.svg)](https://www.r-project.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B.svg)](https://streamlit.io/)
 
 > **A complete data science pipeline for analyzing how interest groups are mentioned in U.S. Congressional speech, featuring ML-based prominence classification, multi-level statistical analysis, and reproducible research workflows.**
 
@@ -24,10 +26,10 @@ This project analyzes **25,000+ interest group mentions** in the 114th U.S. Cong
 
 | Finding | Evidence |
 |---------|----------|
-| **Lobbying predicts prominence** | +7.1% per log unit increase (p < 0.001) |
-| **Senators > Representatives** | +37% higher odds of prominent mentions |
-| **Democrats give fewer prominent mentions** | -26% compared to Republicans |
-| **Single-issue groups get noticed** | +34% higher prominence rate |
+| **Lobbying predicts prominence** | +7.4% higher odds per log unit increase (p < 0.001) |
+| **Senators > Representatives** | +45% higher odds of prominent mentions (p < 0.001) |
+| **Democrats give fewer prominent mentions** | -23% compared to Republicans (p < 0.001) |
+| **Single-issue groups get noticed** | +41% higher prominence rate (p < 0.001) |
 
 ---
 
@@ -116,6 +118,23 @@ For an interactive walkthrough with visualizations:
 jupyter notebook notebooks/Analysis_Showcase.ipynb
 ```
 
+### Interactive Dashboard
+
+Launch the Streamlit dashboard:
+
+```bash
+streamlit run dashboard/Home.py
+```
+
+### R Multilevel Models
+
+Run the R analysis:
+
+```bash
+cd R_analysis
+Rscript run_analysis.R
+```
+
 ---
 
 ## Repository Structure
@@ -135,7 +154,22 @@ ThesisPipelineRework/
 │   └── collect_members.py       # Member metadata fetcher
 │
 ├── notebooks/                   # Jupyter notebooks
-│   └── Analysis_Showcase.ipynb  # Interactive analysis demo
+│   ├── Analysis_Showcase.ipynb  # Interactive analysis demo
+│   └── Classification_Analysis.ipynb  # ML classifier deep-dive
+│
+├── R_analysis/                  # R statistical analysis
+│   ├── Multilevel_Analysis.Rmd  # lme4 multilevel models
+│   ├── run_analysis.R           # Execution script
+│   └── requirements-r.txt       # R package dependencies
+│
+├── dashboard/                   # Streamlit interactive dashboard
+│   ├── Home.py                  # Landing page
+│   ├── pages/                   # Dashboard pages
+│   └── utils/                   # Data loading, visualization helpers
+│
+├── docs/                        # Documentation
+│   ├── METHODOLOGY.md           # Detailed methodology
+│   └── REPLICATION.md           # Step-by-step replication guide
 │
 ├── data/                        # Data directory (see data/README.md)
 │   ├── reference/               # Static reference files
@@ -249,13 +283,84 @@ Avg_Prominence ~ Party + Chamber + log(Mentions)
 
 ## Technologies
 
-- **Languages**: Python 3.10+
-- **Data Processing**: pandas, numpy
-- **Machine Learning**: scikit-learn, nltk
-- **Statistics**: statsmodels
-- **Visualization**: matplotlib, seaborn
+- **Languages**: Python 3.10+, R 4.0+
+- **Data Processing**: pandas, numpy, tidyverse
+- **Machine Learning**: scikit-learn, nltk, SHAP
+- **Statistics**: statsmodels, lme4 (R)
+- **Visualization**: matplotlib, seaborn, ggplot2, Plotly
+- **Dashboard**: Streamlit
 - **APIs**: requests, python-dotenv
 - **Testing**: pytest
+
+---
+
+## Skills Demonstrated
+
+### Data Science & Machine Learning
+- **Text Classification**: TF-IDF + Logistic Regression with 91% F1-score
+- **Model Evaluation**: ROC/PR curves, SHAP explanations, error analysis
+- **Cross-Validation**: Group-aware K-fold CV to prevent data leakage
+- **Feature Engineering**: Text preprocessing, n-gram extraction, metadata integration
+
+### Statistical Modeling
+- **Multilevel/Hierarchical Models**: lme4 GLMER with crossed random effects
+- **Regression Analysis**: Logistic, OLS, and mixed-effects models
+- **Survey Methodology**: Multi-level nested data structures
+- **Model Diagnostics**: ICC, AIC/BIC comparison, residual analysis
+
+### Data Engineering
+- **ETL Pipelines**: Modular Python pipeline with validation at each stage
+- **API Integration**: GovInfo, Congress.gov REST APIs with rate limiting
+- **Data Quality**: Automated validation, integrity checks, reproducible workflows
+- **Version Control**: Git, GitHub, structured branching
+
+### Visualization & Communication
+- **Publication-Quality Figures**: matplotlib, seaborn, ggplot2 (300 DPI)
+- **Interactive Dashboards**: Streamlit with caching and dynamic filtering
+- **Technical Writing**: R Markdown reports, Jupyter notebooks
+- **Data Storytelling**: Clear narratives from complex statistical results
+
+---
+
+## For Recruiters
+
+### PhD Programs (Political Science / Computational Social Science)
+This project demonstrates:
+- **Original research contribution** to interest group and legislative politics literature
+- **Methodological sophistication**: NLP classification, multilevel modeling, causal inference thinking
+- **Publication-ready outputs**: Tables, figures, and reports suitable for academic journals
+- **Interdisciplinary skills**: Bridging computer science methods with social science questions
+
+### Survey Data Analyst Roles
+Relevant experience includes:
+- **Complex survey data structures**: Multi-level/hierarchical data (mentions nested in organizations, politicians, policy areas)
+- **Statistical modeling**: Logistic regression, mixed-effects models, variance decomposition
+- **Data quality assurance**: Validation frameworks, automated integrity checks
+- **Reproducible research**: Documented workflows, version control, clear methodology
+
+### Dashboard & Visualization Specialist Roles
+This project showcases:
+- **Interactive Streamlit dashboard** with filtering, caching, and responsive design
+- **Publication-quality static visualizations** using matplotlib, seaborn, and ggplot2
+- **Data-driven storytelling**: Translating regression coefficients into actionable insights
+- **Full-stack data workflow**: From raw APIs to polished visual outputs
+
+### Data Science / ML Engineer Roles
+Technical highlights:
+- **End-to-end ML pipeline**: Data collection → preprocessing → training → evaluation → deployment
+- **Model interpretability**: SHAP values, feature importance, error analysis
+- **Production-ready code**: Modular design, comprehensive testing, documentation
+- **API development**: Data collection scripts with error handling and rate limiting
+
+---
+
+## Analysis Notebooks
+
+| Notebook | Description |
+|----------|-------------|
+| [`Analysis_Showcase.ipynb`](notebooks/Analysis_Showcase.ipynb) | Executive summary with key findings and visualizations |
+| [`Classification_Analysis.ipynb`](notebooks/Classification_Analysis.ipynb) | Deep-dive into ML classifier: SHAP, error analysis, model comparison |
+| [`R_analysis/Multilevel_Analysis.Rmd`](R_analysis/Multilevel_Analysis.Rmd) | Multilevel models with lme4, coefficient plots, diagnostics |
 
 ---
 

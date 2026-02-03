@@ -1,0 +1,25 @@
+# R Package Requirements for Multilevel Analysis
+# Install with: install.packages(readLines("requirements-r.txt"))
+
+# Data manipulation
+tidyverse
+dplyr
+readr
+tidyr
+
+# Mixed-effects models
+lme4
+broom.mixed
+
+# Visualization
+ggplot2
+sjPlot
+ggeffects
+
+# Model diagnostics
+performance
+
+# Report generation
+knitr
+kableExtra
+rmarkdown

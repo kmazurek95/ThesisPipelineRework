@@ -715,7 +715,7 @@ if __name__ == "__main__":
     p_norm.add_argument("--out-dir", default="data/processed/mentions")
     p_norm.add_argument("--threads", type=int, default=4)
     p_norm.add_argument("--chunk-size", type=int, default=1000)
-    p_norm.add_argument("--resume", action="store_true")
+    p_norm.add_argument("--no-resume", dest="resume", action="store_false", help="Do not skip already processed packages")
     p_norm.add_argument("--only-package", type=str, default=None, help="Process only this packageId")
     p_norm.add_argument("--only-canonical-names", action="store_true",
                     help="Restrict matches to canonical names and acronyms only (no alt/partial names)")

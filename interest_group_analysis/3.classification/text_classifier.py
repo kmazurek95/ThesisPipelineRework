@@ -337,12 +337,14 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,
                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-    # Use combined labeled data if available, otherwise fall back to original
-    combined_path = Path(r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\data\combined_labeled.csv")
-    original_path = Path(r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\data\Labeled_Data.csv")
-
-    labeled_path = combined_path if combined_path.exists() else original_path
-    out = Path(r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\results_classifier")
+    # Use combined labeled data - check multiple possible locations
+    project_root = Path(__file__).resolve().parent.parent.parent
+    candidates = [
+        project_root / "data" / "training" / "combined_labeled.csv",
+        project_root / "data" / "combined_labeled.csv",
+    ]
+    labeled_path = next((p for p in candidates if p.exists()), candidates[0])
+    out = project_root / "results_classifier"
 
     # Create results directory if it doesn't exist
     out.mkdir(parents=True, exist_ok=True)

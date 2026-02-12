@@ -211,6 +211,9 @@ def parse_args():
     p.add_argument("--parallel", action="store_true", help="Use multiprocessing to speed up speaker attribution")
     p.add_argument("--workers", type=int, default=max(1, multiprocessing.cpu_count() - 1), help="Number of worker processes to use if --parallel is enabled")
     p.add_argument("--batch-size", type=int, default=10000, help="Number of mentions to process in each batch")
+    p.add_argument("--main-csv", type=Path, default=None,
+                   help="Flat normalized CSV (e.g. data/normalized/main.csv). "
+                        "Used instead of by_package/*/granules_core.csv for loading granule text.")
     # NEW:
     p.add_argument("--resume", action="store_true", help="Resume using processed_granules.jsonl manifest; append outputs")
     p.add_argument("--manifest", type=Path, default=None, help="Path to processed manifest (defaults to out_dir/processed_granules.jsonl)")
@@ -235,10 +238,12 @@ def stream_granules_text(
     normalized_dir: Path,
     needed: set[str],
     package_ids: Optional[set[str]] = None,
+    main_csv: Optional[Path] = None,
 ) -> tuple[Dict[str, str], Dict[str, Optional[str]]]:
     """
     Load the text for each granuleId we need.
-    Fast path: if package_ids provided, only read those by_package/*/granules_core.csv files.
+    Fast path: if main_csv provided, read directly from the flat CSV.
+    Otherwise: if package_ids provided, only read those by_package/*/granules_core.csv files.
     Falls back to scanning all by_package if package_ids is None or no matches found.
     """
     # Log memory usage at the start
@@ -253,6 +258,39 @@ def stream_granules_text(
             if isinstance(v, str) and v.strip():
                 return v, k
         return "", ""
+
+    # Fast path: read from flat main.csv directly
+    if main_csv and main_csv.exists():
+        LOGGER.info("Reading granule texts from flat CSV: %s", main_csv)
+        remaining = set(needed)
+        chunk_num = 0
+        for chunk in pd.read_csv(
+            main_csv, chunksize=5000, dtype=str,
+            keep_default_na=False,
+            usecols=lambda c: c in wanted_cols,
+        ):
+            chunk_num += 1
+            if "granuleId" not in chunk.columns:
+                continue
+            sub = chunk[chunk["granuleId"].astype(str).isin(remaining)]
+            for _, r in sub.iterrows():
+                gid = str(r["granuleId"])
+                if gid in out:
+                    continue
+                txt, src = _pick_text_row(r)
+                out[gid] = txt or ""
+                sources[gid] = src
+                remaining.discard(gid)
+            if chunk_num % 20 == 0:
+                LOGGER.info("Read %d chunks, found %d/%d granule texts...",
+                           chunk_num, len(out), len(needed))
+            if not remaining:
+                LOGGER.info("Collected all %d requested granule texts from main CSV.", len(needed))
+                break
+        if remaining:
+            LOGGER.warning("Missing %d granule texts from main CSV. Example: %s",
+                          len(remaining), next(iter(remaining), None))
+        return out, sources
 
     by_pkg = normalized_dir / "by_package"
     if not by_pkg.exists():
@@ -458,7 +496,10 @@ def main():
     needed = set(df["granuleId"].dropna().astype(str))
     pkg_ids = set(df["packageId"].dropna().astype(str)) if "packageId" in df.columns else None
     LOGGER.info("Loading texts for %d granules from %s packages...", len(needed), (len(pkg_ids) if pkg_ids else "ALL"))
-    text_by_gid, source_by_gid = stream_granules_text(args.normalized_dir, needed, pkg_ids)
+    text_by_gid, source_by_gid = stream_granules_text(
+        args.normalized_dir, needed, pkg_ids,
+        main_csv=getattr(args, "main_csv", None),
+    )
     LOGGER.info("Loaded %d granule texts", len(text_by_gid))
     log_memory_usage()
 
@@ -491,7 +532,8 @@ def main():
             spans = refine_spans_with_members(spans, gid, members_by_gid)
             
             # Belt-and-suspenders: try a liney alternative from normalized CSV (text_bs4) when available
-            if not spans:
+            # Skip this fallback when using --main-csv (text already loaded from flat CSV)
+            if not spans and not getattr(args, "main_csv", None):
                 try:
                     by_pkg = args.normalized_dir / "by_package"
                     for core in by_pkg.glob("**/granules_core.csv"):

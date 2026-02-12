@@ -359,7 +359,10 @@ class MultiLevelBuilder:
 
         # Find relevant columns
         org_col = "org_id"
-        prominence_col = "prominence" if "prominence" in df.columns else None
+        prominence_col = next(
+            (c for c in ["prominence", "prominence_prediction"] if c in df.columns),
+            None,
+        )
         speaker_col = None
         for col in df.columns:
             if "bioguideid" in col.lower() and "speaker" in col.lower():
@@ -406,7 +409,6 @@ class MultiLevelBuilder:
             if col in df.columns:
                 result[col] = grouped[col].first().values
 
-        result = self._add_prefix(result, "level2_")
         logger.info(f"Created Level 2 with {len(result)} organizations")
         return result
 
@@ -444,7 +446,10 @@ class MultiLevelBuilder:
             logger.warning("No rows with valid speaker IDs")
             return pd.DataFrame()
 
-        prominence_col = "prominence" if "prominence" in df.columns else None
+        prominence_col = next(
+            (c for c in ["prominence", "prominence_prediction"] if c in df.columns),
+            None,
+        )
         org_col = "org_id" if "org_id" in df.columns else None
         policy_col = "issue_area" if "issue_area" in df.columns else None
 
@@ -490,7 +495,6 @@ class MultiLevelBuilder:
 
             result["specialization_hhi"] = grouped[policy_col].agg(herfindahl).values
 
-        result = self._add_prefix(result, "level3_")
         logger.info(f"Created Level 3 with {len(result)} politicians")
         return result
 
@@ -526,7 +530,10 @@ class MultiLevelBuilder:
             logger.warning("No rows with valid policy areas")
             return pd.DataFrame()
 
-        prominence_col = "prominence" if "prominence" in df.columns else None
+        prominence_col = next(
+            (c for c in ["prominence", "prominence_prediction"] if c in df.columns),
+            None,
+        )
         org_col = "org_id" if "org_id" in df.columns else None
         salience_col = None
         for col in df.columns:
@@ -570,7 +577,6 @@ class MultiLevelBuilder:
         # Add policy area name
         result["policy_area_name"] = result[policy_col].map(POLICY_AREAS)
 
-        result = self._add_prefix(result, "level4_")
         logger.info(f"Created Level 4 with {len(result)} policy areas")
         return result
 

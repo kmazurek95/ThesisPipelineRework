@@ -1,0 +1,14 @@
+# Streamlit Cloud Dependencies
+# This file contains only the packages needed to run the dashboard
+
+# Core data handling
+pandas>=2.0
+numpy>=1.23
+
+# Dashboard
+streamlit>=1.30
+plotly>=5.0
+
+# Visualization (for any matplotlib/seaborn charts)
+matplotlib>=3.7
+seaborn>=0.12

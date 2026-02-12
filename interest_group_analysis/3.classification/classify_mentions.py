@@ -172,15 +172,17 @@ def main():
     """Run the classification pipeline."""
     import argparse
 
+    project_root = Path(__file__).resolve().parent.parent.parent
+
     parser = argparse.ArgumentParser(description="Classify interest group mentions")
     parser.add_argument(
         "--mentions", "-m",
-        default=r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\data\intermediate\mentions_114\mentions.jsonl",
+        default=str(project_root / "data" / "intermediate" / "mentions_114" / "mentions.jsonl"),
         help="Path to mentions JSONL file"
     )
     parser.add_argument(
         "--model", "-M",
-        default=r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\results_classifier\prominence_pipeline.joblib",
+        default=str(project_root / "results_classifier" / "prominence_pipeline.joblib"),
         help="Path to trained model"
     )
     parser.add_argument(

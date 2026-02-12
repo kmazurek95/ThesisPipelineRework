@@ -23,6 +23,9 @@ streamlit>=1.30
 # Statistical modelling
 statsmodels>=0.14
 
+# R data file reading
+pyreadr>=0.5
+
 # Deduplication and hashing
 datasketch>=1.5
 

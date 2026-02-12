@@ -25,7 +25,7 @@ paths:
   mentions_dir: "data/processed/mentions_114"
 
   # Classification
-  labeled_data: "data/combined_labeled.csv"
+  labeled_data: "data/training/combined_labeled.csv"
   classifier_output: "results_classifier"
 
   # Integration

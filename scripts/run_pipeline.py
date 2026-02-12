@@ -218,10 +218,7 @@ def run_processing(config: dict[str, Any], logger: logging.Logger, dry_run: bool
     try:
         from interest_group_analysis.pipelines import run_data_processing
 
-        run_data_processing(
-            clean=stage_config.get("normalize", {}).get("clean", False),
-            emit_search_text=stage_config.get("normalize", {}).get("emit_search_text", True),
-        )
+        run_data_processing()
         return True
     except Exception as e:
         logger.error(f"Processing failed: {e}")
@@ -247,8 +244,8 @@ def run_classification(config: dict[str, Any], logger: logging.Logger, dry_run: 
 
     try:
         # Step 1: Prepare training data (if needed)
-        combined_path = resolve_path(paths_config.get("labeled_data", "data/combined_labeled.csv"))
-        if not combined_path.exists() or stage_config.get("use_combined_labels", True):
+        combined_path = resolve_path(paths_config.get("labeled_data", "data/training/combined_labeled.csv"))
+        if not combined_path.exists():
             logger.info("Preparing combined training data...")
             import subprocess
             result = subprocess.run(
@@ -315,7 +312,7 @@ def run_integration(config: dict[str, Any], logger: logging.Logger, dry_run: boo
     try:
         # Run complete_merge.py
         logger.info("Running complete merge pipeline...")
-        merge_script = PROJECT_ROOT / "interest_group_analysis" / "4_integration" / "complete_merge.py"
+        merge_script = PROJECT_ROOT / "interest_group_analysis" / "4_integration" / "build_analysis_dataset.py"
 
         if merge_script.exists():
             import subprocess
@@ -358,7 +355,7 @@ def run_analysis(config: dict[str, Any], logger: logging.Logger, dry_run: bool =
 
     try:
         # Run multi-level data construction if available
-        multi_level_script = PROJECT_ROOT / "interest_group_analysis" / "5_analysis" / "multi_level_construction.py"
+        multi_level_script = PROJECT_ROOT / "interest_group_analysis" / "5_analysis" / "multi_level_builder.py"
         if multi_level_script.exists():
             logger.info("Running multi-level data construction...")
             import subprocess
@@ -384,6 +381,32 @@ def run_analysis(config: dict[str, Any], logger: logging.Logger, dry_run: bool =
             )
             if result.returncode != 0:
                 logger.warning(f"Visualization generation had issues: {result.stderr}")
+
+        # Run descriptive analysis if available
+        desc_script = PROJECT_ROOT / "interest_group_analysis" / "5_analysis" / "descriptive_analysis.py"
+        if desc_script.exists():
+            logger.info("Running descriptive analysis...")
+            result = subprocess.run(
+                [sys.executable, str(desc_script)],
+                capture_output=True,
+                text=True,
+                cwd=str(PROJECT_ROOT)
+            )
+            if result.returncode != 0:
+                logger.warning(f"Descriptive analysis had issues: {result.stderr}")
+
+        # Run regression analysis if available
+        reg_script = PROJECT_ROOT / "interest_group_analysis" / "5_analysis" / "regression_analysis.py"
+        if reg_script.exists():
+            logger.info("Running regression analysis...")
+            result = subprocess.run(
+                [sys.executable, str(reg_script)],
+                capture_output=True,
+                text=True,
+                cwd=str(PROJECT_ROOT)
+            )
+            if result.returncode != 0:
+                logger.warning(f"Regression analysis had issues: {result.stderr}")
 
         logger.info("Analysis stage complete")
         return True

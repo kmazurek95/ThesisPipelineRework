@@ -4,7 +4,7 @@
 [![R 4.0+](https://img.shields.io/badge/R-4.0+-276DC3.svg)](https://www.r-project.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B.svg)](https://streamlit.io/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Live_Dashboard-FF4B4B.svg)](https://thesispipelinerework-emngd3hbxghtkfzbe9secw.streamlit.app/)
 
 > **A complete data science pipeline for analyzing how interest groups are mentioned in U.S. Congressional speech, featuring ML-based prominence classification, multi-level statistical analysis, and reproducible research workflows.**
 

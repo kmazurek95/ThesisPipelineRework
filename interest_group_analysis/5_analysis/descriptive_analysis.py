@@ -334,27 +334,27 @@ def main():
     # Generate figures
     logger.info("Generating Figure 1: Mentions over time...")
     fig1 = plot_mentions_over_time(level1)
-    fig1.savefig(FIGURES_DIR / "fig1_mentions_over_time.png", dpi=150, bbox_inches='tight')
+    fig1.savefig(FIGURES_DIR / "fig1_mentions_over_time.png", dpi=300, bbox_inches='tight')
     plt.close(fig1)
 
     logger.info("Generating Figure 2: Organization categories...")
     fig2 = plot_org_categories(level1)
-    fig2.savefig(FIGURES_DIR / "fig2_org_categories.png", dpi=150, bbox_inches='tight')
+    fig2.savefig(FIGURES_DIR / "fig2_org_categories.png", dpi=300, bbox_inches='tight')
     plt.close(fig2)
 
     logger.info("Generating Figure 3: Lobbying vs prominence...")
     fig3 = plot_lobbying_prominence(level2)
-    fig3.savefig(FIGURES_DIR / "fig3_lobbying_prominence.png", dpi=150, bbox_inches='tight')
+    fig3.savefig(FIGURES_DIR / "fig3_lobbying_prominence.png", dpi=300, bbox_inches='tight')
     plt.close(fig3)
 
     logger.info("Generating Figure 4: Party patterns...")
     fig4 = plot_party_patterns(level1)
-    fig4.savefig(FIGURES_DIR / "fig4_party_patterns.png", dpi=150, bbox_inches='tight')
+    fig4.savefig(FIGURES_DIR / "fig4_party_patterns.png", dpi=300, bbox_inches='tight')
     plt.close(fig4)
 
     logger.info("Generating Figure 5: Policy heatmap...")
     fig5 = plot_policy_heatmap(level1)
-    fig5.savefig(FIGURES_DIR / "fig5_policy_heatmap.png", dpi=150, bbox_inches='tight')
+    fig5.savefig(FIGURES_DIR / "fig5_policy_heatmap.png", dpi=300, bbox_inches='tight')
     plt.close(fig5)
 
     logger.info(f"\nOutputs saved to:")

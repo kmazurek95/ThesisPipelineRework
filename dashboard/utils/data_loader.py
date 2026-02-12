@@ -20,8 +20,12 @@ TABLES_DIR = PROJECT_ROOT / "outputs" / "tables"
 def load_level1_data() -> pd.DataFrame:
     """Load Level 1 (mention-level) data with caching"""
     try:
-        df = pd.read_csv(DATA_DIR / "level1.csv", low_memory=False)
-        
+        # Prefer compressed file (for Streamlit Cloud), fall back to uncompressed
+        csv_gz = DATA_DIR / "level1.csv.gz"
+        csv_path = DATA_DIR / "level1.csv"
+        source = csv_gz if csv_gz.exists() else csv_path
+        df = pd.read_csv(source, low_memory=False)
+
         # Parse dates
         if 'date' in df.columns:
             df['date'] = pd.to_datetime(df['date'], errors='coerce')
@@ -153,4 +157,55 @@ def load_model_fit_stats() -> pd.DataFrame:
         return df
     except Exception as e:
         logger.error(f"Error loading model fit stats: {e}")
+        return pd.DataFrame()
+
+
+# --- Hero organization helpers for showcase dashboard ---
+
+HERO_ORG_IDS = {
+    12: "AARP",
+    59: "AFL-CIO",
+    238: "ACLU",
+    2215: "NAM",
+    391: "AMA",
+}
+
+
+@st.cache_data(ttl=3600)
+def load_hero_mentions() -> pd.DataFrame:
+    """Load mention-level data filtered to hero organizations only."""
+    level1 = load_level1_data()
+    if level1.empty:
+        return pd.DataFrame()
+    return level1[level1['org_id'].isin(HERO_ORG_IDS.keys())].copy()
+
+
+@st.cache_data(ttl=3600)
+def load_classifier_metrics() -> dict:
+    """Load real classifier metrics from CSV (not hardcoded)."""
+    try:
+        df = pd.read_csv(TABLES_DIR / "classifier_final_metrics.csv")
+        return dict(zip(df['Metric'], df['Value']))
+    except Exception as e:
+        logger.error(f"Error loading classifier metrics: {e}")
+        return {}
+
+
+@st.cache_data(ttl=3600)
+def load_classifier_comparison() -> pd.DataFrame:
+    """Load model comparison table."""
+    try:
+        return pd.read_csv(TABLES_DIR / "classifier_comparison.csv")
+    except Exception as e:
+        logger.error(f"Error loading classifier comparison: {e}")
+        return pd.DataFrame()
+
+
+@st.cache_data(ttl=3600)
+def load_summary_table() -> pd.DataFrame:
+    """Load pre-computed summary statistics table."""
+    try:
+        return pd.read_csv(TABLES_DIR / "table1_summary_stats.csv")
+    except Exception as e:
+        logger.error(f"Error loading summary table: {e}")
         return pd.DataFrame()

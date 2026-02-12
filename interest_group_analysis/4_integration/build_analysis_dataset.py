@@ -56,9 +56,8 @@ INTERMEDIATE_DIR = DATA_DIR / "intermediate"
 REFERENCE_DIR = DATA_DIR / "reference"
 OUTPUT_DIR = DATA_DIR / "output"
 
-# Input files - use labeled mentions if available, otherwise raw
-MENTIONS_JSONL = INTERMEDIATE_DIR / "mentions_114" / "labeled_mentions.jsonl"
-MENTIONS_JSONL_RAW = INTERMEDIATE_DIR / "mentions_114" / "mentions.jsonl"
+# Input files - scan for all congress-specific mention directories
+MENTIONS_DIRS = sorted(INTERMEDIATE_DIR.glob("mentions_*/"))
 NORMALIZED_DIR = INTERMEDIATE_DIR / "normalized_114"
 WRS_RDA = REFERENCE_DIR / "washington_representatives_study.rda"
 INTEREST_GROUPS_CSV = REFERENCE_DIR / "interest_groups_list.csv"
@@ -826,22 +825,28 @@ def run_pipeline(
     # Create output directory
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # 1. Load mentions (prefer labeled, fall back to raw)
+    # 1. Load mentions from all congress directories
     logger.info("\n[1/5] Loading classified mentions...")
-    if MENTIONS_JSONL.exists():
-        mentions = load_mentions(MENTIONS_JSONL)
-        logger.info("Using labeled mentions (with prominence predictions)")
-    elif MENTIONS_JSONL_RAW.exists():
-        logger.warning(f"Labeled mentions not found, using raw: {MENTIONS_JSONL_RAW}")
-        mentions = load_mentions(MENTIONS_JSONL_RAW)
-    else:
-        # Fall back to run1 if run2 doesn't exist
-        alt_path = PROCESSED_DIR / "mentions_114" / "mentions.jsonl"
-        if alt_path.exists():
-            logger.warning(f"run2 not found, using run1: {alt_path}")
-            mentions = load_mentions(alt_path)
+    mention_frames = []
+    for mdir in MENTIONS_DIRS:
+        labeled_path = mdir / "labeled_mentions.jsonl"
+        raw_path = mdir / "mentions.jsonl"
+        if labeled_path.exists():
+            df = load_mentions(labeled_path)
+            logger.info(f"  Loaded {len(df):,} labeled mentions from {mdir.name}")
+            mention_frames.append(df)
+        elif raw_path.exists():
+            df = load_mentions(raw_path)
+            logger.warning(f"  Loaded {len(df):,} raw mentions from {mdir.name} (no labels)")
+            mention_frames.append(df)
         else:
-            raise FileNotFoundError(f"No mentions file found")
+            logger.warning(f"  Skipping {mdir.name}: no mentions file found")
+
+    if not mention_frames:
+        raise FileNotFoundError(f"No mentions files found in {INTERMEDIATE_DIR}/mentions_*/")
+
+    mentions = pd.concat(mention_frames, ignore_index=True)
+    logger.info(f"Total mentions loaded: {len(mentions):,} from {len(mention_frames)} congress(es)")
 
     mentions = clean_mentions(mentions)
 

@@ -189,3 +189,19 @@ PROMINENCE_COLORS = {
     'Prominent': '#2ca02c',
     'Passing': '#d62728',
 }
+
+HERO_ORG_COLORS = {
+    'AARP': '#1f77b4',
+    'AFL-CIO': '#ff7f0e',
+    'NAM': '#2ca02c',
+    'ACLU': '#d62728',
+    'AMA': '#9467bd',
+}
+
+HERO_ORG_META = {
+    12:   {'name': 'AARP',    'sector': 'Elderly Advocacy',       'lobbying_k': 37_848},
+    59:   {'name': 'AFL-CIO', 'sector': 'Labor',                  'lobbying_k': 6_280},
+    238:  {'name': 'ACLU',    'sector': 'Civil Liberties',         'lobbying_k': 2_579},
+    2215: {'name': 'NAM',     'sector': 'Business/Manufacturing',  'lobbying_k': 16_810},
+    391:  {'name': 'AMA',     'sector': 'Healthcare/Professional', 'lobbying_k': 44_055},
+}

@@ -1,10 +1,10 @@
 Category,Metric,Value
-Mentions,Total Mentions,25106.0
-Mentions,High Prominence (%),37.82362781805146
-Mentions,With Speaker Attribution (%),88.61626702780212
-Mentions,With Policy Area (%),57.31697602166813
-Mentions,Unique Dates,225.0
-Organizations,Unique Organizations,1679.0
-Organizations,Mean Mentions per Org,14.952948183442526
-Organizations,Median Mentions per Org,4.0
-Organizations,Orgs with 10+ Mentions,427.0
+Mentions,Total Mentions,53892.0
+Mentions,High Prominence (%),35.52475321012395
+Mentions,With Speaker Attribution (%),41.28256513026052
+Mentions,With Policy Area (%),26.701551250649448
+Mentions,Unique Dates,581.0
+Organizations,Unique Organizations,2260.0
+Organizations,Mean Mentions per Org,23.846017699115045
+Organizations,Median Mentions per Org,6.0
+Organizations,Orgs with 10+ Mentions,816.0

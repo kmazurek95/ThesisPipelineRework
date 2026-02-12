@@ -16,7 +16,7 @@
 
 ## Overview
 
-This project analyzes **25,000+ interest group mentions** in the 114th U.S. Congress (2015-2017) to understand:
+This project analyzes **53,892 interest group mentions** across the 114th-115th U.S. Congress (2015-2018) to understand:
 
 - **Which organizations** receive prominent vs. passing mentions in floor speeches
 - **What predicts prominence**: lobbying expenditure, organization type, speaker characteristics

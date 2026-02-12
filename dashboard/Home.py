@@ -1,9 +1,11 @@
 """
-Interest Group Prominence in Congressional Speech - Dashboard
-Main landing page with key findings and project overview
+Home page — Story-driven landing page for portfolio showcase.
 """
 
 import streamlit as st
+import pandas as pd
+import plotly.graph_objects as go
+import numpy as np
 from pathlib import Path
 import sys
 
@@ -11,190 +13,192 @@ import sys
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from dashboard.utils.data_loader import load_summary_stats
-from dashboard.utils.config import configure_page, apply_custom_css
-
-# Page configuration
-configure_page(
-    title="Interest Group Prominence Dashboard",
-    icon="🏛️",
-    layout="wide"
+from dashboard.utils.config import (
+    configure_page, apply_custom_css,
+    HERO_ORG_COLORS, HERO_ORG_META,
+)
+from dashboard.utils.data_loader import (
+    load_level1_data, load_level2_data,
+    load_classifier_metrics, load_regression_results,
+    get_summary_stats, HERO_ORG_IDS,
 )
 
+
+def build_hero_scatter(level2: pd.DataFrame, level1: pd.DataFrame) -> go.Figure:
+    """Lobbying vs Prominence scatter with hero orgs highlighted."""
+    names = level1.groupby('org_id')['org_name'].first().reset_index()
+    df = level2.merge(names, on='org_id', how='left')
+
+    df = df[(df['total_mentions'] >= 50) & (df['LOBBYING11'] > 0)].copy()
+    df['log_lobbying'] = np.log10(df['LOBBYING11'].clip(lower=1))
+    df['is_hero'] = df['org_id'].isin(HERO_ORG_IDS.keys())
+
+    bg = df[~df['is_hero']]
+    heroes = df[df['is_hero']]
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter(
+        x=bg['log_lobbying'], y=bg['prominence_rate'] * 100,
+        mode='markers',
+        marker=dict(size=6, color='#d3d3d3', opacity=0.4),
+        text=bg['org_name'],
+        hovertemplate='%{text}<br>Lobbying: $%{customdata:,.0f}K<br>Prominence: %{y:.1f}%<extra></extra>',
+        customdata=bg['LOBBYING11'],
+        name='Other organizations', showlegend=True,
+    ))
+
+    for _, row in heroes.iterrows():
+        name = HERO_ORG_IDS.get(row['org_id'], row['org_name'])
+        fig.add_trace(go.Scatter(
+            x=[row['log_lobbying']], y=[row['prominence_rate'] * 100],
+            mode='markers+text',
+            marker=dict(size=14, color=HERO_ORG_COLORS.get(name, '#333'),
+                        line=dict(width=2, color='white')),
+            text=[name], textposition='top center',
+            textfont=dict(size=12, color=HERO_ORG_COLORS.get(name, '#333')),
+            hovertemplate=f'{name}<br>Lobbying: ${row["LOBBYING11"]:,.0f}K<br>'
+                          f'Prominence: {row["prominence_rate"]*100:.1f}%<extra></extra>',
+            name=name, showlegend=True,
+        ))
+
+    valid = df.dropna(subset=['log_lobbying', 'prominence_rate'])
+    if len(valid) > 2:
+        z = np.polyfit(valid['log_lobbying'], valid['prominence_rate'] * 100, 1)
+        x_range = np.linspace(valid['log_lobbying'].min(), valid['log_lobbying'].max(), 50)
+        fig.add_trace(go.Scatter(
+            x=x_range, y=np.polyval(z, x_range),
+            mode='lines', line=dict(color='rgba(102,126,234,0.5)', dash='dash', width=2),
+            showlegend=False, hoverinfo='skip',
+        ))
+
+    fig.update_layout(
+        title=None,
+        xaxis_title='Lobbying Expenditure ($K, log scale)',
+        yaxis_title='Prominence Rate (%)',
+        xaxis=dict(tickvals=[1, 2, 3, 4, 5],
+                   ticktext=['$10', '$100', '$1K', '$10K', '$100K']),
+        plot_bgcolor='white', height=500,
+        font=dict(family="Arial, sans-serif"),
+        legend=dict(orientation='h', yanchor='bottom', y=-0.25, xanchor='center', x=0.5),
+        margin=dict(t=20),
+    )
+    fig.update_xaxes(showgrid=True, gridcolor='#f0f0f0')
+    fig.update_yaxes(showgrid=True, gridcolor='#f0f0f0')
+    return fig
+
+
+# --- Page ---
+configure_page(title="Interest Group Prominence", icon="🏛️")
 apply_custom_css()
 
-# Hero Section
+stats = get_summary_stats()
+metrics = load_classifier_metrics()
+regression = load_regression_results()
+
+# Hero
 st.markdown("""
 <div class="hero">
-    <h1>🏛️ Interest Group Prominence in Congressional Speech</h1>
-    <p class="subtitle">
-        Analyzing 25,000+ mentions across the 114th U.S. Congress (2015-2017)
-    </p>
+    <h1>Does Money Buy Voice?</h1>
+    <p class="subtitle">How Interest Groups Shape Congressional Debate in the U.S. Congress</p>
 </div>
 """, unsafe_allow_html=True)
 
-# Key Findings Banner
+# Metrics row
+c1, c2, c3, c4 = st.columns(4)
+c1.metric("Mentions Analyzed", f"{stats.get('total_mentions', 0):,}")
+c2.metric("Organizations", f"{stats.get('total_orgs', 0):,}")
+c3.metric("Congresses", "2 (114th-115th)")
+f1 = metrics.get('F1 Score', 0)
+c4.metric("Classifier F1", f"{f1:.2f}" if f1 else "N/A")
+
 st.markdown("---")
-st.header("🔑 Key Findings")
 
-col1, col2, col3, col4 = st.columns(4)
+# Scatter
+st.subheader("Lobbying Expenditure vs. Prominence in Congressional Record")
+st.caption(
+    "Each dot is an organization with 50+ mentions. "
+    "Highlighted: 5 case-study organizations spanning elderly advocacy, "
+    "labor, business, civil liberties, and healthcare."
+)
 
-with col1:
-    st.metric(
-        label="Total Mentions Analyzed",
-        value="25,000+",
-        delta="91% Classification Accuracy"
+level1 = load_level1_data()
+level2 = load_level2_data()
+if not level2.empty and not level1.empty:
+    fig = build_hero_scatter(level2, level1)
+    st.plotly_chart(fig, use_container_width=True)
+
+st.markdown("---")
+
+# Findings
+st.subheader("Key Findings")
+
+lobbying_coef = senate_coef = party_coef = None
+if not regression.empty:
+    m1 = regression[regression['Model'] == 'Model 1: Mention']
+    for _, row in m1.iterrows():
+        if row['Variable'] == 'log_lobbying':
+            lobbying_coef = row['Coefficient']
+        elif row['Variable'] == 'is_senate':
+            senate_coef = row['Coefficient']
+        elif row['Variable'] == 'is_democrat':
+            party_coef = row['Coefficient']
+
+f1_col, f2_col, f3_col = st.columns(3)
+
+with f1_col:
+    st.markdown('<div class="stat-box"><h3>Lobbying Predicts Prominence</h3></div>',
+                unsafe_allow_html=True)
+    if lobbying_coef is not None:
+        st.metric("Log-Lobbying Coefficient", f"{lobbying_coef:.3f}", "p < 0.001")
+    st.markdown(
+        "A 10x increase in lobbying expenditure is associated with a "
+        "**7.1 percentage-point** increase in the probability of receiving "
+        "a prominent mention."
     )
 
-with col2:
-    st.metric(
-        label="Lobbying Impact",
-        value="+7.1%",
-        delta="per log unit increase",
-        help="Lobbying expenditure predicts higher prominence (p < 0.001)"
+with f2_col:
+    st.markdown('<div class="stat-box"><h3>Senate Amplifies Voice</h3></div>',
+                unsafe_allow_html=True)
+    if senate_coef is not None:
+        pct = (np.exp(senate_coef) - 1) * 100
+        st.metric("Senate vs. House Effect", f"+{pct:.0f}%", "p < 0.001")
+    st.markdown(
+        "Interest groups receive significantly more prominent mentions "
+        "in Senate floor debates compared to the House."
     )
 
-with col3:
-    st.metric(
-        label="Senate Effect",
-        value="+45%",
-        delta="vs. House",
-        help="Senators give more prominent mentions than Representatives (exp(0.37) = 1.45)"
+with f3_col:
+    st.markdown('<div class="stat-box"><h3>Partisan Divide</h3></div>',
+                unsafe_allow_html=True)
+    if party_coef is not None:
+        pct = (np.exp(party_coef) - 1) * 100
+        st.metric("Democrat vs. Republican", f"{pct:.0f}%", "p < 0.001")
+    st.markdown(
+        "Democrats are less likely than Republicans to give interest groups "
+        "prominent mentions, controlling for lobbying expenditure."
     )
 
-with col4:
-    st.metric(
-        label="Partisan Gap",
-        value="-23%",
-        delta="Democrats vs Republicans",
-        help="Democrats give fewer prominent mentions (exp(-0.26) = 0.77)"
-    )
-
-# Project Overview
 st.markdown("---")
-col_left, col_right = st.columns([3, 2])
 
-with col_left:
-    st.header("📖 About This Project")
-    st.markdown("""
-    This dashboard showcases a **complete data science pipeline** for analyzing how interest groups 
-    are mentioned in U.S. Congressional floor speeches. 
-    
-    ### Research Questions
-    - **Which organizations** receive prominent vs. passing mentions?
-    - **What predicts prominence?** Lobbying, organization type, speaker characteristics?
-    - **Partisan patterns:** Do Democrats and Republicans mention groups differently?
-    
-    ### Technical Highlights
-    - ✅ **ETL Pipeline:** Modular stages for collection, processing, classification
-    - ✅ **ML Classification:** TF-IDF + Logistic Regression (F1 = 0.91)
-    - ✅ **Multi-level Data:** Hierarchical structure for nested analysis
-    - ✅ **API Integration:** GovInfo, Congress.gov
-    - ✅ **Production-Ready:** Validated, tested, documented codebase
-    
-    ### Data Sources
-    - **Congressional Record:** GovInfo API (25,000+ parsed speeches)
-    - **Interest Group Data:** Washington Representatives Study 2011
-    - **Legislator Info:** Congress.gov API
-    - **Lobbying Data:** Center for Responsive Politics
-    """)
+# Navigation
+st.subheader("Explore Further")
+n1, n2, n3 = st.columns(3)
+with n1:
+    st.page_link("pages/1_🔬_Methodology.py", label="Methodology", icon="🔬")
+    st.caption("Pipeline design, ML classification, and statistical models")
+with n2:
+    st.page_link("pages/2_🏛️_Case_Studies.py", label="Case Studies", icon="🏛️")
+    st.caption("Deep dives into AARP, AFL-CIO, ACLU, NAM, and AMA")
+with n3:
+    st.page_link("pages/3_📖_Technical_Appendix.py", label="Technical Appendix", icon="📖")
+    st.caption("Full model results, classifier diagnostics, and limitations")
 
-with col_right:
-    st.header("🎯 Quick Navigation")
-    st.markdown("""
-    ### Explore the Dashboard
-    
-    **📊 Overview**  
-    Executive summary, methodology, key statistics
-    
-    **🔍 Explore Data**  
-    Interactive filters, search, dynamic visualizations
-    
-    **📈 Statistical Models**  
-    Regression results, model comparison, diagnostics
-    
-    **🏛️ Organizations**  
-    Organization-level analysis, lobbying patterns
-    
-    ---
-    
-    ### Project Links
-    - 📦 [GitHub Repository](https://github.com/kmazurek95/ThesisPipelineRework)
-    - 📄 [Original Thesis](https://github.com/kmazurek95/MastersThesis_InterestGroupAnalysis)
-    - 👔 [LinkedIn](#)
-    
-    ---
-    
-    ### Master's Thesis Revamp
-    This is a **complete rewrite** of my Master's thesis pipeline, 
-    transforming research scripts into production-ready Python code with:
-    - Automated ML classification
-    - Comprehensive testing & validation
-    - Professional documentation
-    - Reproducible workflows
-    """)
-
-# Key Findings Table
+# Disclaimer
 st.markdown("---")
-st.header("📊 Summary of Findings")
-
-findings_data = {
-    "Finding": [
-        "Lobbying predicts prominence",
-        "Senators > Representatives",
-        "Democrats give fewer prominent mentions",
-        "Single-issue groups get noticed",
-        "Labor unions receive substantive attention"
-    ],
-    "Evidence": [
-        "+7.4% higher odds per log unit increase (p < 0.001)",
-        "+45% higher odds of prominent mentions (p < 0.001)",
-        "-23% compared to Republicans (p < 0.001)",
-        "+41% higher prominence rate (p < 0.001)",
-        "+15% higher prominence rate (p < 0.01)"
-    ],
-    "Level": [
-        "Level 1 (Mentions)",
-        "Level 1 (Mentions)",
-        "Level 1 (Mentions)",
-        "Level 1 (Mentions)",
-        "Level 1 (Mentions)"
-    ]
-}
-
-st.table(findings_data)
-
-# Data Pipeline Flowchart
-st.markdown("---")
-st.header("🔄 Data Pipeline Architecture")
-
-st.markdown("""
-```mermaid
-graph LR
-    A[Congressional Record<br/>GovInfo API] --> B[Normalize & Parse]
-    C[Congress.gov APIs<br/>Bills, Members] --> B
-    B --> D[Extract Mentions]
-    D --> E[Attribute Speakers]
-    E --> F[ML Classification<br/>F1=0.91]
-    F --> G[Multi-level Integration]
-    H[Interest Group Data<br/>WRS 2011] --> G
-    G --> I[Level 1: Mentions]
-    G --> J[Level 2: Organizations]
-    G --> K[Level 3: Politicians]
-    G --> L[Level 4: Policy Areas]
-    I --> M[Statistical Analysis]
-    J --> M
-    K --> M
-    L --> M
-    M --> N[Visualizations & Reports]
-```
-""")
-
-# Footer
-st.markdown("---")
-st.markdown("""
-<div style='text-align: center; color: #666; padding: 20px;'>
-    <p>Built with Streamlit • Python 3.10+ • Data Science Pipeline</p>
-    <p>© 2026 • MIT License • For Academic & Professional Use</p>
-</div>
-""", unsafe_allow_html=True)
+st.caption(
+    "Curated portfolio demonstration showcasing 5 representative organizations. "
+    "Full pipeline processes {:,} mentions across {:,} organizations from the "
+    "114th-115th U.S. Congress (2015-2018).".format(
+        stats.get('total_mentions', 0), stats.get('total_orgs', 0))
+)

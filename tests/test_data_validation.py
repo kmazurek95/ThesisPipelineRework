@@ -20,10 +20,14 @@ class TestDatasetStructure:
     @pytest.fixture
     def level1(self):
         """Load level 1 dataset."""
-        path = DATA_DIR / "level1.csv"
-        if not path.exists():
+        gz_path = DATA_DIR / "level1.csv.gz"
+        csv_path = DATA_DIR / "level1.csv"
+        if gz_path.exists():
+            return pd.read_csv(gz_path, nrows=1000)
+        elif csv_path.exists():
+            return pd.read_csv(csv_path, nrows=1000)
+        else:
             pytest.skip("level1.csv not found - run pipeline first")
-        return pd.read_csv(path, nrows=1000)
 
     @pytest.fixture
     def level2(self):
@@ -116,7 +120,6 @@ class TestDataConsistency:
         """Load all datasets."""
         levels = {}
         for name, filename in [
-            ("level1", "level1.csv"),
             ("level2", "level2_org.csv"),
             ("level3", "level3_politician.csv"),
             ("level4", "level4_policy.csv"),
@@ -126,6 +129,15 @@ class TestDataConsistency:
                 levels[name] = pd.read_csv(path)
             else:
                 pytest.skip(f"{filename} not found")
+        # level1 may be gzipped
+        gz_path = DATA_DIR / "level1.csv.gz"
+        csv_path = DATA_DIR / "level1.csv"
+        if gz_path.exists():
+            levels["level1"] = pd.read_csv(gz_path)
+        elif csv_path.exists():
+            levels["level1"] = pd.read_csv(csv_path)
+        else:
+            pytest.skip("level1.csv not found")
         return levels
 
     def test_level1_rows_match_aggregation(self, all_levels):

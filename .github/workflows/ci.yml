@@ -23,7 +23,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Optional: only keep this if you truly need libtirpc-dev
       - name: Install system dependencies
         run: |
           sudo apt-get update

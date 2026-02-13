@@ -37,7 +37,7 @@ This project analyzes **53,892 interest group mentions** across the 114th-115th 
 
 ### Master's Thesis Revamp
 
-This repository is a **complete rewrite** of the data pipeline originally developed for my Master's thesis in Political Science. The original thesis examined how interest groups gain visibility in congressional discourse.
+This repository represents the **production-quality implementation** of my Master's thesis research in Political Science. The pipeline was iteratively refined from initial exploratory analysis to a fully reproducible, tested, and documented system for examining how interest groups gain visibility in congressional discourse.
 
 **What's new in this version:**
 - Modular, production-ready Python codebase (vs. research scripts)
@@ -168,6 +168,7 @@ ThesisPipelineRework/
 │   └── utils/                   # Data loading, visualization helpers
 │
 ├── docs/                        # Documentation
+│   ├── FINDINGS_SUMMARY.md      # Research findings overview
 │   ├── METHODOLOGY.md           # Detailed methodology
 │   └── REPLICATION.md           # Step-by-step replication guide
 │
@@ -195,8 +196,8 @@ ThesisPipelineRework/
 
 | File | Level | Rows | Description |
 |------|-------|------|-------------|
-| `level1.csv` | Mention | 25,106 | Individual mention-level data |
-| `level2_org.csv` | Organization | 1,679 | Aggregated by interest group |
+| `level1.csv.gz` | Mention | 53,892 | Individual mention-level data |
+| `level2_org.csv` | Organization | 2,260 | Aggregated by interest group |
 | `level3_politician.csv` | Politician | 490 | Aggregated by Congress member |
 | `level4_policy.csv` | Policy | 18 | Aggregated by policy area |
 
@@ -216,7 +217,7 @@ ThesisPipelineRework/
 - `bioGuideId`: Unique Congress member identifier
 
 **Context:**
-- `issue_area`: Policy domain (21 CAP categories)
+- `issue_area`: Policy domain (18 policy areas)
 - `salience`: Google Trends-based issue salience
 
 ---
@@ -229,7 +230,7 @@ Interest group mentions are classified as **high prominence** (substantive discu
 
 1. **Text Features**: TF-IDF on surrounding paragraph context
 2. **Model**: Logistic Regression with L2 regularization
-3. **Training**: 907 manually labeled examples
+3. **Training**: 1,222 manually labeled examples
 4. **Performance**: 91% F1-score (5-fold cross-validation)
 
 ### Statistical Models
@@ -275,7 +276,7 @@ Avg_Prominence ~ Party + Chamber + log(Mentions)
 | is_senate | 0.370*** | - | 0.083** |
 | is_labor | 0.136** | 0.025 | - |
 | is_single_issue | 0.343*** | 0.096* | - |
-| **N** | 22,248 | 748 | 390 |
+| **N** | 22,248 | 1,245 | 390 |
 
 *Significance: \*p<0.05, \*\*p<0.01, \*\*\*p<0.001*
 

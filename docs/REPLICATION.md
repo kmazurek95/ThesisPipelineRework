@@ -107,7 +107,7 @@ The repository includes pre-processed output data in `data/output/`:
 
 | File | Size | Description |
 |------|------|-------------|
-| `level1.csv` | ~15MB | Mention-level data |
+| `level1.csv.gz` | ~14MB | Mention-level data (gzip compressed) |
 | `level2_org.csv` | ~500KB | Organization aggregates |
 | `level3_politician.csv` | ~100KB | Politician aggregates |
 | `level4_policy.csv` | ~10KB | Policy area aggregates |
@@ -306,10 +306,10 @@ pip install -e .
 #### Missing Data Files
 
 ```
-FileNotFoundError: data/output/level1.csv
+FileNotFoundError: data/output/level1.csv (or level1.csv.gz)
 ```
 
-**Solution:** Ensure you're in the project root:
+**Solution:** The mention-level data is stored as `level1.csv.gz` (gzip compressed). Ensure you're in the project root:
 ```bash
 cd ThesisPipelineRework
 ls data/output/

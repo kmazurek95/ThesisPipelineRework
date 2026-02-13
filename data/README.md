@@ -31,14 +31,15 @@ Machine learning training data:
 ### raw/
 Raw data collected from external sources:
 - `crec_114/` - Congressional Record XML files (114th Congress)
+- `crec_115/` - Congressional Record XML files (115th Congress)
 - `bills/` - Bill metadata from Congress.gov API
 - `members/` - Congress member biographical data
 
 ### intermediate/
 Pipeline intermediate outputs (can be regenerated):
-- `normalized_114/` - Parsed and normalized CREC data
+- `normalized_114/`, `normalized_115/` - Parsed and normalized CREC data
   - `by_package/` - Per-date package folders with granules, committees, members, references
-- `mentions_114/` - Extracted interest group mentions
+- `mentions_114/`, `mentions_115/` - Extracted interest group mentions
   - `mentions.jsonl` - Raw extracted mentions
   - `labeled_mentions.jsonl` - Mentions with prominence labels
   - `labeled_mentions.csv` - CSV format of labeled mentions
@@ -46,7 +47,7 @@ Pipeline intermediate outputs (can be regenerated):
 
 ### output/
 Final analysis-ready datasets:
-- `level1.csv` - Individual mention level (base unit of analysis)
+- `level1.csv.gz` - Individual mention level (base unit of analysis, gzip compressed)
 - `level2_org.csv` - Organization-level aggregation
 - `level3_politician.csv` - Politician-level aggregation
 - `level4_policy.csv` - Policy area-level aggregation
@@ -56,13 +57,13 @@ Final analysis-ready datasets:
 ## Data Flow
 
 ```
-raw/crec_114/           →  intermediate/normalized_114/
-                        →  intermediate/mentions_114/
-                        →  intermediate/mentions_with_speakers/
-                        →  output/level1.csv
-                        →  output/level2_org.csv (aggregated)
-                        →  output/level3_politician.csv (aggregated)
-                        →  output/level4_policy.csv (aggregated)
+raw/crec_114/, crec_115/  →  intermediate/normalized_114/, normalized_115/
+                          →  intermediate/mentions_114/, mentions_115/
+                          →  intermediate/mentions_with_speakers/
+                          →  output/level1.csv.gz
+                          →  output/level2_org.csv (aggregated)
+                          →  output/level3_politician.csv (aggregated)
+                          →  output/level4_policy.csv (aggregated)
 ```
 
 ## Regenerating Data

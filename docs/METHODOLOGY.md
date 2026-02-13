@@ -1,5 +1,7 @@
 # Methodology
 
+> This repository represents the production-quality implementation of Master's thesis research. The pipeline was iteratively refined from initial exploratory analysis to a fully reproducible, tested, and documented system.
+
 This document provides detailed methodology for the Interest Group Prominence in Congressional Speech project.
 
 ---
@@ -28,14 +30,14 @@ The project uses a **multi-level data structure**:
 
 | Level | Unit | N | Description |
 |-------|------|---|-------------|
-| 1 | Mention | 25,106 | Individual interest group mentions |
-| 2 | Organization | 1,679 | Unique interest groups |
+| 1 | Mention | 53,892 | Individual interest group mentions |
+| 2 | Organization | 2,260 | Unique interest groups |
 | 3 | Politician | 490 | Members of Congress |
 | 4 | Policy Area | 18 | CAP policy categories |
 
 ### Time Period
 
-- **Congress**: 114th (January 2015 - January 2017)
+- **Congress**: 114th (January 2015 - January 2017) and 115th (January 2017 - January 2019)
 - **Chamber Coverage**: House of Representatives and Senate
 - **Document Type**: Floor speeches from the Congressional Record
 
@@ -102,7 +104,7 @@ Interest group mentions are identified using:
 
 ### Training Data
 
-- **Source:** Manual coding of 907 mentions
+- **Source:** Manual coding of 1,222 mentions
 - **Coders:** 2 trained annotators
 - **Inter-rater reliability:** Cohen's kappa = 0.84
 
@@ -255,7 +257,7 @@ assert df.duplicated(subset=['mention_id']).sum() == 0
 
 ### Data Limitations
 
-1. **Single Congress:** Results may not generalize to other time periods
+1. **Two Congresses:** Analysis covers the 114th-115th Congress (2015-2019); results may not generalize to other time periods
 2. **Floor Speeches Only:** Excludes committee hearings, press releases
 3. **WRS 2011 Dictionary:** May miss newer organizations or name changes
 
@@ -267,7 +269,7 @@ assert df.duplicated(subset=['mention_id']).sum() == 0
 
 ### Future Directions
 
-1. Extend to multiple Congresses (time-series analysis)
+1. Extend beyond the 114th-115th Congress (time-series analysis)
 2. Include committee hearing transcripts
 3. Experiment with transformer-based classifiers (BERT)
 4. Add campaign contribution data

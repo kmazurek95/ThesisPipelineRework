@@ -41,9 +41,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 
-# =============================================================================
-# Configuration Loading
-# =============================================================================
+# --- Configuration Loading ---
 
 def load_config(config_path: Optional[Path] = None) -> dict[str, Any]:
     """Load pipeline configuration from YAML file."""
@@ -67,9 +65,7 @@ def resolve_path(path_str: str) -> Path:
     return path
 
 
-# =============================================================================
-# Logging Setup
-# =============================================================================
+# --- Logging Setup ---
 
 def setup_logging(config: dict[str, Any]) -> logging.Logger:
     """Configure logging based on config settings."""
@@ -92,9 +88,7 @@ def setup_logging(config: dict[str, Any]) -> logging.Logger:
     return logging.getLogger("pipeline")
 
 
-# =============================================================================
-# Validation Functions
-# =============================================================================
+# --- Validation Functions ---
 
 def validate_checkpoint(checkpoint: dict[str, Any], logger: logging.Logger) -> bool:
     """Run a single validation checkpoint."""
@@ -163,9 +157,7 @@ def run_validation(stage_name: str, config: dict[str, Any], logger: logging.Logg
     return all_passed
 
 
-# =============================================================================
-# Pipeline Stage Functions
-# =============================================================================
+# --- Pipeline Stage Functions ---
 
 def run_collection(config: dict[str, Any], logger: logging.Logger, dry_run: bool = False) -> bool:
     """Run the data collection stage."""
@@ -415,9 +407,7 @@ def run_analysis(config: dict[str, Any], logger: logging.Logger, dry_run: bool =
         return False
 
 
-# =============================================================================
-# Main Pipeline Orchestration
-# =============================================================================
+# --- Main Pipeline Orchestration ---
 
 STAGE_FUNCTIONS: dict[str, Callable] = {
     "collect": run_collection,
@@ -538,9 +528,7 @@ def run_pipeline(
     return all_success
 
 
-# =============================================================================
-# CLI Entry Point
-# =============================================================================
+# --- CLI Entry Point ---
 
 def main():
     """CLI entry point for the pipeline runner."""

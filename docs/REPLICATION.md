@@ -26,12 +26,6 @@ Step-by-step instructions to reproduce the analysis in this project.
 | Git | 2.0+ | Version control |
 | pip | 21.0+ | Package management |
 
-### Hardware Requirements
-
-- **RAM:** 8GB minimum (16GB recommended for full pipeline)
-- **Storage:** 2GB for code and data
-- **CPU:** Any modern processor (no GPU required)
-
 ### API Keys (Optional)
 
 For data collection from scratch:
@@ -333,45 +327,6 @@ MemoryError: Unable to allocate array
 ```
 
 **Solution:** Process data in chunks or increase available RAM. The full Level 1 dataset requires ~1GB RAM.
-
-### Getting Help
-
-1. Check existing issues: https://github.com/kmazurek95/ThesisPipelineRework/issues
-2. Run diagnostic script:
-   ```bash
-   python scripts/diagnose_environment.py
-   ```
-3. Open a new issue with:
-   - Error message
-   - Python/R version
-   - Operating system
-
----
-
-## Verification Checklist
-
-After running the pipeline, verify:
-
-- [ ] `outputs/figures/` contains 5+ PNG files
-- [ ] `outputs/tables/regression_results.csv` has 3+ rows
-- [ ] `python scripts/validate_data.py` passes
-- [ ] `pytest tests/` shows all tests passing
-- [ ] Dashboard runs: `streamlit run dashboard/Home.py`
-
----
-
-## Citation
-
-If you use this code or reproduce the analysis, please cite:
-
-```bibtex
-@software{mazurek2025interest,
-  author = {Mazurek, Kaleb},
-  title = {Interest Group Prominence in Congressional Speech},
-  year = {2025},
-  url = {https://github.com/kmazurek95/ThesisPipelineRework}
-}
-```
 
 ---
 

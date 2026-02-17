@@ -8,7 +8,7 @@ While the main pipeline is in Python, R is used for statistical modeling because
 
 1. **`lme4` package**: Gold standard for mixed-effects models
 2. **`sjPlot`**: Publication-quality coefficient tables and plots
-3. **`performance`**: Comprehensive model diagnostics (ICC, R², etc.)
+3. **`performance`**: Model diagnostics (ICC, R², residual plots)
 4. **R Markdown**: Reproducible reports with embedded code
 
 ## Files

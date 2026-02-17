@@ -34,7 +34,6 @@ from typing import Iterable, List, Optional, Tuple, Dict, Any
 import pandas as pd
 from tqdm import tqdm
 
-# Sentence tokenizer
 try:
     import nltk
     nltk.data.find("tokenizers/punkt")
@@ -73,7 +72,6 @@ class InterestGroup:
     acronyms: List[str]
 
 
-# Stop words and filters
 STOP_WORDS = {"the", "a", "an", "of", "and", "for", "to", "in", "on", "at"}
 
 

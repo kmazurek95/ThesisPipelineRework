@@ -109,13 +109,21 @@ results_classifier/
 # -----------------------------
 data/intermediate/
 data/MergedData/
+data/labeling/
+
+# -----------------------------
+# R cache
+# -----------------------------
+R_analysis/Multilevel_Analysis_cache/
 
 # -----------------------------
 # Output data for dashboard
 # - Track essential files for Streamlit deployment
 # - Ignore very large files (>100MB)
+# - level1.csv.gz (14MB) is tracked; uncompressed level1.csv (114MB) is ignored
 # -----------------------------
 data/output/multi_level_data.csv
+data/output/level1.csv
 
 # -----------------------------
 # Output figures and tables

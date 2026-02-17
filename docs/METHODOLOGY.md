@@ -1,18 +1,14 @@
 # Methodology
 
-> This repository represents the production-quality implementation of Master's thesis research. The pipeline was iteratively refined from initial exploratory analysis to a fully reproducible, tested, and documented system.
-
-This document provides detailed methodology for the Interest Group Prominence in Congressional Speech project.
+This pipeline is a ground-up rebuild of the methodology developed for my master's thesis (Mazurek, 2023). It applies the same research design to a larger corpus with improved classification and reproducible infrastructure.
 
 ---
 
-## Table of Contents
+## Theoretical Background
 
-1. [Research Design](#research-design)
-2. [Data Collection](#data-collection)
-3. [Text Classification](#text-classification)
-4. [Statistical Analysis](#statistical-analysis)
-5. [Validation Strategy](#validation-strategy)
+This pipeline investigates **organizational prominence** as defined by Halpin & Fraussen (2017): the perception that an interest group is a preeminent voice for a constituency. Prominence is distinct from *access* (direct contact with policymakers) and *involvement* (formal inclusion in policy processes). It operates through an "audience dynamic" — politicians decide which organizations matter, constrained by attention scarcity, and their choices are reflected in how they discuss those organizations on the floor.
+
+The original thesis derived hypotheses from this framework across three dimensions: issue characteristics (salience), politician-group linkage (party, chamber, seniority), and group characteristics (age, policy breadth, external lobbying). This pipeline tests a subset of those variables — lobbying expenditure, party, chamber, and organization type — on an expanded dataset. For the full conceptual model, literature review, and hypothesis structure, see the [thesis paper](Thesis_UvA_Kaleb_Mazurek.pdf).
 
 ---
 
@@ -26,20 +22,7 @@ This document provides detailed methodology for the Interest Group Prominence in
 
 ### Unit of Analysis
 
-The project uses a **multi-level data structure**:
-
-| Level | Unit | N | Description |
-|-------|------|---|-------------|
-| 1 | Mention | 53,892 | Individual interest group mentions |
-| 2 | Organization | 2,260 | Unique interest groups |
-| 3 | Politician | 490 | Members of Congress |
-| 4 | Policy Area | 18 | CAP policy categories |
-
-### Time Period
-
-- **Congress**: 114th (January 2015 - January 2017) and 115th (January 2017 - January 2019)
-- **Chamber Coverage**: House of Representatives and Senate
-- **Document Type**: Floor speeches from the Congressional Record
+The data has four levels: 53,892 individual mentions nested within 2,260 organizations and 490 politicians, cross-classified by 18 CAP policy areas. The analysis covers the 114th Congress (January 2015 - January 2017) and 115th Congress (January 2017 - January 2019), using floor speeches from the Congressional Record in both House and Senate.
 
 ---
 
@@ -47,48 +30,22 @@ The project uses a **multi-level data structure**:
 
 ### Source 1: Congressional Record (GovInfo API)
 
-**Process:**
-1. Query GovInfo API for Congressional Record documents
-2. Filter to floor speeches (exclude procedural items)
-3. Parse HTML/XML to extract speech text
-4. Identify speaker attribution
-
-**Key Fields:**
-- `granule_id`: Unique document identifier
-- `date`: Publication date
-- `chamber`: H (House) or S (Senate)
-- `text`: Full speech content
+Congressional Record documents are fetched from the GovInfo API, filtered to floor speeches (excluding procedural items), and parsed from HTML/XML to extract the speech text, speaker cues, chamber, and date for each granule.
 
 ### Source 2: Interest Group Dictionary (WRS 2011)
 
-The **Washington Representatives Study (2011)** provides the universe of interest groups for matching.
-
-**Key Fields:**
-- `ENTRY`: Organization name
-- `LOBBYING11`: Total lobbying expenditure
-- `CATEGORY`: Organization type (trade, labor, single-issue, etc.)
-- `FOUNDED`: Year established
-- `ISSUES`: Policy areas of activity
+The **Washington Representatives Study (2011)** provides the universe of interest groups for matching. Each organization entry includes the organization name, lobbying expenditure, organization type (trade, labor, single-issue, etc.), founding year, and policy areas of activity.
 
 ### Source 3: Congress.gov API
 
-**Member Data:**
-- `bioGuideId`: Unique legislator identifier
-- `party`: Political party affiliation
-- `state`: State represented
-- Seniority, committee assignments
-
-**Bill Data:**
-- Bill numbers referenced in speeches
-- Policy area classifications
+Member metadata (party, state, seniority, committee assignments) comes from the Congress.gov API and is linked to speakers via BioGuide IDs. Bill metadata provides policy area classifications for speeches that reference specific legislation.
 
 ### Mention Extraction
 
 Interest group mentions are identified using:
 
 1. **Exact String Matching**: Organization names from WRS dictionary
-2. **Fuzzy Matching**: Levenshtein distance < 3 for minor variations
-3. **Alias Resolution**: Common abbreviations (e.g., "AFL-CIO" = "American Federation of Labor")
+2. **Alias Resolution**: Common abbreviations (e.g., "AFL-CIO" = "American Federation of Labor")
 
 **Output:** Each row represents one mention of one organization in one speech.
 
@@ -108,9 +65,10 @@ Interest group mentions are identified using:
 - **Coders:** 2 trained annotators
 - **Inter-rater reliability:** Cohen's kappa = 0.84
 
-**Coding Criteria:**
-- **Prominent:** Organization is the subject of discussion; actions, positions, or impact described
-- **Passing:** Organization mentioned in lists, procedural references, or tangential context
+**Coding Criteria** (adapted from Fraussen et al., 2018):
+- **Prominent** if any of: (1) views adopted/endorsed, (2) significant role in policy area mentioned, (3) used as expert resource, (4) importance or relevance conveyed
+- **Passing** if: brief reference, list inclusion, procedural mention, or 10+ other organizations in same context
+- See the [thesis paper](Thesis_UvA_Kaleb_Mazurek.pdf) for full operationalization
 
 ### Feature Engineering
 
@@ -136,27 +94,22 @@ Interest group mentions are identified using:
 | XGBoost | 0.87 | 0.88 | 0.86 |
 | Naive Bayes | 0.82 | 0.80 | 0.84 |
 
-**Final Model:** Logistic Regression with L2 regularization (C=1.0)
+**Final Model:** Logistic Regression with L2 regularization (C=2.0)
 
-**Rationale:**
-- Highest F1 score
-- Interpretable coefficients
-- Fast training and inference
-- Well-calibrated probabilities
+I tried five classifiers and logistic regression edged out SVM by a point on F1 while being faster to train and — more importantly — producing interpretable coefficients and well-calibrated probabilities. Interpretability mattered because I wanted to inspect which textual features drive prominence predictions (see SHAP analysis in `notebooks/Classification_Analysis.ipynb`). The tree-based models (Random Forest, XGBoost) performed noticeably worse, likely because the sparse TF-IDF feature space favors linear models.
 
 ### Cross-Validation Strategy
 
-**Group-Aware K-Fold (K=5):**
-- Mentions grouped by organization
-- All mentions of an organization in same fold
-- Prevents data leakage from organization-specific patterns
+Mentions are grouped by organization so that all mentions of a given org land in the same fold — preventing the model from memorizing organization-specific language during training and then being "tested" on more text from the same org.
 
 ```python
-from sklearn.model_selection import GroupKFold
-
-gkf = GroupKFold(n_splits=5)
-for train_idx, test_idx in gkf.split(X, y, groups=org_ids):
-    # Train and evaluate
+# interest_group_analysis/3.classification/text_classifier.py, lines 159-163
+cv = GroupKFold(n_splits=5)
+gs = GridSearchCV(
+    pipe, grid,
+    cv=cv.split(X_train, y_train, groups=g_train),
+    scoring="average_precision", refit=True
+)
 ```
 
 ### Model Interpretation
@@ -198,6 +151,7 @@ logit(P(Prominent)) = β₀ + β₁·log(Lobbying) + β₂·Democrat + β₃·Se
 
 **Specification:**
 ```r
+# R_analysis/Multilevel_Analysis.Rmd, lines 259-265
 glmer(prominence ~ log_lobbying + is_single_issue + is_labor +
                    party + chamber +
                    (1 | org_id) + (1 | issue_area),
@@ -226,15 +180,17 @@ glmer(prominence ~ log_lobbying + is_single_issue + is_labor +
 
 ### Data Quality Checks
 
-**Automated Validation (run at each pipeline stage):**
+**Automated Validation:**
 
 ```python
-# Example validation rules
-assert df['prominence_prediction'].isin([0, 1]).all()
-assert df['party'].isin(['D', 'R', 'I']).all()
-assert df['lobbying'].min() >= 0
-assert df.duplicated(subset=['mention_id']).sum() == 0
+# tests/test_data_validation.py, lines 62-66
+def test_level1_prominence_is_binary(self, level1):
+    """Prominence prediction should be 0 or 1."""
+    unique_vals = level1["prominence_prediction"].dropna().unique()
+    assert set(unique_vals).issubset({0, 1, 0.0, 1.0})
 ```
+
+The full test suite (`pytest tests/ -v`) checks column presence, value ranges, cross-level consistency, and deduplication across all four dataset levels.
 
 ### Classifier Validation
 
@@ -280,8 +236,12 @@ assert df.duplicated(subset=['mention_id']).sum() == 0
 
 - Baumgartner, F. R., & Leech, B. L. (1998). *Basic Interests: The Importance of Groups in Politics and in Political Science*. Princeton University Press.
 - Congressional Record. GovInfo API. https://api.govinfo.gov/
+- Fraussen, B., Graham, T., & Halpin, D. R. (2018). Assessing the Prominence of Interest Groups in Parliament: A Supervised Machine Learning Approach. *The Journal of Legislative Studies*, 24(4), 450–74.
+- Grossmann, M. (2012). *The Not-so-Special Interests: Interest Groups, Public Representation, and American Governance*. Stanford University Press.
+- Halpin, D. R., & Fraussen, B. (2017). Conceptualising the Policy Engagement of Interest Groups: Involvement, Access and Prominence. *European Journal of Political Research*, 56(3), 723–32.
+- Mazurek, K. (2023). Beyond Policy Influence: A Deeper Dive into the Factors Driving Advocacy Group Prominence. Master's thesis, University of Amsterdam.
 - Washington Representatives Study (2011). https://faculty.wcas.northwestern.edu/~jnd260/
 
 ---
 
-*For replication instructions, see [REPLICATION.md](REPLICATION.md).*
+*For replication instructions, see [REPLICATION.md](REPLICATION.md). For a comparison of this pipeline's results with the original thesis findings, see [THESIS_EXTENSION_NOTES.md](THESIS_EXTENSION_NOTES.md).*

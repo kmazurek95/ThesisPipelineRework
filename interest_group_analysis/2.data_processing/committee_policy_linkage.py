@@ -11,10 +11,11 @@ from typing import Dict, List, Optional, Tuple
 import pandas as pd
 
 # =========================== CONFIG ===========================
-BASE_DIR = Path(r"C:\Users\kaleb\OneDrive\Desktop\DATA\COMPLETE")
+_PROJECT_ROOT = Path(__file__).resolve().parents[2]
+BASE_DIR = _PROJECT_ROOT / "data" / "reference"
 COMMITTEES_CSV = BASE_DIR / "g.committees_CREC_114_AND_115.csv"
 PROMINENCE_CSV = BASE_DIR / "df_interest_groups_prominence.csv"  # optional join target
-OUT_DIR = Path(r"C:\Users\kaleb\OneDrive\Desktop\OUTPUT DATA\policy")
+OUT_DIR = _PROJECT_ROOT / "data" / "output" / "policy"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # If you want a CSV mapping instead of the in-code dict, set this path:

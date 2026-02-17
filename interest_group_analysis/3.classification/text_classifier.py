@@ -11,62 +11,13 @@ legislative text. It fixes common issues like:
 - Reproducibility and proper model saving
 """
 
-# =============================================================================
-# # Interest Group Prominence Classifier
-#
-# This module implements a robust machine learning pipeline for classifying the 
-# prominence of interest group mentions in legislative text. Built with scikit-learn
-# best practices, it addresses common issues in text classification:
-#
-# - Prevents feature leakage across train/test splits
-# - Uses group-aware cross-validation to avoid data contamination
-# - Optimizes decision thresholds for imbalanced data
-# - Selects models based on precision-recall metrics
-# - Includes proper validation and evaluation
-# - Ensures reproducibility and model persistence
-#
-# ## Usage
-#
-# ### As a module (recommended)
-# ```python
-# from interest_group_analysis.3.classification.text_classifier import train_select, load_labeled_df
-# import joblib
-# from pathlib import Path
-#
-# # Train model
-# df = load_labeled_df("path/to/Labeled_Data.csv")
-# model, f1, ap = train_select(df, model_name="logreg", results_dir=Path("results_dir"))
-# 
-# # Use trained model
-# model_bundle = joblib.load("results_dir/prominence_pipeline.joblib")
-# ```
-#
-# ### As a script
-# ```powershell
-# cd "C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework"
-#
-# # Using Python module import
-# python -c "from interest_group_analysis.3.classification import text_classifier; text_classifier.run_pipeline()"
-#
-# # Or direct execution (may have import issues)
-# python "interest_group_analysis\3.classification\text_classifier.py"
-# ```
-#
-# ## Key Features
-#
-# - **Group-aware splits**: Prevents leakage between same-organization mentions
-# - **Optimized threshold**: Uses precision-recall curves for optimal F1
-# - **Feature engineering**: Combines TF-IDF text features with numerical features
-# - **Linear models**: Efficient for sparse text data
-# - **Performance metrics**: Tracks average precision and F1 score
-# - **Reproducibility**: Fixed random seeds and complete pipeline serialization
-# =============================================================================
-
 from __future__ import annotations
 
 import logging
 from pathlib import Path
 from typing import List, Tuple
+
+_PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 import numpy as np
 import pandas as pd
@@ -283,9 +234,9 @@ def run_pipeline(labeled_path: Path = None, unlabeled_path: Path = None, results
     """
     # Set default paths if none provided
     if labeled_path is None:
-        labeled_path = Path(r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\data\Labeled_Data.csv")
+        labeled_path = _PROJECT_ROOT / "data" / "Labeled_Data.csv"
     if results_dir is None:
-        results_dir = Path(r"C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework\results_classifier")
+        results_dir = _PROJECT_ROOT / "results_classifier"
     
     logging.info(f"Loading labeled dataset from {labeled_path}")
     df = load_labeled_df(labeled_path)

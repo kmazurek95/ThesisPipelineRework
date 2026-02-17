@@ -8,7 +8,7 @@ All notable changes to this project are documented in this file.
 - Extended analysis to 115th Congress (2017-2019), doubling the dataset to 53,892 mentions
 - Interactive Streamlit dashboard with live deployment on Streamlit Cloud
 - R multilevel models (lme4 GLMER with crossed random effects)
-- Comprehensive data validation framework with pytest
+- Data validation with pytest
 - CI/CD pipeline with GitHub Actions
 - Research findings summary (FINDINGS_SUMMARY.md)
 - Classification Analysis notebook with SHAP explanations and model comparison

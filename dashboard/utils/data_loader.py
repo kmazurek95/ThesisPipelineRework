@@ -128,7 +128,7 @@ def get_figure_path(figure_name: str) -> Path:
 def check_data_availability() -> dict:
     """Check which data files are available"""
     availability = {
-        'level1': (DATA_DIR / "level1.csv").exists(),
+        'level1': (DATA_DIR / "level1.csv.gz").exists() or (DATA_DIR / "level1.csv").exists(),
         'level2': (DATA_DIR / "level2_org.csv").exists(),
         'level3': (DATA_DIR / "level3_politician.csv").exists(),
         'level4': (DATA_DIR / "level4_policy.csv").exists(),

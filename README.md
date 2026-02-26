@@ -4,11 +4,17 @@ Analyzing what drives substantive vs. passing mentions of interest groups in U.S
 
 ---
 
-## Overview
+## Research Context
 
-This repository is a ground-up rebuild of the data pipeline I developed for my master's thesis, "Beyond Policy Influence: A Deeper Dive into the Factors Driving Advocacy Group Prominence" (University of Amsterdam, 2023). The original thesis analyzed 20,699 mentions using an SVM classifier (F1=0.79). This pipeline extends that work with a larger corpus (53,892 mentions across two Congresses), an improved classifier (Logistic Regression, F1=0.91), and a fully reproducible architecture. The statistical findings in this repository reflect the expanded dataset and may differ from the original thesis results.
+Why do some advocacy organizations receive substantive attention from U.S. legislators while others are mentioned only in passing? This project investigates **prominence** — the degree to which politicians invoke an organization as a credible voice or useful resource during floor speeches — as a distinct form of political attention that is more tractable than measuring policy influence directly. The theoretical framework draws on Halpin & Fraussen (2017) for the conceptualization of prominence and the "audience dynamic," Grossman (2012) for organizational-level predictors, and Ibenskas & Bunea (2021) for the politician-interest group linkage.
 
-## Key Results
+The work has two phases. My MSc thesis at the University of Amsterdam (2023) developed the original research design: collecting Congressional Record documents via the GovInfo API, extracting mentions of 5,447 national advocacy organizations, training a supervised classifier to distinguish prominent from routine mentions, and running multilevel regression models to test hypotheses about what drives prominence. The full thesis argument, hypothesis tests, and results are in [THESIS_FINDINGS_2023.md](docs/THESIS_FINDINGS_2023.md) and the [thesis PDF](docs/Thesis_UvA_Kaleb_Mazurek.pdf).
+
+After graduating, I rebuilt the pipeline from scratch — not to correct the thesis, but to extend the methodology with a larger corpus, an improved classifier, and a fully reproducible architecture. This repository is that rebuild. The statistical findings here reflect the expanded dataset and should be read on their own terms; see [PIPELINE_FINDINGS.md](docs/PIPELINE_FINDINGS.md) for the full results.
+
+## Key Findings
+
+Lobbying expenditure predicts not just visibility but the *quality* of attention organizations receive, and institutional factors (chamber, party) shape prominence patterns independently of organization characteristics.
 
 | Metric | Value |
 |--------|-------|
@@ -23,6 +29,16 @@ This repository is a ground-up rebuild of the data pipeline I developed for my m
 | Senators give more prominent mentions | +45% odds vs. House | < 0.001 |
 | Democrats give fewer prominent mentions | -23% odds vs. Republicans | < 0.001 |
 | Single-issue groups get more prominence | +41% odds vs. multi-issue | < 0.001 |
+
+## Project Evolution
+
+| | Original Thesis (2023) | Pipeline Rebuild |
+|---|---|---|
+| Corpus | 114th Congress (20,699 mentions) | 114th + 115th Congress (53,892 mentions) |
+| Classifier | SVM (F1=0.79) | Logistic Regression (F1=0.91) |
+| Infrastructure | Ad hoc scripts | 5-stage reproducible pipeline with CI/CD, tests, dashboard |
+
+For a detailed comparison of where findings align and diverge, see [THESIS_EXTENSION_NOTES.md](docs/THESIS_EXTENSION_NOTES.md).
 
 ## Repository Structure
 
@@ -41,7 +57,7 @@ ThesisPipelineRework/
 ├── notebooks/                   # Analysis and classification notebooks
 ├── data/                        # Reference data, training labels, output datasets
 ├── outputs/                     # Figures and regression tables
-├── docs/                        # Methodology, findings summary, replication guide
+├── docs/                        # Methodology, findings, replication guide, thesis PDF
 └── tests/                       # Pytest suite
 ```
 
@@ -97,11 +113,13 @@ The dashboard includes methodology explanations, five organization case studies 
 
 | Document | Description |
 |----------|-------------|
-| [Findings Summary](docs/FINDINGS_SUMMARY.md) | One-page research overview with key numbers |
-| [Thesis Extension Notes](docs/THESIS_EXTENSION_NOTES.md) | How this pipeline extends the original thesis — what changed, where findings align/diverge |
+| [Thesis Findings (2023)](docs/THESIS_FINDINGS_2023.md) | Original thesis — theoretical framework, hypothesis tests, and all results |
+| [Pipeline Findings](docs/PIPELINE_FINDINGS.md) | Pipeline rebuild — expanded dataset results and new findings |
+| [Thesis Extension Notes](docs/THESIS_EXTENSION_NOTES.md) | How this pipeline extends the original thesis — where findings align and diverge |
 | [Known Limitations](docs/KNOWN_LIMITATIONS.md) | Honest assessment of where the pipeline falls short and what I'd improve |
 | [Methodology](docs/METHODOLOGY.md) | Research design, classification approach, statistical models |
 | [Replication Guide](docs/REPLICATION.md) | Step-by-step instructions to reproduce the analysis |
+| [Thesis PDF](docs/Thesis_UvA_Kaleb_Mazurek.pdf) | Full MSc thesis (University of Amsterdam, 2023) |
 
 ## Skills Demonstrated
 

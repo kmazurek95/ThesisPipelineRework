@@ -8,7 +8,8 @@ Interactive notebooks documenting the analysis pipeline and findings.
 |----------|-------------|-------------|
 | [Analysis_Showcase.ipynb](Analysis_Showcase.ipynb) | Executive summary: regression models, key visualizations, and findings across all four data levels | 5 figures, 3 regression models |
 | [Classification_Analysis.ipynb](Classification_Analysis.ipynb) | ML classifier deep-dive: EDA, model comparison (NB/SVM/RF/LR), SHAP analysis, error analysis, threshold optimization | 10 figures, 2 metric tables |
-| [Exploratory Analysis](../interest_group_analysis/5_analysis/Exploratory%20Analysis.ipynb) | Initial data exploration and descriptive statistics | Exploratory plots |
+| [Advocacy_Group_Prominence_Analysis.ipynb](Advocacy_Group_Prominence_Analysis.ipynb) | Full regression analysis replicating the thesis statistical models in Python: GLM, recoding, diagnostics | Regression tables, coefficient plots |
+| [Exploratory_Analysis.ipynb](Exploratory_Analysis.ipynb) | Initial data exploration and descriptive statistics | Exploratory plots |
 
 ## R Analysis
 

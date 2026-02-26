@@ -10,7 +10,8 @@ All notable changes to this project are documented in this file.
 - R multilevel models (lme4 GLMER with crossed random effects)
 - Data validation with pytest
 - CI/CD pipeline with GitHub Actions
-- Research findings summary (FINDINGS_SUMMARY.md)
+- Pipeline findings summary (PIPELINE_FINDINGS.md)
+- Original thesis findings summary (THESIS_FINDINGS_2023.md)
 - Classification Analysis notebook with SHAP explanations and model comparison
 - Organization case studies dashboard page (5 curated organizations)
 

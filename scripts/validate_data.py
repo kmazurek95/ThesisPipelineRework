@@ -360,11 +360,11 @@ class DataValidator:
         # Check output figures
         figures_dir = self.root / "outputs" / "figures"
         expected_figures = [
-            "fig1_top_orgs_by_prominence.png",
-            "fig2_lobbying_vs_prominence.png",
-            "fig3_overlap_vs_prominence.png",
-            "fig4_heatmap_issue_org.png",
-            "fig5_ideology_vs_prominence.png",
+            "fig1_mentions_over_time.png",
+            "fig2_org_categories.png",
+            "fig3_lobbying_prominence.png",
+            "fig4_party_patterns.png",
+            "fig5_policy_heatmap.png",
         ]
 
         for fig in expected_figures:

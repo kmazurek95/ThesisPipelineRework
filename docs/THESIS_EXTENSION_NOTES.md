@@ -4,7 +4,7 @@
 
 ## Context
 
-My master's thesis, "Beyond Policy Influence: A Deeper Dive into the Factors Driving Advocacy Group Prominence," investigated what drives substantive mentions of interest groups in U.S. Congressional floor debates. The thesis analyzed 20,699 mentions from the 114th Congress (2015-2017), classified each as prominent or passing using an SVM text classifier, and ran multilevel regressions testing three groups of hypotheses derived from Halpin & Fraussen's (2017) theoretical framework (for the full argument, see [Thesis_UvA_Kaleb_Mazurek.pdf](Thesis_UvA_Kaleb_Mazurek.pdf)).
+My master's thesis, "Beyond Policy Influence: A Deeper Dive into the Factors Driving Advocacy Group Prominence," investigated what drives substantive mentions of interest groups in U.S. Congressional floor debates. The thesis analyzed 20,699 mentions from the 114th Congress (2015-2017), classified each as prominent or passing using an SVM text classifier, and ran multilevel regressions testing three groups of hypotheses derived from Halpin & Fraussen's (2017) theoretical framework (for the full argument, see the [thesis findings summary](THESIS_FINDINGS_2023.md) or the [thesis PDF](Thesis_UvA_Kaleb_Mazurek.pdf)).
 
 This repository is a ground-up rebuild of that pipeline. The goal was not to re-run the thesis but to extend the methodology: scan more documents, build a better classifier, and make the whole process reproducible. The research question is the same. The data, classifier, and infrastructure are different. The statistical findings reflect the expanded dataset and should be read on their own terms, not as a replication of the thesis results.
 

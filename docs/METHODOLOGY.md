@@ -6,9 +6,9 @@ This pipeline is a ground-up rebuild of the methodology developed for my master'
 
 ## Theoretical Background
 
-This pipeline investigates **organizational prominence** as defined by Halpin & Fraussen (2017): the perception that an interest group is a preeminent voice for a constituency. Prominence is distinct from *access* (direct contact with policymakers) and *involvement* (formal inclusion in policy processes). It operates through an "audience dynamic" — politicians decide which organizations matter, constrained by attention scarcity, and their choices are reflected in how they discuss those organizations on the floor.
+This pipeline investigates **organizational prominence** as defined by Halpin & Fraussen (2017): the perception that an interest group is a preeminent voice for a constituency. Prominence is distinct from *access* (direct contact with policymakers) and *involvement* (formal inclusion in policy processes). It operates through an "audience dynamic": politicians decide which organizations matter, constrained by attention scarcity, and their choices are reflected in how they discuss those organizations on the floor.
 
-The original thesis derived hypotheses from this framework across three dimensions: issue characteristics (salience), politician-group linkage (party, chamber, seniority), and group characteristics (age, policy breadth, external lobbying). This pipeline tests a subset of those variables — lobbying expenditure, party, chamber, and organization type — on an expanded dataset. For the full conceptual model, literature review, and hypothesis structure, see the [thesis paper](Thesis_UvA_Kaleb_Mazurek.pdf).
+The original thesis derived hypotheses from this framework across three dimensions: issue characteristics (salience), politician-group linkage (party, chamber, seniority), and group characteristics (age, policy breadth, external lobbying). This pipeline tests a subset of those variables (lobbying expenditure, party, chamber, and organization type) on an expanded dataset. For the full conceptual model, literature review, and hypothesis structure, see the [thesis paper](Thesis_UvA_Kaleb_Mazurek.pdf).
 
 ---
 
@@ -96,11 +96,11 @@ Interest group mentions are identified using:
 
 **Final Model:** Logistic Regression with L2 regularization (C=2.0)
 
-I tried five classifiers and logistic regression edged out SVM by a point on F1 while being faster to train and — more importantly — producing interpretable coefficients and well-calibrated probabilities. Interpretability mattered because I wanted to inspect which textual features drive prominence predictions (see SHAP analysis in `notebooks/Classification_Analysis.ipynb`). The tree-based models (Random Forest, XGBoost) performed noticeably worse, likely because the sparse TF-IDF feature space favors linear models.
+I tried five classifiers and logistic regression edged out SVM by a point on F1 while being faster to train and, more importantly, producing interpretable coefficients and well-calibrated probabilities. Interpretability mattered because I wanted to inspect which textual features drive prominence predictions (see SHAP analysis in `notebooks/Classification_Analysis.ipynb`). The tree-based models (Random Forest, XGBoost) performed noticeably worse, likely because the sparse TF-IDF feature space favors linear models.
 
 ### Cross-Validation Strategy
 
-Mentions are grouped by organization so that all mentions of a given org land in the same fold — preventing the model from memorizing organization-specific language during training and then being "tested" on more text from the same org.
+Mentions are grouped by organization so that all mentions of a given org land in the same fold, preventing the model from memorizing organization-specific language during training and then being "tested" on more text from the same org.
 
 ```python
 # interest_group_analysis/3.classification/text_classifier.py, lines 159-163

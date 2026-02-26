@@ -6,11 +6,11 @@ Analyzing what drives substantive vs. passing mentions of interest groups in U.S
 
 ## Research Context
 
-Why do some advocacy organizations receive substantive attention from U.S. legislators while others are mentioned only in passing? This project investigates **prominence** — the degree to which politicians invoke an organization as a credible voice or useful resource during floor speeches — as a distinct form of political attention that is more tractable than measuring policy influence directly. The theoretical framework draws on Halpin & Fraussen (2017) for the conceptualization of prominence and the "audience dynamic," Grossman (2012) for organizational-level predictors, and Ibenskas & Bunea (2021) for the politician-interest group linkage.
+Why do some advocacy organizations receive substantive attention from U.S. legislators while others are mentioned only in passing? This project investigates **prominence**, the degree to which politicians invoke an organization as a credible voice or useful resource during floor speeches, as a distinct form of political attention that is more tractable than measuring policy influence directly. The theoretical framework draws on Halpin & Fraussen (2017) for the conceptualization of prominence and the "audience dynamic," Grossman (2012) for organizational-level predictors, and Ibenskas & Bunea (2021) for the politician-interest group linkage.
 
 The work has two phases. My MSc thesis at the University of Amsterdam (2023) developed the original research design: collecting Congressional Record documents via the GovInfo API, extracting mentions of 5,447 national advocacy organizations, training a supervised classifier to distinguish prominent from routine mentions, and running multilevel regression models to test hypotheses about what drives prominence. The full thesis argument, hypothesis tests, and results are in [THESIS_FINDINGS_2023.md](docs/THESIS_FINDINGS_2023.md) and the [thesis PDF](docs/Thesis_UvA_Kaleb_Mazurek.pdf).
 
-After graduating, I rebuilt the pipeline from scratch — not to correct the thesis, but to extend the methodology with a larger corpus, an improved classifier, and a fully reproducible architecture. This repository is that rebuild. The statistical findings here reflect the expanded dataset and should be read on their own terms; see [PIPELINE_FINDINGS.md](docs/PIPELINE_FINDINGS.md) for the full results.
+After graduating, I rebuilt the pipeline from scratch, not to correct the thesis but to extend the methodology with a larger corpus, an improved classifier, and a fully reproducible architecture. This repository is that rebuild. The statistical findings here reflect the expanded dataset and should be read on their own terms; see [PIPELINE_FINDINGS.md](docs/PIPELINE_FINDINGS.md) for the full results.
 
 ## Key Findings
 
@@ -88,7 +88,7 @@ python -m interest_group_analysis.5_analysis.regression_analysis
 cd R_analysis && Rscript run_analysis.R
 ```
 
-To run the full pipeline from scratch (requires GovInfo and Congress.gov API keys in `.env` — see `.env.example`):
+To run the full pipeline from scratch (requires GovInfo and Congress.gov API keys in `.env` (see `.env.example`)):
 
 ```bash
 python scripts/run_pipeline.py          # all stages
@@ -113,9 +113,9 @@ The dashboard includes methodology explanations, five organization case studies 
 
 | Document | Description |
 |----------|-------------|
-| [Thesis Findings (2023)](docs/THESIS_FINDINGS_2023.md) | Original thesis — theoretical framework, hypothesis tests, and all results |
-| [Pipeline Findings](docs/PIPELINE_FINDINGS.md) | Pipeline rebuild — expanded dataset results and new findings |
-| [Thesis Extension Notes](docs/THESIS_EXTENSION_NOTES.md) | How this pipeline extends the original thesis — where findings align and diverge |
+| [Thesis Findings (2023)](docs/THESIS_FINDINGS_2023.md) | Original thesis: theoretical framework, hypothesis tests, and all results |
+| [Pipeline Findings](docs/PIPELINE_FINDINGS.md) | Pipeline rebuild: expanded dataset results and new findings |
+| [Thesis Extension Notes](docs/THESIS_EXTENSION_NOTES.md) | How this pipeline extends the original thesis: where findings align and diverge |
 | [Known Limitations](docs/KNOWN_LIMITATIONS.md) | Honest assessment of where the pipeline falls short and what I'd improve |
 | [Methodology](docs/METHODOLOGY.md) | Research design, classification approach, statistical models |
 | [Replication Guide](docs/REPLICATION.md) | Step-by-step instructions to reproduce the analysis |
@@ -123,11 +123,11 @@ The dashboard includes methodology explanations, five organization case studies 
 
 ## Skills Demonstrated
 
-- **Data Engineering**: Multi-source ETL pipeline with GovInfo and Congress.gov APIs, incremental processing, data validation
-- **NLP / Text Classification**: TF-IDF feature extraction, logistic regression, SHAP interpretability, group-aware cross-validation
-- **Statistical Modeling**: Multilevel logistic regression, OLS, mixed-effects GLMER (lme4), variance decomposition
-- **Reproducible Research**: Configuration-driven pipeline, pinned dependencies, documented methodology
-- **Visualization**: Streamlit dashboard, Plotly interactives, publication-quality matplotlib/seaborn/ggplot2 figures
+- **Data Engineering**: Built a multi-source ETL pipeline pulling from GovInfo and Congress.gov APIs, with incremental processing and automated data validation
+- **NLP / Text Classification**: Trained a TF-IDF + logistic regression classifier with group-aware cross-validation and SHAP-based feature attribution
+- **Statistical Modeling**: Ran multilevel logistic regressions, OLS models, and mixed-effects GLMER (R/lme4) with variance decomposition
+- **Reproducible Research**: Pipeline is configuration-driven with pinned dependencies and documented methodology
+- **Visualization**: Interactive Streamlit dashboard (deployed), plus Plotly, matplotlib, seaborn, and ggplot2 figures
 
 ## Citation
 

@@ -27,9 +27,9 @@ Interactive notebooks documenting the analysis pipeline and findings.
 ## Data Requirements
 
 All notebooks read from:
-- `data/output/level1.csv.gz` — 53,892 mention-level records (gzip compressed)
-- `data/output/level2_org.csv` — 2,260 organization aggregates
-- `data/output/level3_politician.csv` — 490 politician aggregates
-- `data/output/level4_policy.csv` — 18 policy area aggregates
-- `data/training/combined_labeled.csv` — 1,222 labeled training examples (Classification notebook only)
-- `results_classifier/prominence_pipeline.joblib` — trained model (Classification notebook only)
+- `data/output/level1.csv.gz` : 53,892 mention-level records (gzip compressed)
+- `data/output/level2_org.csv` : 2,260 organization aggregates
+- `data/output/level3_politician.csv` : 490 politician aggregates
+- `data/output/level4_policy.csv` : 18 policy area aggregates
+- `data/training/combined_labeled.csv` : 1,222 labeled training examples (Classification notebook only)
+- `results_classifier/prominence_pipeline.joblib` : trained model (Classification notebook only)

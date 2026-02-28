@@ -185,13 +185,13 @@ st.markdown("---")
 st.subheader("Explore Further")
 n1, n2, n3 = st.columns(3)
 with n1:
-    st.page_link("pages/1_🔬_Methodology.py", label="Methodology", icon="🔬")
+    st.page_link("pages/1_Methodology.py", label="Methodology", icon="🔬")
     st.caption("Pipeline design, ML classification, and statistical models")
 with n2:
-    st.page_link("pages/2_🏛️_Case_Studies.py", label="Case Studies", icon="🏛️")
+    st.page_link("pages/2_Case_Studies.py", label="Case Studies", icon="🏛️")
     st.caption("Deep dives into AARP, AFL-CIO, ACLU, NAM, and AMA")
 with n3:
-    st.page_link("pages/3_📖_Technical_Appendix.py", label="Technical Appendix", icon="📖")
+    st.page_link("pages/3_Technical_Appendix.py", label="Technical Appendix", icon="📖")
     st.caption("Full model results, classifier diagnostics, and limitations")
 
 # Disclaimer

@@ -1,0 +1,33 @@
+Model,Formula,Log-Likelihood,AIC,BIC,N
+Empty Model A,level1_prominence ~ 1,-31917.89766640121,63837.79533280242,-472581.366250631,49614
+Empty Model A,level1_prominence ~ 1,-31917.89766640121,63837.79533280242,-472581.366250631,49614
+Model A2 (Full),"level1_prominence ~
+        
+        C(level1_chamber_x, Treatment('House of Representatives')) +
+        C(level1_partyHistory, Treatment('Democrat')) +
+        C(level1_MSHIP_STATUS11, Treatment('Association of Institutions')) +
+        C(level1_ABBREVCAT, Treatment('Business Interests'))",-12847.97672525842,25711.95345051684,-163696.94903263665,19210
+Empty Model B,level1_prominence ~ 1,-31917.89766640121,63837.79533280242,-472581.366250631,49614
+Model B1 (Politician Chars),"level1_prominence ~
+        C(level1_chamber_x, Treatment('House of Representatives')) +
+        C(level1_partyHistory, Treatment('Democrat')) +
+        level1_bills_sponsored",-12846.374146024606,25702.74829204921,-163729.74374987156,19210
+Model B2 (Full),"level1_prominence ~
+        level1_bills_sponsored +
+        C(level1_chamber_x, Treatment('House of Representatives')) +
+        C(level1_partyHistory, Treatment('Democrat')) +
+        C(level1_MSHIP_STATUS11, Treatment('Association of Institutions')) +
+        C(level1_ABBREVCAT, Treatment('Business Interests'))",-12803.719688511132,25625.439377022263,-163775.59991987547,19210
+Empty Model C,level1_prominence ~ 1,-31917.89766640121,63837.79533280242,-472581.366250631,49614
+Model C1 (Org Chars),"level1_prominence ~
+        level1_YEARS_EXISTED +
+        level1_OUTSIDE11 +
+        unique_issue_areas",-27472.740007143584,54953.48001428717,-401350.3066917688,42792
+Model C2 (Full),"level1_prominence ~
+        level1_YEARS_EXISTED +
+        level1_OUTSIDE11 +
+        unique_issue_areas +
+        C(level1_chamber_x, Treatment('House of Representatives')) +
+        C(level1_partyHistory, Treatment('Democrat')) +
+        C(level1_MSHIP_STATUS11, Treatment('Association of Institutions')) +
+        C(level1_ABBREVCAT, Treatment('Business Interests'))",-11155.622785393052,22333.245570786105,-142437.12848818355,16931

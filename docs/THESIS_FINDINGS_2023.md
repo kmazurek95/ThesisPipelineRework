@@ -14,7 +14,7 @@ The central questions are:
 
 ## Data and Methods
 
-The analysis pipeline collects nearly 78,000 Congressional Record documents from the 114th and 115th Congresses via the GovInfo API, then searches them for mentions of 5,447 national advocacy organizations drawn from the Washington Representative Study. This produced roughly 24,000 unique mention passages.
+The analysis collects nearly 78,000 Congressional Record documents from the 114th and 115th Congresses via the GovInfo API, then searches them for mentions of 5,447 national advocacy organizations drawn from the Washington Representative Study. This produced roughly 24,000 unique mention passages.
 
 To distinguish prominent mentions from routine ones, I trained a supervised machine learning classifier (SVM with count vectorization) on 1,000 hand-coded passages. The coding scheme follows Fraussen (2018): a mention is prominent if a group's views are adopted by a policymaker, if the group is described as having a significant role, if it is used as a rhetorical resource, or if the speaker conveys the group's importance to the policy process. The classifier achieved an accuracy of ~81%, an F1-score of 0.79 for prominent mentions, and an ROC AUC of 0.72.
 

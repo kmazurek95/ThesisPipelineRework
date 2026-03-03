@@ -25,7 +25,8 @@ from sklearn.compose import ColumnTransformer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (classification_report, average_precision_score,
-                             precision_recall_curve, f1_score)
+                             precision_recall_curve, f1_score,
+                             cohen_kappa_score)
 from sklearn.model_selection import GroupKFold, StratifiedKFold, GridSearchCV, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
@@ -192,13 +193,15 @@ def train_select(df: pd.DataFrame, model_name: str = "logreg", results_dir: Path
 
     ap = average_precision_score(y_test, y_pred)  # PR-AUC of hard labels (conservative)
     f1 = f1_score(y_test, y_pred)
+    kappa = cohen_kappa_score(y_test, y_pred)
 
     results_dir.mkdir(parents=True, exist_ok=True)
     with (results_dir / "report.txt").open("w", encoding="utf-8") as f:
         f.write(f"Best params: {gs.best_params_}\n")
         f.write(f"Best CV score (avg precision): {gs.best_score_:.4f}\n\n")
         f.write(f"Test F1@thr={best_thr:.3f}: {f1:.4f}\n")
-        f.write(f"Test Average Precision (hard preds): {ap:.4f}\n\n")
+        f.write(f"Test Average Precision (hard preds): {ap:.4f}\n")
+        f.write(f"Test Cohen's kappa: {kappa:.4f}\n\n")
         f.write(classification_report(y_test, y_pred))
 
     # Persist both the pipeline and the threshold you chose

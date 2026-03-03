@@ -28,9 +28,9 @@ st.markdown("---")
 st.header("Data Pipeline")
 
 stages = [
-    ("1. Data Collection", "GovInfo API", "387 packages across 2 congresses",
+    ("1. Data Collection", "GovInfo API", "764 packages across 2 congresses",
      "Automated retrieval of Congressional Record HTML from the Government Publishing Office API with retry logic and rate limiting."),
-    ("2. NLP Processing", "BeautifulSoup + NLTK", "157K raw mentions extracted",
+    ("2. NLP Processing", "BeautifulSoup + NLTK", "53,892 mentions extracted",
      "HTML parsing, sentence segmentation, named-entity mention extraction using a curated dictionary of 2,260 interest group names and aliases."),
     ("3. ML Classification", "TF-IDF + Logistic Regression", "F1 = 0.91",
      "Binary classifier trained on 1,222 hand-labeled examples to distinguish *prominent* (substantive policy discussion) from *passing* (roll-call lists, ceremonial) mentions."),
@@ -132,7 +132,7 @@ if not regression.empty:
     # Model 1 — Mention level
     m1 = regression[regression['Model'] == 'Model 1: Mention'].copy()
     if not m1.empty:
-        st.subheader("Model 1: Mention-Level (n = 53,892)")
+        st.subheader("Model 1: Mention-Level (n = 22,248, mentions with speaker attribution)")
         display_m1 = m1[['Variable', 'Coefficient', 'Std Error', 'P-value', 'Significant']].copy()
         display_m1['Coefficient'] = display_m1['Coefficient'].apply(lambda x: f"{x:.4f}")
         display_m1['Std Error'] = display_m1['Std Error'].apply(lambda x: f"{x:.4f}")

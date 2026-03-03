@@ -1,22 +1,22 @@
 # Pipeline Rebuild Findings
 
-**Kaleb Mazurek** | MSc Political Science | 114th-115th U.S. Congress (2015-2018)
+**Kaleb Mazurek** | MSc Political Science | 114th-115th U.S. Congress (2015-2019)
 
 ---
 
 ## Research Question
 
-What factors explain variation in organizational prominence in U.S. Congressional floor debates? This is the same question I investigated in my master's thesis (Mazurek, 2023), now applied to a larger dataset. I wanted to know whether interest groups that spend more on lobbying actually get discussed more substantively, or just mentioned more often, and how speaker characteristics like party and chamber shape those patterns.
+What factors explain variation in organizational prominence in U.S. Congressional floor debates? This is the same question I investigated in my master's thesis (Mazurek, 2023), now applied to a rebuilt dataset. I wanted to know whether interest groups that spend more on lobbying actually get discussed more substantively, or just mentioned more often, and how speaker characteristics like party and chamber shape those patterns.
 
 ## Data and Method
 
-The original thesis (Mazurek, 2023) analyzed 20,699 mentions from the 114th Congress using an SVM classifier (F1=0.79). This pipeline rebuilds the analysis from scratch with a larger corpus and improved methods. It scans roughly 78,000 Congressional Record documents from the 114th and 115th Congresses (2015-2018) via the GovInfo API, extracting every mention of organizations listed in the Washington Representatives Study. This produced 53,892 individual mentions across 2,260 unique interest groups.
+The original thesis (Mazurek, 2023) analyzed 20,699 mentions from the 114th and 115th Congress using an SVM classifier (F1=0.79). This pipeline rebuilds the analysis from scratch with improved methods. It scans the same roughly 78,000 Congressional Record documents from the 114th and 115th Congresses (2015-2019) via the GovInfo API, extracting every mention of organizations listed in the Washington Representatives Study. This produced 53,892 individual mentions across 2,260 unique interest groups.
 
 Each mention was classified as "prominent" or "passing" using a Logistic Regression classifier (F1=0.91) trained on 1,222 hand-labeled examples. Cross-validation splits by organization rather than randomly, so the test set only contains groups the model has never seen. I then linked mentions to speaker metadata from Congress.gov and organizational characteristics from the WRS, and ran regressions at the mention, organization, and politician levels, plus multilevel models in R with crossed random effects for organizations and policy areas. See [METHODOLOGY.md](METHODOLOGY.md) for full details.
 
 ## Key Findings
 
-**Lobbying predicts prominence, not just visibility.** The question wasn't whether well-funded groups get mentioned more (they do, almost mechanically, because they're more active). The more interesting question is whether those mentions are *substantive.* The expanded dataset shows that each log-unit increase in lobbying expenditure is associated with 7.4% higher odds of a mention being prominent rather than passing (OR=1.074, p < 0.001). This matters because it suggests lobbying buys not just airtime but the quality of attention. The original thesis hypothesized a null relationship here; the data contradicted that in both the thesis and the pipeline.
+**Lobbying predicts prominence, not just visibility.** The question wasn't whether well-funded groups get mentioned more (they do, almost mechanically, because they're more active). The more interesting question is whether those mentions are *substantive.* The rebuilt dataset shows that each log-unit increase in lobbying expenditure is associated with 7.4% higher odds of a mention being prominent rather than passing (OR=1.074, p < 0.001). This matters because it suggests lobbying buys not just airtime but the quality of attention. The original thesis hypothesized a null relationship here; the data contradicted that in both the thesis and the pipeline.
 
 Senators have 45% higher odds of giving a prominent mention compared to House members (OR=1.448, p < 0.001), which tracks with the Senate's longer floor speeches and more deliberative norms.
 
@@ -38,5 +38,5 @@ The pipeline is organized into five stages (data collection, processing, classif
 
 ## Limitations and Extensions
 
-The biggest limitation is speaker attribution coverage: 58.7% of mentions lack reliable speaker data, so the regressions use only 41% of the dataset. The training data comes entirely from the 114th Congress and is small (1,222 examples, 192-example test set). The interest group dictionary and lobbying data are from 2011, creating a temporal mismatch with the 2015-2018 speech data. For a full accounting, see [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md). A next iteration would prioritize extending the labeling dataset (particularly for the 115th Congress), experimenting with transformer-based classifiers, and supplementing with more recent lobbying data from OpenSecrets.
+The biggest limitation is speaker attribution coverage: 58.7% of mentions lack reliable speaker data, so the regressions use only 41% of the dataset. The training data comes entirely from the 114th Congress and is small (1,222 examples, 192-example test set). The interest group dictionary and lobbying data are from 2011, creating a temporal mismatch with the 2015-2019 speech data. For a full accounting, see [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md). A next iteration would prioritize extending the labeling dataset (particularly for the 115th Congress), experimenting with transformer-based classifiers, and supplementing with more recent lobbying data from OpenSecrets.
 

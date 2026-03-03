@@ -21,15 +21,15 @@ paths:
   normalized_data: "data/normalized"
 
   # Processing outputs
-  processed_data: "data/processed"
-  mentions_dir: "data/processed/mentions_114"
+  processed_data: "data/intermediate"
+  mentions_dir: "data/intermediate/mentions_114"
 
   # Classification
   labeled_data: "data/training/combined_labeled.csv"
   classifier_output: "results_classifier"
 
   # Integration
-  merged_data: "data/MergedData"
+  merged_data: "data/output"
 
   # Analysis outputs
   outputs: "outputs"
@@ -158,22 +158,22 @@ validation:
 
     after_processing:
       - check: "file_exists"
-        path: "data/processed/mentions_114/mentions.jsonl"
+        path: "data/intermediate/mentions_114/mentions.jsonl"
       - check: "min_rows"
-        path: "data/processed/mentions_114/mentions.jsonl"
+        path: "data/intermediate/mentions_114/mentions.jsonl"
         min_count: 1000
 
     after_classification:
       - check: "file_exists"
         path: "results_classifier/prominence_pipeline.joblib"
       - check: "file_exists"
-        path: "data/processed/mentions_114/labeled_mentions.csv"
+        path: "data/intermediate/mentions_114/labeled_mentions.csv"
 
     after_integration:
       - check: "file_exists"
-        path: "data/MergedData/level1.csv"
+        path: "data/output/level1.csv"
       - check: "min_rows"
-        path: "data/MergedData/level1.csv"
+        path: "data/output/level1.csv"
         min_count: 10000
 
 # -----------------------------------------------------------------------------

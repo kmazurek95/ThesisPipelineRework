@@ -36,7 +36,7 @@ The speaker attribution gaps come from several sources:
 
 ### Current scope and balance
 
-The classifier was trained on 1,222 hand-labeled examples (2 annotators, Cohen's kappa = 0.84). Class split: 448 prominent (36.7%), 774 passing (63.3%), which roughly mirrors the dataset-wide prominence rate of 35.5%.
+The classifier was trained on 1,222 hand-labeled examples (1 annotator). Class split: 448 prominent (36.7%), 774 passing (63.3%), which roughly mirrors the dataset-wide prominence rate of 35.5%. Classifier–human agreement on the held-out test set is reported via Cohen's kappa in `results_classifier/report.txt`.
 
 The training data covers 593 unique organizations, drawn from three labeling batches: 823 from an earlier combined dataset, 365 from a separate labeling round, and 34 from a final dataset. All labels come from the original thesis work on the 114th Congress.
 
@@ -107,7 +107,7 @@ The analysis runs three regression models plus R multilevel models:
 
 **73.3% of mentions lack issue area coding.** Policy area assignment depends on bill references in the Congressional Record text. Mentions in speeches that don't reference specific bills get no policy area, which severely limits the multilevel model's cross-classification by issue area.
 
-**Lobbying data temporal mismatch.** The WRS 2011 lobbying expenditure data predates the speech data (2015-2018) by 4-7 years. Lobbying spending is moderately stable for large organizations but can shift for smaller or newer groups. This introduces measurement error in the key independent variable.
+**Lobbying data temporal mismatch.** The WRS 2011 lobbying expenditure data predates the speech data (2015-2019) by 4-8 years. Lobbying spending is moderately stable for large organizations but can shift for smaller or newer groups. This introduces measurement error in the key independent variable.
 
 ### Model fit
 

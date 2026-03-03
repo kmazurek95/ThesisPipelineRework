@@ -4,6 +4,9 @@ subtitle: "Mixed-Effects Regression Models in Congressional Speech"
 author: "Kaleb Mazurek"
 date: "`r Sys.Date()`"
 output:
+  github_document:
+    toc: true
+    toc_depth: 3
   html_document:
     toc: true
     toc_float: true
@@ -24,7 +27,7 @@ knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE,
   fig.align = "center",
-  cache = TRUE
+  cache = FALSE
 )
 
 # Load packages
@@ -61,8 +64,8 @@ This analysis examines the determinants of **interest group prominence** in U.S.
 
 Our data has a hierarchical structure:
 
-- **Level 1**: Individual mentions (N ≈ 25,000)
-- **Level 2**: Organizations (N ≈ 1,600)
+- **Level 1**: Individual mentions (N ≈ 53,000)
+- **Level 2**: Organizations (N ≈ 2,260)
 - **Cross-classified**: Policy/Issue Areas (N ≈ 21)
 
 ```{r data-structure-diagram, echo=FALSE, fig.cap="Hierarchical Data Structure"}
@@ -74,12 +77,12 @@ cat("
 ├─────────────────────────────────────────────────┤
 │     ┌─────────────┐     ┌─────────────┐        │
 │     │Organization │     │Organization │ ...    │
-│     │  (N ≈ 1,600)│     │             │        │
+│     │  (N ≈ 2,260)│     │             │        │
 │     └──────┬──────┘     └──────┬──────┘        │
 │            │                    │               │
 │     ┌──────┴──────┐     ┌──────┴──────┐       │
 │     │  Mentions   │     │  Mentions   │       │
-│     │ (N ≈ 25,000)│     │             │       │
+│     │ (N ≈ 53,000)│     │             │       │
 │     └─────────────┘     └─────────────┘       │
 └─────────────────────────────────────────────────┘
 ")
@@ -96,7 +99,7 @@ level1 <- read_csv("../data/output/level1.csv", show_col_types = FALSE)
 # Display basic info
 cat("Dataset dimensions:", nrow(level1), "rows x", ncol(level1), "columns\n")
 cat("Unique organizations:", n_distinct(level1$org_id), "\n")
-cat("Unique politicians:", n_distinct(level1$bioguide_id), "\n")
+cat("Unique politicians:", n_distinct(level1$bioGuideId), "\n")
 ```
 
 ```{r data-prep}
@@ -107,16 +110,16 @@ model_data <- level1 %>%
     prominence = as.integer(prominence_prediction == 1),
 
     # Log-transform lobbying (add 1 to handle zeros)
-    log_lobbying = log1p(lobbying_total),
+    log_lobbying = log1p(LOBBYING11),
 
     # Factor variables
     party = factor(party, levels = c("R", "D", "I")),
-    chamber = factor(chamber, levels = c("House", "Senate")),
+    chamber = factor(chamber, levels = c("H", "S"), labels = c("House", "Senate")),
 
-    # Organization type dummies
-    is_single_issue = as.integer(org_type == "single_issue"),
-    is_labor = as.integer(org_type == "labor"),
-    is_business = as.integer(org_type == "business"),
+    # Organization type dummies (based on Schlozman-Tierney ABBREVCAT classification)
+    is_single_issue = as.integer(ABBREVCAT %in% c("(7) Public interest", "(8) Identity groups", "(6) Health")),
+    is_labor = as.integer(ABBREVCAT == "(4) Unions"),
+    is_business = as.integer(ABBREVCAT %in% c("(1) Corporations", "(2) Trade and other business associations")),
 
     # Issue area as factor
     issue_area = factor(issue_area)
@@ -484,10 +487,10 @@ tab_model(
 
 | Finding | Coefficient | Odds Ratio | Interpretation |
 |---------|-------------|------------|----------------|
-| **Lobbying (log)** | `r round(fixef(m2)["log_lobbying"], 3)` | `r round(exp(fixef(m2)["log_lobbying"]), 2)` | Each log-unit increase in lobbying → ~7% higher odds of prominence |
-| **Single-Issue Org** | `r round(fixef(m2)["is_single_issue"], 3)` | `r round(exp(fixef(m2)["is_single_issue"]), 2)` | Single-issue groups ~40% higher odds |
-| **Democrat Speaker** | `r round(fixef(m2)["partyD"], 3)` | `r round(exp(fixef(m2)["partyD"]), 2)` | Democrats ~23% lower odds of giving prominent mentions |
-| **Senate** | `r round(fixef(m2)["chamberSenate"], 3)` | `r round(exp(fixef(m2)["chamberSenate"]), 2)` | Senators ~45% higher odds than House members |
+| **Lobbying (log)** | `r tryCatch(round(fixef(m2)["log_lobbying"], 3), error = function(e) "—")` | `r tryCatch(round(exp(fixef(m2)["log_lobbying"]), 2), error = function(e) "—")` | Higher lobbying expenditure → higher odds of prominence |
+| **Single-Issue Org** | `r tryCatch(round(fixef(m2)["is_single_issue"], 3), error = function(e) "—")` | `r tryCatch(round(exp(fixef(m2)["is_single_issue"]), 2), error = function(e) "—")` | Single-issue groups have different prominence odds |
+| **Democrat Speaker** | `r tryCatch(round(fixef(m2)["partyD"], 3), error = function(e) "—")` | `r tryCatch(round(exp(fixef(m2)["partyD"]), 2), error = function(e) "—")` | Democrats differ from Republicans in prominence mentions |
+| **Senate** | `r tryCatch(round(fixef(m2)["chamberSenate"], 3), error = function(e) "—")` | `r tryCatch(round(exp(fixef(m2)["chamberSenate"]), 2), error = function(e) "—")` | Senators differ from House members in prominence mentions |
 
 ### Theoretical Implications
 

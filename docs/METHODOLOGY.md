@@ -1,6 +1,6 @@
 # Methodology
 
-This pipeline is a ground-up rebuild of the methodology developed for my master's thesis (Mazurek, 2023). It applies the same research design to a larger corpus with improved classification and reproducible infrastructure.
+This pipeline is a ground-up rebuild of the methodology developed for my master's thesis (Mazurek, 2023). It applies the same research design to the same corpus with improved classification and reproducible infrastructure.
 
 ---
 
@@ -8,7 +8,7 @@ This pipeline is a ground-up rebuild of the methodology developed for my master'
 
 This pipeline investigates **organizational prominence** as defined by Halpin & Fraussen (2017): the perception that an interest group is a preeminent voice for a constituency. Prominence is distinct from *access* (direct contact with policymakers) and *involvement* (formal inclusion in policy processes). It operates through an "audience dynamic": politicians decide which organizations matter, constrained by attention scarcity, and their choices are reflected in how they discuss those organizations on the floor.
 
-The original thesis derived hypotheses from this framework across three dimensions: issue characteristics (salience), politician-group linkage (party, chamber, seniority), and group characteristics (age, policy breadth, external lobbying). This pipeline tests a subset of those variables (lobbying expenditure, party, chamber, and organization type) on an expanded dataset. For the full conceptual model, literature review, and hypothesis structure, see the [thesis paper](Thesis_UvA_Kaleb_Mazurek.pdf).
+The original thesis derived hypotheses from this framework across three dimensions: issue characteristics (salience), politician-group linkage (party, chamber, seniority), and group characteristics (age, policy breadth, external lobbying). This pipeline tests a subset of those variables (lobbying expenditure, party, chamber, and organization type) on the rebuilt dataset. For the full conceptual model, literature review, and hypothesis structure, see the [thesis paper](Thesis_UvA_Kaleb_Mazurek.pdf).
 
 ---
 
@@ -62,8 +62,8 @@ Interest group mentions are identified using:
 ### Training Data
 
 - **Source:** Manual coding of 1,222 mentions
-- **Coders:** 2 trained annotators
-- **Inter-rater reliability:** Cohen's kappa = 0.84
+- **Coder:** 1 annotator (the author)
+- **Classifier–human agreement:** Cohen's kappa on the held-out test set (see `results_classifier/report.txt`)
 
 **Coding Criteria** (adapted from Fraussen et al., 2018):
 - **Prominent** if any of: (1) views adopted/endorsed, (2) significant role in policy area mentioned, (3) used as expert resource, (4) importance or relevance conveyed
@@ -85,18 +85,26 @@ Interest group mentions are identified using:
 
 ### Model Selection
 
-**Evaluated Models:**
-| Model | F1 Score | Precision | Recall |
-|-------|----------|-----------|--------|
-| Logistic Regression | **0.91** | 0.90 | 0.92 |
-| SVM (Linear) | 0.90 | 0.89 | 0.91 |
-| Random Forest | 0.85 | 0.86 | 0.84 |
-| XGBoost | 0.87 | 0.88 | 0.86 |
-| Naive Bayes | 0.82 | 0.80 | 0.84 |
+**Model Comparison (5-fold GroupKFold cross-validation, scored on average precision):**
+
+| Model | F1 | Precision | Recall | ROC-AUC |
+|-------|-----|-----------|--------|---------|
+| Logistic Regression | **0.85** | 0.82 | 0.89 | 0.91 |
+| Random Forest | 0.83 | 0.84 | 0.83 | 0.92 |
+| SVM (Linear) | 0.83 | 0.83 | 0.83 | 0.92 |
+
+These are cross-validation metrics at the default 0.5 threshold. After selecting Logistic Regression and optimizing the decision threshold on the held-out test set (threshold = 0.558), the final test-set performance is:
+
+| Metric | Value |
+|--------|-------|
+| F1 | **0.91** |
+| Precision | 0.87 |
+| Recall | 0.94 |
+| ROC-AUC | 0.95 |
 
 **Final Model:** Logistic Regression with L2 regularization (C=2.0)
 
-I tried five classifiers and logistic regression edged out SVM by a point on F1 while being faster to train and, more importantly, producing interpretable coefficients and well-calibrated probabilities. Interpretability mattered because I wanted to inspect which textual features drive prominence predictions (see SHAP analysis in `notebooks/Classification_Analysis.ipynb`). The tree-based models (Random Forest, XGBoost) performed noticeably worse, likely because the sparse TF-IDF feature space favors linear models.
+I tried three classifiers and logistic regression edged out SVM slightly on F1 while being faster to train and, more importantly, producing interpretable coefficients and well-calibrated probabilities. Interpretability mattered because I wanted to inspect which textual features drive prominence predictions (see SHAP analysis in `notebooks/Classification_Analysis.ipynb`). Threshold optimization on the held-out test set (see `results_classifier/report.txt`) raised F1 from 0.85 to 0.91 by shifting the decision boundary to 0.558.
 
 ### Cross-Validation Strategy
 
@@ -144,7 +152,7 @@ logit(P(Prominent)) = β₀ + β₁·log(Lobbying) + β₂·Democrat + β₃·Se
 | log_lobbying | 0.071 | 1.074 | < 0.001 |
 | is_democrat | -0.259 | 0.772 | < 0.001 |
 | is_senate | 0.370 | 1.448 | < 0.001 |
-| is_labor | 0.136 | 1.146 | 0.008 |
+| is_labor | 0.136 | 1.146 | 0.003 |
 | is_single_issue | 0.343 | 1.409 | < 0.001 |
 
 ### Model 2: Multilevel Model (R/lme4)

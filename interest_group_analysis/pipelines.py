@@ -68,7 +68,7 @@ def _run_script(script_path: Path, *args, cwd: Optional[Path] = None) -> int:
 def run_data_collection(
     congresses: List[int] = None,
     start_date: str = "2015-01-06",
-    end_date: str = "2017-01-03",
+    end_date: str = "2017-01-03",  # 114th Congress only; for 115th, use end_date="2019-01-03"
 ) -> int:
     """Collect raw data from external sources.
 

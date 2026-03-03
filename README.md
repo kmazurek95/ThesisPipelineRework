@@ -10,7 +10,7 @@ Why do some advocacy organizations receive substantive attention from U.S. legis
 
 The work has two phases. My MSc thesis at the University of Amsterdam (2023) developed the original research design: collecting Congressional Record documents via the GovInfo API, extracting mentions of 5,447 national advocacy organizations, training a supervised classifier to distinguish prominent from routine mentions, and running multilevel regression models to test hypotheses about what drives prominence. The full thesis argument, hypothesis tests, and results are in [THESIS_FINDINGS_2023.md](docs/THESIS_FINDINGS_2023.md) and the [thesis PDF](docs/Thesis_UvA_Kaleb_Mazurek.pdf).
 
-After graduating, I rebuilt the pipeline from scratch, not to correct the thesis but to extend the methodology with a larger corpus, an improved classifier, and a fully reproducible architecture. This repository is that rebuild. The statistical findings here reflect the expanded dataset and should be read on their own terms; see [PIPELINE_FINDINGS.md](docs/PIPELINE_FINDINGS.md) for the full results.
+After graduating, I rebuilt the pipeline from scratch, not to correct the thesis but to improve the methodology with a better classifier, automated extraction, and a fully reproducible architecture. This repository is that rebuild. The statistical findings here reflect the rebuilt dataset and should be read on their own terms; see [PIPELINE_FINDINGS.md](docs/PIPELINE_FINDINGS.md) for the full results.
 
 ## Key Findings
 
@@ -34,7 +34,7 @@ Lobbying expenditure predicts not just visibility but the *quality* of attention
 
 | | Original Thesis (2023) | Pipeline Rebuild |
 |---|---|---|
-| Corpus | 114th Congress (20,699 mentions) | 114th + 115th Congress (53,892 mentions) |
+| Corpus | 114th + 115th Congress (20,699 mentions) | 114th + 115th Congress (53,892 mentions) |
 | Classifier | SVM (F1=0.79) | Logistic Regression (F1=0.91) |
 | Infrastructure | Ad hoc scripts | 5-stage reproducible pipeline with CI/CD, tests, dashboard |
 

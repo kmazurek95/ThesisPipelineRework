@@ -150,11 +150,11 @@ with f1_col:
     st.markdown('<div class="stat-box"><h3>Lobbying Predicts Prominence</h3></div>',
                 unsafe_allow_html=True)
     if lobbying_coef is not None:
-        st.metric("Log-Lobbying Coefficient", f"{lobbying_coef:.3f}", "p < 0.001")
+        pct = (np.exp(lobbying_coef) - 1) * 100
+        st.metric("Lobbying Effect", f"+{pct:.1f}% higher odds", "p < 0.001")
     st.markdown(
-        "A 10x increase in lobbying expenditure is associated with a "
-        "**7.1 percentage-point** increase in the probability of receiving "
-        "a prominent mention."
+        "Each log-unit increase in lobbying expenditure is associated with "
+        "higher odds of receiving a prominent mention."
     )
 
 with f2_col:
@@ -162,9 +162,9 @@ with f2_col:
                 unsafe_allow_html=True)
     if senate_coef is not None:
         pct = (np.exp(senate_coef) - 1) * 100
-        st.metric("Senate vs. House Effect", f"+{pct:.0f}%", "p < 0.001")
+        st.metric("Senate vs. House Effect", f"+{pct:.0f}% higher odds", "p < 0.001")
     st.markdown(
-        "Interest groups receive significantly more prominent mentions "
+        "Interest groups have significantly higher odds of receiving prominent mentions "
         "in Senate floor debates compared to the House."
     )
 
@@ -173,9 +173,9 @@ with f3_col:
                 unsafe_allow_html=True)
     if party_coef is not None:
         pct = (np.exp(party_coef) - 1) * 100
-        st.metric("Democrat vs. Republican", f"{pct:.0f}%", "p < 0.001")
+        st.metric("Democrat vs. Republican", f"{pct:.0f}% lower odds", "p < 0.001")
     st.markdown(
-        "Democrats are less likely than Republicans to give interest groups "
+        "Democrats have lower odds than Republicans of giving interest groups "
         "prominent mentions, controlling for lobbying expenditure."
     )
 
@@ -199,6 +199,6 @@ st.markdown("---")
 st.caption(
     "Curated portfolio demonstration showcasing 5 representative organizations. "
     "Full pipeline processes {:,} mentions across {:,} organizations from the "
-    "114th-115th U.S. Congress (2015-2018).".format(
+    "114th-115th U.S. Congress (2015-2019).".format(
         stats.get('total_mentions', 0), stats.get('total_orgs', 0))
 )

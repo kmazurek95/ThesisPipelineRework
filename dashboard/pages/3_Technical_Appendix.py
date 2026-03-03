@@ -167,7 +167,7 @@ st.markdown("""
 
 4. **Lobbying data vintage:** Lobbying expenditure data comes from the Washington
    Representatives Study 2011 wave — the latest available. Lobbying patterns may
-   have shifted between 2011 and the 114th-115th Congress (2015-2018).
+   have shifted between 2011 and the 114th-115th Congress (2015-2019).
 
 5. **Observational design:** This is a correlational study. The relationship between
    lobbying expenditure and prominence does not establish causation — organizations

@@ -29,11 +29,11 @@ prominence, and saves the results as a new JSONL file.
 #
 # ## Input/Output
 # 
-# - **Input**: JSONL file with mentions (default: `data/processed/mentions_114/mentions.jsonl`)
+# - **Input**: JSONL file with mentions (default: `data/intermediate/mentions_114/mentions.jsonl`)
 # - **Model**: Pre-trained classifier (default: `results_classifier/prominence_pipeline.joblib`)
 # - **Output**: JSONL and CSV files with added prominence predictions
-#   - `data/processed/mentions_114/labeled_mentions.jsonl`
-#   - `data/processed/mentions_114/labeled_mentions.csv`
+#   - `data/intermediate/mentions_114/labeled_mentions.jsonl`
+#   - `data/intermediate/mentions_114/labeled_mentions.csv`
 #
 # ## Requirements
 #

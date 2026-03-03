@@ -4,16 +4,16 @@
 
 ## Context
 
-My master's thesis, "Beyond Policy Influence: A Deeper Dive into the Factors Driving Advocacy Group Prominence," investigated what drives substantive mentions of interest groups in U.S. Congressional floor debates. The thesis analyzed 20,699 mentions from the 114th Congress (2015-2017), classified each as prominent or passing using an SVM text classifier, and ran multilevel regressions testing three groups of hypotheses derived from Halpin & Fraussen's (2017) theoretical framework (for the full argument, see the [thesis findings summary](THESIS_FINDINGS_2023.md) or the [thesis PDF](Thesis_UvA_Kaleb_Mazurek.pdf)).
+My master's thesis, "Beyond Policy Influence: A Deeper Dive into the Factors Driving Advocacy Group Prominence," investigated what drives substantive mentions of interest groups in U.S. Congressional floor debates. The thesis analyzed 20,699 mentions from the 114th and 115th Congress (2015-2019), classified each as prominent or passing using an SVM text classifier, and ran multilevel regressions testing three groups of hypotheses derived from Halpin & Fraussen's (2017) theoretical framework (for the full argument, see the [thesis findings summary](THESIS_FINDINGS_2023.md) or the [thesis PDF](Thesis_UvA_Kaleb_Mazurek.pdf)).
 
-This repository is a ground-up rebuild of that pipeline. The goal was not to re-run the thesis but to extend the methodology: scan more documents, build a better classifier, and make the whole process reproducible. The research question is the same. The data, classifier, and infrastructure are different. The statistical findings reflect the expanded dataset and should be read on their own terms, not as a replication of the thesis results.
+This repository is a ground-up rebuild of that pipeline. The goal was not to re-run the thesis but to improve the methodology: build a better classifier, automate the extraction process, and make the whole pipeline reproducible. The research question is the same. The data, classifier, and infrastructure are different. The statistical findings reflect the rebuilt dataset and should be read on their own terms, not as a replication of the thesis results.
 
 ## What Changed
 
 | Dimension | Original Thesis (2023) | Pipeline Rebuild |
 |-----------|----------------------|-----------------|
-| Corpus | 114th Congress | 114th + 115th Congress |
-| Documents scanned | ~40,000 | ~78,000 |
+| Corpus | 114th + 115th Congress | 114th + 115th Congress |
+| Documents scanned | ~78,000 | ~78,000 |
 | Mentions extracted | 20,699 | 53,892 |
 | Unique organizations | 1,903 | 2,260 |
 | Classifier | SVM (F1=0.79, ROC-AUC=0.72) | Logistic Regression (F1=0.91, ROC-AUC=0.95) |
@@ -39,7 +39,7 @@ Several patterns are consistent across both the thesis and the expanded pipeline
 
 ## Where Results Diverge or Are Not Directly Comparable
 
-**Party effects.** The pipeline finds that Democrats give 23% fewer prominent mentions than Republicans (OR=0.772, p<0.001). The thesis's Full Model 1 found a non-significant party effect (Democrat OR=1.06, p=0.33). This divergence could reflect the larger sample, the addition of the 115th Congress (which includes the 2017-2019 period under divided government), or differences in model specification (the pipeline includes lobbying expenditure and organization type controls that the thesis's Model 1 did not).
+**Party effects.** The pipeline finds that Democrats give 23% fewer prominent mentions than Republicans (OR=0.772, p<0.001). The thesis's Full Model 1 found a non-significant party effect (Democrat OR=1.06, p=0.33). This divergence could reflect the larger sample, differences in extraction methodology, or differences in model specification (the pipeline includes lobbying expenditure and organization type controls that the thesis's Model 1 did not).
 
 **Issue salience.** The thesis found medium-salience policy areas had more prominent mentions (OR=1.49) but high-salience areas actually had fewer (OR=0.70), partially contradicting the hypothesis. The pipeline does not currently include salience in its regressions, though the variable exists in the data.
 
@@ -61,10 +61,10 @@ The pipeline rebuild prioritized infrastructure, classification, and reproducibi
 
 ## What the Pipeline Adds
 
-Beyond the larger dataset and improved classifier, the pipeline adds the 115th Congress (doubling the time window and spanning the transition from unified to divided government), group-aware cross-validation that splits by organization rather than randomly, speaker attribution with confidence tiers instead of binary assignment, an interactive Streamlit dashboard with case studies and model diagnostics, and a reproducible end-to-end architecture with configuration-driven stages and data validation.
+Beyond the improved classifier, the pipeline adds group-aware cross-validation that splits by organization rather than randomly, speaker attribution with confidence tiers instead of binary assignment, an interactive Streamlit dashboard with case studies and model diagnostics, and a reproducible end-to-end architecture with configuration-driven stages and data validation.
 
 ## Next Steps
 
-The most natural next step is running the full thesis model specifications on the pipeline's expanded dataset. The thesis tested issue salience, organization age, seniority, and legislative activity, all of which are available in the pipeline's data but not yet in the current regressions. Adding them would enable direct coefficient comparisons across both datasets and answer whether the thesis's findings (like the unexpected negative seniority effect) hold up on a larger corpus with a better classifier. That's the extension that would generate the most analytical value for the least additional work.
+The most natural next step is running the full thesis model specifications on the pipeline's rebuilt dataset. The thesis tested issue salience, organization age, seniority, and legislative activity, all of which are available in the pipeline's data but not yet in the current regressions. Adding them would enable direct coefficient comparisons across both datasets and answer whether the thesis's findings (like the unexpected negative seniority effect) hold up on the rebuilt dataset with a better classifier. That's the extension that would generate the most analytical value for the least additional work.
 
 Beyond that: experimenting with transformer-based classifiers (DistilBERT fine-tuning on the 1,222 labels) to test whether the TF-IDF approach has hit its ceiling; updating the lobbying data beyond WRS 2011 using OpenSecrets annual figures; extending the time series to the 116th-117th Congress, which the pipeline architecture already supports; and labeling 500+ additional mentions from the 115th Congress, particularly targeting cases where the classifier is least confident.

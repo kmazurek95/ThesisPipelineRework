@@ -1,7 +1,5 @@
 # Known Limitations & Future Work
 
-Every research pipeline involves tradeoffs. These are mine, and what I'd change in the next iteration.
-
 ---
 
 ## 1. Speaker Attribution
@@ -36,7 +34,7 @@ The speaker attribution gaps come from several sources:
 
 ### Current scope and balance
 
-The classifier was trained on 1,222 hand-labeled examples (1 annotator). Class split: 448 prominent (36.7%), 774 passing (63.3%), which roughly mirrors the dataset-wide prominence rate of 35.5%. Classifier–human agreement on the held-out test set is reported via Cohen's kappa in `results_classifier/report.txt`.
+The classifier was trained on 1,222 hand-labeled examples (1 annotator). Class split: 448 prominent (36.7%), 774 passing (63.3%), which roughly mirrors the dataset-wide prominence rate of 35.5%. Classifier-human agreement on the held-out test set is reported via Cohen's kappa in `results_classifier/report.txt`.
 
 The training data covers 593 unique organizations, drawn from three labeling batches: 823 from an earlier combined dataset, 365 from a separate labeling round, and 34 from a final dataset. All labels come from the original thesis work on the 114th Congress.
 

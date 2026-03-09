@@ -4,12 +4,7 @@ This directory contains R scripts for **multilevel/mixed-effects regression anal
 
 ## Why R?
 
-While the main pipeline is in Python, R is used for statistical modeling because:
-
-1. **`lme4`** is the standard package for fitting mixed-effects models (GLMER with crossed random effects)
-2. **`sjPlot`** produces publication-quality coefficient tables and forest plots
-3. **`performance`** handles model diagnostics: ICC, R-squared, residual checks
-4. **R Markdown** keeps the analysis reproducible with embedded code and output
+R's `lme4` package is the standard tool for fitting mixed-effects models (GLMER with crossed random effects), which Python's `statsmodels` does not support.
 
 ## Files
 

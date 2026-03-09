@@ -23,7 +23,7 @@ prominence, and saves the results as a new JSONL file.
 #
 # ```powershell
 # # Run from the project root directory
-# cd "C:\Users\kaleb\OneDrive\Desktop\ThesisPipelineRework"
+# cd /path/to/ThesisPipelineRework
 # python classify_mentions.py
 # ```
 #

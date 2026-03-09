@@ -20,7 +20,7 @@ Lobbying expenditure predicts not just visibility but the *quality* of attention
 |--------|-------|
 | Total mentions extracted | 53,892 |
 | Unique organizations | 2,260 |
-| Classifier F1 score | 0.91 |
+| Classifier F1 score | 0.91 (kappa = 0.82) |
 | Prominence rate | 35.5% |
 
 | Finding | Effect Size | p-value |
@@ -34,11 +34,11 @@ Lobbying expenditure predicts not just visibility but the *quality* of attention
 
 | | Original Thesis (2023) | Pipeline Rebuild |
 |---|---|---|
-| Corpus | 114th + 115th Congress (20,699 mentions) | 114th + 115th Congress (53,892 mentions) |
+| Corpus | 114th + 115th Congress (20,699 mentions; 5,323 orgs including zero-mention baseline) | 114th + 115th Congress (53,892 mentions; 2,260 orgs with text matches) |
 | Classifier | SVM (F1=0.79) | Logistic Regression (F1=0.91) |
 | Infrastructure | Ad hoc scripts | 5-stage reproducible pipeline with CI/CD, tests, dashboard |
 
-For a detailed comparison of where findings align and diverge, see [THESIS_EXTENSION_NOTES.md](docs/THESIS_EXTENSION_NOTES.md).
+For a detailed comparison of where findings align and diverge, see [THESIS_EXTENSION_NOTES.md](docs/THESIS_EXTENSION_NOTES.md). The original thesis dataset included 22,414 rows using a full-sample design with zero-mention organizations as the baseline; see [METHODOLOGY.md](docs/METHODOLOGY.md#relationship-to-original-thesis) for a detailed comparison.
 
 ## Repository Structure
 
@@ -123,11 +123,11 @@ The dashboard includes methodology explanations, five organization case studies 
 
 ## Skills Demonstrated
 
-- **Data Engineering**: Built a multi-source ETL pipeline pulling from GovInfo and Congress.gov APIs, with incremental processing and automated data validation
-- **NLP / Text Classification**: Trained a TF-IDF + logistic regression classifier with group-aware cross-validation and SHAP-based feature attribution
-- **Statistical Modeling**: Ran multilevel logistic regressions, OLS models, and mixed-effects GLMER (R/lme4) with variance decomposition
-- **Reproducible Research**: Pipeline is configuration-driven with pinned dependencies and documented methodology
-- **Visualization**: Interactive Streamlit dashboard (deployed), plus Plotly, matplotlib, seaborn, and ggplot2 figures
+- Multi-source ETL pipeline (GovInfo and Congress.gov APIs) with incremental processing and automated data validation
+- TF-IDF + logistic regression text classifier with group-aware cross-validation and SHAP-based feature attribution
+- Multilevel logistic regressions, OLS models, and mixed-effects GLMER (R/lme4) with variance decomposition
+- Configuration-driven pipeline with pinned dependencies and documented methodology
+- Interactive Streamlit dashboard (deployed), Plotly, matplotlib, seaborn, and ggplot2 figures
 
 ## Citation
 

@@ -124,6 +124,8 @@ R_analysis/Multilevel_Analysis_cache/
 # -----------------------------
 data/output/multi_level_data.csv
 data/output/level1.csv
+data/output/data_legacy_thesis.txt
+data/output/analysis_dataset_replication.csv
 
 # -----------------------------
 # Output figures and tables
@@ -142,6 +144,23 @@ data/output/level1.csv
 # Cloud / CI local artifacts
 # -----------------------------
 .azure/
+
+# -----------------------------
+# Generator scripts (scaffolding artifacts)
+# -----------------------------
+_gen_*.py
+
+# -----------------------------
+# Workspace files
+# -----------------------------
+*.code-workspace
+
+# results_replication/ is tracked (thesis replication outputs)
+
+# -----------------------------
+# R cache (replication)
+# -----------------------------
+R_analysis/cache/
 
 # -----------------------------
 # Archive folder (legacy/obsolete files)

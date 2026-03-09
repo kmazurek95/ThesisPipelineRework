@@ -1,0 +1,373 @@
+{
+  "description": "Committee-to-CAP-policy-area mapping. Single source of truth.",
+  "source_files": [
+    "interest_group_analysis/2.data_processing/committee_policy_linkage.py",
+    "interest_group_analysis/4_integration/build_analysis_dataset.py",
+    "scripts/derive_policy_overlap.py",
+    "interest_group_analysis/5_analysis/multi_level_builder.py"
+  ],
+  "note": "These source files currently each have their own copy of this mapping. This JSON serves as the canonical reference. Future cleanup: have all scripts load from this file.",
+  "policy_priority": [
+    "Macroeconomics",
+    "Health",
+    "Education",
+    "Labor",
+    "Housing",
+    "Law and Crime",
+    "Environment",
+    "Energy",
+    "Transportation",
+    "Technology",
+    "Social Welfare",
+    "Defense",
+    "Domestic Commerce",
+    "International Affairs",
+    "Government Operations",
+    "Public Lands",
+    "Agriculture",
+    "Culture"
+  ],
+  "mapping": {
+    "Ad Hoc Committee on Energy": {
+      "policy_area": "Energy",
+      "cap_code": 800
+    },
+    "Committee of the Whole House on the State of the Union": {
+      "policy_area": null,
+      "cap_code": null,
+      "note": "Procedural - skip"
+    },
+    "Committee on Agriculture": {
+      "policy_area": "Agriculture",
+      "cap_code": 400
+    },
+    "Committee on Agriculture and Forestry": {
+      "policy_area": "Agriculture",
+      "cap_code": 400
+    },
+    "Committee on Agriculture, Nutrition, and Forestry": {
+      "policy_area": "Agriculture",
+      "cap_code": 400
+    },
+    "Committee on Appropriations": {
+      "policy_area": "Macroeconomics",
+      "cap_code": 100
+    },
+    "Committee on Armed Services": {
+      "policy_area": "Defense",
+      "cap_code": 1600
+    },
+    "Committee on Banking and Currency": {
+      "policy_area": "Domestic Commerce",
+      "cap_code": 1500
+    },
+    "Committee on Banking, Finance, and Urban Affairs": {
+      "policy_area": "Domestic Commerce",
+      "cap_code": 1500
+    },
+    "Committee on Banking, Housing, and Urban Affairs": {
+      "policy_area": "Housing",
+      "cap_code": 1400
+    },
+    "Committee on Commerce": {
+      "policy_area": "Domestic Commerce",
+      "cap_code": 1500
+    },
+    "Committee on Commerce, Science, and Transportation": {
+      "policy_area": "Domestic Commerce",
+      "cap_code": 1500
+    },
+    "Committee on District of Columbia": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Committee on Education": {
+      "policy_area": "Education",
+      "cap_code": 600
+    },
+    "Committee on Education and Labor": {
+      "policy_area": "Education",
+      "cap_code": 600
+    },
+    "Committee on Education and the Workforce": {
+      "policy_area": "Education",
+      "cap_code": 600
+    },
+    "Committee on Energy and Commerce": {
+      "policy_area": "Energy",
+      "cap_code": 800
+    },
+    "Committee on Energy and Natural Resources": {
+      "policy_area": "Energy",
+      "cap_code": 800
+    },
+    "Committee on Environment and Public Works": {
+      "policy_area": "Environment",
+      "cap_code": 700
+    },
+    "Committee on Ethics": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Committee on Finance": {
+      "policy_area": "Macroeconomics",
+      "cap_code": 100
+    },
+    "Committee on Financial Services": {
+      "policy_area": "Domestic Commerce",
+      "cap_code": 1500
+    },
+    "Committee on Foreign Affairs": {
+      "policy_area": "International Affairs",
+      "cap_code": 1900
+    },
+    "Committee on Foreign Relations": {
+      "policy_area": "International Affairs",
+      "cap_code": 1900
+    },
+    "Committee on Government Operations": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Committee on Government Reform": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Committee on Governmental Affairs": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Committee on Health, Education, Labor, and Pensions": {
+      "policy_area": "Health",
+      "cap_code": 300
+    },
+    "Committee on Homeland Security": {
+      "policy_area": "Defense",
+      "cap_code": 1600
+    },
+    "Committee on Homeland Security and Governmental Affairs": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Committee on House Administration": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Committee on Human Resources": {
+      "policy_area": "Labor",
+      "cap_code": 500
+    },
+    "Committee on Indian Affairs": {
+      "policy_area": "Civil Rights",
+      "cap_code": 200
+    },
+    "Committee on Interior and Insular Affairs": {
+      "policy_area": "Public Lands",
+      "cap_code": 2100
+    },
+    "Committee on Internal Security": {
+      "policy_area": "Law and Crime",
+      "cap_code": 1200
+    },
+    "Committee on International Relations": {
+      "policy_area": "International Affairs",
+      "cap_code": 1900
+    },
+    "Committee on Labor and Human Resources": {
+      "policy_area": "Labor",
+      "cap_code": 500
+    },
+    "Committee on Labor and Public Welfare": {
+      "policy_area": "Social Welfare",
+      "cap_code": 1300
+    },
+    "Committee on Merchant Marine and Fisheries": {
+      "policy_area": "Domestic Commerce",
+      "cap_code": 1500
+    },
+    "Committee on National Security": {
+      "policy_area": "Defense",
+      "cap_code": 1600
+    },
+    "Committee on Natural Resources": {
+      "policy_area": "Public Lands",
+      "cap_code": 2100
+    },
+    "Committee on Oversight": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Committee on Oversight and Government Reform": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Committee on Public Lands": {
+      "policy_area": "Public Lands",
+      "cap_code": 2100
+    },
+    "Committee on Public Works": {
+      "policy_area": "Public Lands",
+      "cap_code": 2100
+    },
+    "Committee on Public Works and Transportation": {
+      "policy_area": "Transportation",
+      "cap_code": 1000
+    },
+    "Committee on Resources": {
+      "policy_area": "Public Lands",
+      "cap_code": 2100
+    },
+    "Committee on Rules": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Committee on Rules and Administration": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Committee on Science": {
+      "policy_area": "Technology",
+      "cap_code": 1700
+    },
+    "Committee on Science and Technology": {
+      "policy_area": "Technology",
+      "cap_code": 1700
+    },
+    "Committee on Science, Space, and Technology": {
+      "policy_area": "Technology",
+      "cap_code": 1700
+    },
+    "Committee on Small Business": {
+      "policy_area": "Domestic Commerce",
+      "cap_code": 1500
+    },
+    "Committee on Small Business and Entrepreneurship": {
+      "policy_area": "Domestic Commerce",
+      "cap_code": 1500
+    },
+    "Committee on Standards of Official Conduct": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Committee on Transportation and Infrastructure": {
+      "policy_area": "Transportation",
+      "cap_code": 1000
+    },
+    "Committee on Veterans' Affairs": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Committee on Ways and Means": {
+      "policy_area": "Macroeconomics",
+      "cap_code": 100
+    },
+    "Committee on the Budget": {
+      "policy_area": "Macroeconomics",
+      "cap_code": 100
+    },
+    "Committee on the Judiciary": {
+      "policy_area": "Law and Crime",
+      "cap_code": 1200
+    },
+    "House Permanent Select Committee on Intelligence": {
+      "policy_area": "Defense",
+      "cap_code": 1600
+    },
+    "Joint Committee on Internal Revenue Taxation": {
+      "policy_area": "Macroeconomics",
+      "cap_code": 100
+    },
+    "Joint Committee on Printing": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Joint Committee on Taxation": {
+      "policy_area": "Macroeconomics",
+      "cap_code": 100
+    },
+    "Joint Committee on the Library": {
+      "policy_area": "Culture",
+      "cap_code": 2300
+    },
+    "Joint Committee on the Organization of Congress": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Joint Economic Committee": {
+      "policy_area": "Macroeconomics",
+      "cap_code": 100
+    },
+    "Joint Select Committee on Deficit Reduction": {
+      "policy_area": "Macroeconomics",
+      "cap_code": 100
+    },
+    "Joint Select Committee on Solvency of Multiemployer Pension Plans": {
+      "policy_area": "Labor",
+      "cap_code": 500
+    },
+    "Permanent Select Committee on Intelligence": {
+      "policy_area": "Defense",
+      "cap_code": 1600
+    },
+    "Select Committee on Aging": {
+      "policy_area": "Social Welfare",
+      "cap_code": 1300
+    },
+    "Select Committee on Assassinations": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Select Committee on Energy Independence and Global Warming": {
+      "policy_area": "Energy",
+      "cap_code": 800
+    },
+    "Select Committee on Ethics": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Select Committee on Hunger": {
+      "policy_area": "Social Welfare",
+      "cap_code": 1300
+    },
+    "Select Committee on Intelligence": {
+      "policy_area": "Defense",
+      "cap_code": 1600
+    },
+    "Select Committee on Narcotics Abuse and Control": {
+      "policy_area": "Law and Crime",
+      "cap_code": 1200
+    },
+    "Select Committee on Outer Continental Shelf": {
+      "policy_area": "Energy",
+      "cap_code": 800
+    },
+    "Select Committee on Presidential Campaign Activities": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Select Committee on Standards and Conduct": {
+      "policy_area": "Government Operations",
+      "cap_code": 2000
+    },
+    "Select Committee on the Events Surrounding the 2012 Terrorist Attack in Benghazi": {
+      "policy_area": "International Affairs",
+      "cap_code": 1900
+    },
+    "Select Investigative Panel of the Committee on Energy and Commerce": {
+      "policy_area": "Energy",
+      "cap_code": 800
+    },
+    "Special Committee on Aging": {
+      "policy_area": "Social Welfare",
+      "cap_code": 1300
+    },
+    "Temporary Joint Committee on Deficit Reduction": {
+      "policy_area": "Macroeconomics",
+      "cap_code": 100
+    },
+    "United States Senate Caucus on International Narcotics Control": {
+      "policy_area": "International Affairs",
+      "cap_code": 1900
+    }
+  }
+}

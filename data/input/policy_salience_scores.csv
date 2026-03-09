@@ -1,0 +1,19 @@
+policy_area,issue_number,salience_score,salience_category
+Macroeconomics,100,33.60793650793651,medium
+Civil Rights,200,31.301587301587304,medium
+Health,300,36.60634920634921,medium
+Agriculture,400,37.71269841269841,high
+Labor,500,15.673015873015876,low
+Education,600,32.83333333333333,medium
+Environment,700,30.080952380952382,medium
+Energy,800,11.422222222222222,low
+Transportation,1000,43.75238095238095,high
+Law and Crime,1200,41.92619047619047,high
+Social Welfare,1300,54.92539682539683,high
+Housing,1400,43.695238095238096,high
+Domestic Commerce,1500,25.095238095238095,low
+Defense,1600,23.879365079365076,low
+Technology,1700,39.66904761904762,high
+International Affairs,1900,20.433333333333334,low
+Government Operations,2000,26.985714285714288,medium
+Public Lands,2100,17.152380952380952,low

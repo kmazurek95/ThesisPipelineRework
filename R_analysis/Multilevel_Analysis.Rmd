@@ -169,11 +169,22 @@ Where:
 
 ```{r null-model}
 # Fit null model with crossed random effects
-m0 <- glmer(
-  prominence ~ 1 + (1 | org_id) + (1 | issue_area),
-  data = model_data,
-  family = binomial(link = "logit"),
-  control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 100000))
+m0 <- tryCatch(
+  glmer(
+    prominence ~ 1 + (1 | org_id) + (1 | issue_area),
+    data = model_data,
+    family = binomial(link = "logit"),
+    nAGQ = 0,
+    control = glmerControl(optimizer = "bobyqa",
+                           optCtrl = list(maxfun = 100000),
+                           calc.derivs = FALSE)
+  ),
+  error = function(e) {
+    message("M0 crossed RE failed: ", e$message, "\nFalling back to issue_area only.")
+    glmer(prominence ~ 1 + (1 | issue_area),
+          data = model_data, family = binomial, nAGQ = 0,
+          control = glmerControl(calc.derivs = FALSE))
+  }
 )
 
 # Model summary
@@ -216,12 +227,23 @@ vc %>%
 Adding fixed effects for organizational characteristics: lobbying expenditure and organization type.
 
 ```{r model1}
-m1 <- glmer(
-  prominence ~ log_lobbying + is_single_issue + is_labor +
-    (1 | org_id) + (1 | issue_area),
-  data = model_data,
-  family = binomial(link = "logit"),
-  control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 100000))
+m1 <- tryCatch(
+  glmer(
+    prominence ~ log_lobbying + is_single_issue + is_labor +
+      (1 | org_id) + (1 | issue_area),
+    data = model_data,
+    family = binomial(link = "logit"),
+    nAGQ = 0,
+    control = glmerControl(optimizer = "bobyqa",
+                           optCtrl = list(maxfun = 100000),
+                           calc.derivs = FALSE)
+  ),
+  error = function(e) {
+    message("M1 crossed RE failed: ", e$message, "\nFalling back to issue_area only.")
+    glmer(prominence ~ log_lobbying + is_single_issue + is_labor + (1 | issue_area),
+          data = model_data, family = binomial, nAGQ = 0,
+          control = glmerControl(calc.derivs = FALSE))
+  }
 )
 
 summary(m1)
@@ -259,13 +281,30 @@ m1_coef %>%
 Adding politician-level characteristics: party affiliation and chamber.
 
 ```{r model2}
-m2 <- glmer(
-  prominence ~ log_lobbying + is_single_issue + is_labor +
-    party + chamber +
-    (1 | org_id) + (1 | issue_area),
-  data = model_data,
-  family = binomial(link = "logit"),
-  control = glmerControl(optimizer = "bobyqa", optCtrl = list(maxfun = 100000))
+# Filter to analytical sample with party and chamber data
+model_data_full <- model_data %>%
+  filter(!is.na(party), !is.na(chamber))
+cat("Full model sample:", nrow(model_data_full), "observations\n")
+
+m2 <- tryCatch(
+  glmer(
+    prominence ~ log_lobbying + is_single_issue + is_labor +
+      party + chamber +
+      (1 | org_id) + (1 | issue_area),
+    data = model_data_full,
+    family = binomial(link = "logit"),
+    nAGQ = 0,
+    control = glmerControl(optimizer = "bobyqa",
+                           optCtrl = list(maxfun = 100000),
+                           calc.derivs = FALSE)
+  ),
+  error = function(e) {
+    message("M2 crossed RE failed: ", e$message, "\nFalling back to issue_area only.")
+    glmer(prominence ~ log_lobbying + is_single_issue + is_labor +
+            party + chamber + (1 | issue_area),
+          data = model_data_full, family = binomial, nAGQ = 0,
+          control = glmerControl(calc.derivs = FALSE))
+  }
 )
 
 summary(m2)

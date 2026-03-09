@@ -6,9 +6,7 @@ This pipeline is a ground-up rebuild of the methodology developed for my master'
 
 ## Theoretical Background
 
-This pipeline investigates **organizational prominence** as defined by Halpin & Fraussen (2017): the perception that an interest group is a preeminent voice for a constituency. Prominence is distinct from *access* (direct contact with policymakers) and *involvement* (formal inclusion in policy processes). It operates through an "audience dynamic": politicians decide which organizations matter, constrained by attention scarcity, and their choices are reflected in how they discuss those organizations on the floor.
-
-The original thesis derived hypotheses from this framework across three dimensions: issue characteristics (salience), politician-group linkage (party, chamber, seniority), and group characteristics (age, policy breadth, external lobbying). This pipeline tests a subset of those variables (lobbying expenditure, party, chamber, and organization type) on the rebuilt dataset. For the full conceptual model, literature review, and hypothesis structure, see the [thesis paper](Thesis_UvA_Kaleb_Mazurek.pdf).
+The conceptual framework, literature review, and hypothesis structure are in the [thesis paper](Thesis_UvA_Kaleb_Mazurek.pdf).
 
 ---
 
@@ -63,7 +61,7 @@ Interest group mentions are identified using:
 
 - **Source:** Manual coding of 1,222 mentions
 - **Coder:** 1 annotator (the author)
-- **Classifier–human agreement:** Cohen's kappa on the held-out test set (see `results_classifier/report.txt`)
+- **Classifier-human agreement:** Cohen's kappa = 0.82 on the held-out test set (see `results_classifier/report.txt`)
 
 **Coding Criteria** (adapted from Fraussen et al., 2018):
 - **Prominent** if any of: (1) views adopted/endorsed, (2) significant role in policy area mentioned, (3) used as expert resource, (4) importance or relevance conveyed
@@ -209,34 +207,35 @@ The full test suite (`pytest tests/ -v`) checks column presence, value ranges, c
 
 ### Reproducibility
 
-**Ensured by:**
-- Fixed random seeds (`random_state=42`)
-- Version-pinned dependencies (`requirements.txt`)
-- Documented preprocessing steps
-- Saved model artifacts (`results_classifier/`)
+Reproducibility is ensured by fixed random seeds, version-pinned dependencies, documented preprocessing steps, and saved model artifacts (`results_classifier/`).
+
+---
+
+## Relationship to Original Thesis
+
+The revamp pipeline produces 53,892 mentions across 2,260 organizations, compared to the original thesis's approximately 20,699 mentions across 5,323 organizations. The apparent organization count gap is a structural difference, not a pipeline divergence: the thesis dataset included all 5,441 WRS organizations via a left join, retaining roughly 3,400 with zero congressional mentions as the baseline for prominence modeling. The revamp outputs only rows with actual text matches. After excluding zero-mention rows, the thesis had 1,902 mention-bearing organizations — fewer than the revamp's 2,260.
+
+A record-level comparison found that 92% of the thesis's mention-bearing organizations appear in the revamp output, and 73% of (org_id, granuleId) pairs match directly. The remaining roughly 150 missing organizations (2.3% of thesis mentions) are attributable to name changes between WRS dictionary versions. On the mention count side, a filter waterfall analysis applied the thesis's known filtering logic to revamp output, reducing 53,892 to approximately 42,000 and accounting for paragraph-level deduplication, defense-text exclusions, and additional acronym drops. The higher revamp count reflects deliberate design choices: character-offset extraction (capturing multiple mentions per paragraph) and a more inclusive acronym policy.
+
+The full-sample analytical design — retaining zero-mention organizations as the baseline population — is recoverable from revamp data by joining the WRS dictionary (`interest_groups_list.csv`, 5,441 orgs) and WRS metadata (`washington_representatives_study.rda`, 88 columns) back onto org-level aggregates. Metadata coverage for zero-mention organizations is 100% for CATEGORY, LOCATION, and FOUNDED, and 99.5% for LOBBYING11. Both replication analyses are documented in `notebooks/legacy_replication.ipynb` and `notebooks/legacy_record_match.ipynb`.
+
+### GLMM Replication Results
+
+A full-sample replication dataset (57,073 rows: 53,892 mentions + 3,181 zero-mention orgs across 5,441 organizations) was constructed by joining revamp mentions with WRS metadata and congress-legislators member profiles. All three thesis GLMM model sets are now replicable:
+
+- **Model A (Policy Salience)** uses Google Trends data collected via `pytrends` for 18 CAP policy areas over 2015–2019, categorized into low/medium/high terciles. The original pipeline's salience column was a constant placeholder (50.0); the re-collected data has 18 unique scores. Salience is available for 14,390 mentions (those with policy area assignments).
+- **Model B (Group-Politician Linkage)** uses seniority and election timing from congress-legislators member profiles (100% match on bioGuideId rows), policy overlap derived from pipeline intermediate committee-granule data (12,056 mentions), and bill sponsorship counts from the Congress.gov API. The `bills_referenced` column (speech-level bill citations) serves as an additional or fallback measure.
+- **Model C (Group Characteristics)** uses org_age (from WRS FOUNDED), log_lobbying (from WRS LOBBYING11), policy_scope (unique issue areas per org), organization type dummies, and membership status.
+
+All models use crossed random effects `(1|org_id) + (1|issue_area)` and are run via `scripts/run_glmm_replication.R`. The full replication pipeline is documented in `notebooks/fill_replication_gaps.ipynb`, `notebooks/replication_glmm.ipynb`, and `scripts/build_replication_dataset.py`.
+
+All three replication models converged with crossed random effects. The results broadly confirm the thesis findings: lobbying expenditure, policy scope, and party affiliation remain significant predictors of prominence. Some effects (e.g., seniority, policy overlap) that were marginal in the thesis are now statistically significant with the larger dataset. See [REPLICATION_RESULTS.md](REPLICATION_RESULTS.md) for the full comparison table.
 
 ---
 
 ## Limitations
 
-### Data Limitations
-
-1. **Two Congresses:** Analysis covers the 114th-115th Congress (2015-2019); results may not generalize to other time periods
-2. **Floor Speeches Only:** Excludes committee hearings, press releases
-3. **WRS 2011 Dictionary:** May miss newer organizations or name changes
-
-### Methodological Limitations
-
-1. **Classification Errors:** 9% misclassification rate propagates to analysis
-2. **Causal Inference:** Observational data cannot establish causation
-3. **Selection Effects:** Organizations that lobby may differ systematically
-
-### Future Directions
-
-1. Extend beyond the 114th-115th Congress (time-series analysis)
-2. Include committee hearing transcripts
-3. Experiment with transformer-based classifiers (BERT)
-4. Add campaign contribution data
+See [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md) for a full discussion of data completeness, classification performance, and statistical modeling caveats.
 
 ---
 

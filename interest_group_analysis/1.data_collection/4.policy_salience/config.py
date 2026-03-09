@@ -2,7 +2,7 @@
 import os
 
 # Paths
-BASE_DIR = os.environ.get("BASE_DATA_DIR", "C://Users//kaleb//OneDrive//Desktop//DATA//COMPLETE//")
+BASE_DIR = os.environ.get("BASE_DATA_DIR", os.path.join(os.path.dirname(__file__), "..", "..", "..", "data"))
 OUTPUT_DIR = os.environ.get("OUTPUT_DIR", "./output")
 
 # Google Trends settings

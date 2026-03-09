@@ -19,7 +19,7 @@ All notable changes to this project are documented in this file.
 - Expanded dataset: 53,892 mentions (from 25,106), 2,260 organizations (from 1,679)
 - Expanded training set: 1,222 hand-labeled examples (from 907)
 - Compressed large data files (level1.csv.gz) for GitHub compatibility
-- Dashboard redesigned as story-driven portfolio showcase
+- Redesigned dashboard.
 - All documentation updated for 114th-115th Congress coverage
 
 ## [1.0.0] - 2024

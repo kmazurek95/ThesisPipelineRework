@@ -1,35 +1,30 @@
-# Analysis Notebooks
+# Notebooks
 
-Interactive notebooks documenting the analysis pipeline and findings.
+## Core Analysis
 
-## Notebook Guide
+- `Analysis_Showcase.ipynb` - Executive summary: regression models, key visualizations, and findings across all four data levels
+- `Classification_Analysis.ipynb` - ML classifier deep-dive: EDA, model comparison (NB/SVM/RF/LR), SHAP analysis, threshold optimization
+- `Exploratory_Analysis.ipynb` - Initial data exploration and descriptive statistics
+- `legacy_replication.ipynb` - Filter waterfall analysis: applies legacy filtering logic to revamp output (53,892 to 42,303)
+- `legacy_record_match.ipynb` - Record-level comparison between legacy and revamp datasets (72.9% corrected match rate)
+- `fill_replication_gaps.ipynb` - Documents gap-filling for policy salience, policy overlap, and bill sponsorship
+- `replication_glmm.ipynb` - GLMM replication results and comparison to legacy thesis coefficients
+- `member_profile_integration.ipynb` - Validates seniority and election timing data from congress-legislators
 
-| Notebook | Description | Key Outputs |
-|----------|-------------|-------------|
-| [Analysis_Showcase.ipynb](Analysis_Showcase.ipynb) | Executive summary: regression models, key visualizations, and findings across all four data levels | 5 figures, 3 regression models |
-| [Classification_Analysis.ipynb](Classification_Analysis.ipynb) | ML classifier deep-dive: EDA, model comparison (NB/SVM/RF/LR), SHAP analysis, error analysis, threshold optimization | 10 figures, 2 metric tables |
-| [Advocacy_Group_Prominence_Analysis.ipynb](Advocacy_Group_Prominence_Analysis.ipynb) | Full regression analysis replicating the thesis statistical models in Python: GLM, recoding, diagnostics | Regression tables, coefficient plots |
-| [Exploratory_Analysis.ipynb](Exploratory_Analysis.ipynb) | Initial data exploration and descriptive statistics | Exploratory plots |
+## Diagnostics (planning and validation)
+
+- `diagnostics/replication_feasibility.ipynb` - Column-by-column audit of legacy vs revamp datasets
+- `diagnostics/validate_partial_columns.ipynb` - Deep dive on salience and bills_referenced columns
+- `diagnostics/policy_area_diagnostic.ipynb` - Policy area coverage analysis (26.7% committee-based)
 
 ## R Analysis
 
-| File | Description |
-|------|-------------|
-| [Multilevel_Analysis.Rmd](../R_analysis/Multilevel_Analysis.Rmd) | Mixed-effects regression with lme4: empty model (ICC), issue salience model, politician characteristics, organizational characteristics, model comparison | Forest plots, coefficient tables |
+- `../scripts/run_glmm_replication.R` - GLMM replication of three legacy thesis models (A, B, C) on revamp full-sample dataset
+- `../R_analysis/Multilevel_Analysis.Rmd` - Mixed-effects regression with lme4: empty model (ICC), issue salience model, politician characteristics, organizational characteristics
 
 ## Setup
 
 1. Install Python dependencies: `pip install -r requirements.txt`
 2. Ensure pipeline data exists in `data/output/` (run `python scripts/run_pipeline.py --stage integrate` if needed)
 3. For the Classification notebook, also install: `pip install wordcloud shap`
-4. For the R analysis, see [R_analysis/README.md](../R_analysis/README.md)
-
-## Data Requirements
-
-All notebooks read from:
-- `data/output/level1.csv.gz` : 53,892 mention-level records (gzip compressed)
-- `data/output/level2_org.csv` : 2,260 organization aggregates
-- `data/output/level3_politician.csv` : 490 politician aggregates
-- `data/output/level4_policy.csv` : 18 policy area aggregates
-- `data/training/combined_labeled.csv` : 1,222 labeled training examples (Classification notebook only)
-- `results_classifier/prominence_pipeline.joblib` : trained model (Classification notebook only)
+4. For the R analysis, see `R_analysis/README.md`

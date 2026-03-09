@@ -61,7 +61,7 @@ The pipeline rebuild prioritized infrastructure, classification, and reproducibi
 
 ## What the Pipeline Adds
 
-Beyond the improved classifier, the pipeline adds group-aware cross-validation that splits by organization rather than randomly, speaker attribution with confidence tiers instead of binary assignment, an interactive Streamlit dashboard with case studies and model diagnostics, and a reproducible end-to-end architecture with configuration-driven stages and data validation.
+Beyond the improved classifier, the pipeline adds group-aware cross-validation that splits by organization rather than randomly, speaker attribution with confidence tiers instead of binary assignment, an interactive Streamlit dashboard with case studies and model diagnostics, and a fully reproducible architecture with configuration-driven stages and data validation.
 
 ## Next Steps
 

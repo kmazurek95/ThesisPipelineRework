@@ -229,7 +229,7 @@ A full-sample replication dataset (57,073 rows: 53,892 mentions + 3,181 zero-men
 
 All models use crossed random effects `(1|org_id) + (1|issue_area)` and are run via `scripts/run_glmm_replication.R`. The full replication pipeline is documented in `notebooks/fill_replication_gaps.ipynb`, `notebooks/replication_glmm.ipynb`, and `scripts/build_replication_dataset.py`.
 
-All three replication models converged with crossed random effects. The results broadly confirm the thesis findings: lobbying expenditure, policy scope, and party affiliation remain significant predictors of prominence. Some effects (e.g., seniority, policy overlap) that were marginal in the thesis are now statistically significant with the larger dataset. See [REPLICATION_RESULTS.md](REPLICATION_RESULTS.md) for the full comparison table.
+Core findings replicate across the rebuilt pipeline: lobbying, seniority, and org age effects are consistent. The main divergence is the Democrat effect (flipped from negative to positive) and a much higher org-level ICC (37.9% vs. 12%), both attributable to the improved classifier producing more consistent prominence assignments. See [REPLICATION_RESULTS.md](REPLICATION_RESULTS.md) for the full comparison.
 
 ---
 

@@ -1,333 +1,68 @@
 # Replication Guide
 
-Step-by-step instructions to reproduce the analysis in this project.
+This document explains how to reproduce the analysis. You'll need Python 3.10+ and optionally R 4.0+ for the multilevel models. If you want to re-collect data from scratch (most people won't), you'll also need API keys from GovInfo and Congress.gov.
 
----
-
-## Table of Contents
-
-1. [Prerequisites](#prerequisites)
-2. [Environment Setup](#environment-setup)
-3. [Data Acquisition](#data-acquisition)
-4. [Running the Pipeline](#running-the-pipeline)
-5. [Reproducing Results](#reproducing-results)
-6. [Troubleshooting](#troubleshooting)
-
----
-
-## Prerequisites
-
-### Software Requirements
-
-| Software | Version | Purpose |
-|----------|---------|---------|
-| Python | 3.10+ | Core pipeline |
-| R | 4.0+ | Multilevel models |
-| Git | 2.0+ | Version control |
-| pip | 21.0+ | Package management |
-
-### API Keys (Optional)
-
-For data collection from scratch:
-- GovInfo API key: https://api.govinfo.gov/docs/
-- Congress.gov API key: https://api.congress.gov/
-
----
-
-## Environment Setup
-
-### Step 1: Clone the Repository
+## Setup
 
 ```bash
 git clone https://github.com/kmazurek95/ThesisPipelineRework.git
 cd ThesisPipelineRework
-```
-
-### Step 2: Create Python Virtual Environment
-
-```bash
-# Create environment
-python -m venv .venv
-
-# Activate (Linux/Mac)
-source .venv/bin/activate
-
-# Activate (Windows)
-.venv\Scripts\activate
-```
-
-### Step 3: Install Python Dependencies
-
-```bash
-pip install --upgrade pip
+python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### Step 4: Install R Dependencies (Optional)
-
-For multilevel model analysis:
-
-```bash
-cd R_analysis
-Rscript -e "install.packages(c('tidyverse', 'lme4', 'broom.mixed', 'sjPlot', 'performance', 'knitr', 'rmarkdown'))"
-```
-
-Or use the requirements file:
+For R analysis, install the required packages:
 
 ```r
-# In R console
-packages <- readLines("requirements-r.txt")
-packages <- packages[!grepl("^#", packages) & packages != ""]
-install.packages(packages)
+install.packages(c('tidyverse', 'lme4', 'broom.mixed', 'sjPlot', 'performance', 'knitr', 'rmarkdown'))
 ```
 
-### Step 5: Verify Installation
+Verify the installation with `pytest tests/ -v` and `python scripts/validate_data.py`.
+
+## Reproducing the analysis (recommended path)
+
+The repository includes pre-processed output data in `data/output/`. The mention-level file is gzip compressed (`level1.csv.gz`, ~14MB). The organization, politician, and policy area aggregates are in `level2_org.csv`, `level3_politician.csv`, and `level4_policy.csv`. No additional data acquisition is needed.
+
+To generate the analysis outputs:
 
 ```bash
-# Run tests
-pytest tests/ -v
+# Descriptive statistics and figures
+python -m interest_group_analysis.5_analysis.descriptive_analysis
 
-# Check data validation
-python scripts/validate_data.py
+# Regression models and coefficient tables
+python -m interest_group_analysis.5_analysis.regression_analysis
+
+# R multilevel models (from R_analysis/ directory)
+cd R_analysis
+Rscript run_analysis.R
+# Or render the full report:
+Rscript -e "rmarkdown::render('Multilevel_Analysis.Rmd')"
 ```
 
----
+Figures go to `outputs/figures/`, tables to `outputs/tables/`, and R output to `R_analysis/outputs/`.
 
-## Data Acquisition
+The interactive notebooks provide a walkthrough of the classification pipeline (`notebooks/Classification_Analysis.ipynb`) and key findings (`notebooks/Analysis_Showcase.ipynb`).
 
-### Option A: Use Provided Output Data (Recommended)
+## Reproducing from raw data (full pipeline)
 
-The repository includes pre-processed output data in `data/output/`:
-
-| File | Size | Description |
-|------|------|-------------|
-| `level1.csv.gz` | ~14MB | Mention-level data (gzip compressed) |
-| `level2_org.csv` | ~500KB | Organization aggregates |
-| `level3_politician.csv` | ~100KB | Politician aggregates |
-| `level4_policy.csv` | ~10KB | Policy area aggregates |
-
-**No additional data acquisition needed for analysis replication.**
-
-### Option B: Full Pipeline from Scratch
-
-To reproduce from raw data collection:
-
-#### 1. Set Up API Keys
-
-```bash
-# Create .env file
-cp .env.example .env
-
-# Edit with your keys
-# GOVINFO_API_KEY=your_key_here
-# CONGRESS_API_KEY=your_key_here
-```
-
-#### 2. Collect Congressional Record
+If you want to re-collect and process everything from scratch, copy `.env.example` to `.env` and add your API keys, then run the pipeline stages in order:
 
 ```bash
 python -m interest_group_analysis.1_data_collection.govinfo_collector
-```
-
-**Note:** This may take several hours due to API rate limits.
-
-#### 3. Collect Bill/Member Metadata
-
-```bash
 python scripts/collect_bills.py
 python scripts/collect_members.py
-```
-
-#### 4. Process and Integrate
-
-```bash
-# Run full pipeline
 python -m interest_group_analysis.2_data_processing.normalize_speeches
 python -m interest_group_analysis.2_data_processing.extract_mentions
 python -m interest_group_analysis.3_classification.classify_mentions
 python -m interest_group_analysis.4_integration.build_analysis_dataset
 ```
 
----
+The GovInfo collection step takes several hours due to API rate limits. Everything else runs in minutes.
 
-## Running the Pipeline
+## Common issues
 
-### Validate Data Integrity
-
-Before any analysis, verify data integrity:
-
-```bash
-python scripts/validate_data.py
-```
-
-Expected output:
-```
-Validating data/output/level1.csv...
-  ✓ File exists
-  ✓ Required columns present
-  ✓ No duplicate mention IDs
-  ✓ Valid prominence values (0/1)
-  ✓ Valid party values (D/R/I)
-
-All validations passed!
-```
-
-### Generate Analysis Outputs
-
-#### Descriptive Statistics
-
-```bash
-python -m interest_group_analysis.5_analysis.descriptive_analysis
-```
-
-**Outputs:**
-- `outputs/figures/fig1_mentions_over_time.png`
-- `outputs/figures/fig2_org_categories.png`
-- `outputs/tables/summary_statistics.csv`
-
-#### Regression Analysis
-
-```bash
-python -m interest_group_analysis.5_analysis.regression_analysis
-```
-
-**Outputs:**
-- `outputs/figures/fig3_lobbying_prominence.png`
-- `outputs/tables/regression_results.csv`
-- `outputs/tables/model_fit_stats.csv`
-
-#### R Multilevel Models
-
-```bash
-cd R_analysis
-Rscript run_analysis.R
-```
-
-Or render the R Markdown report:
-
-```bash
-Rscript -e "rmarkdown::render('Multilevel_Analysis.Rmd')"
-```
-
-**Outputs:**
-- `R_analysis/Multilevel_Analysis.html`
-- `R_analysis/outputs/coefficient_plot.png`
-- `R_analysis/outputs/model_comparison.csv`
+If you get import errors for `interest_group_analysis`, run `pip install -e .` from the project root. The mention-level data is stored compressed as `level1.csv.gz`, not `level1.csv`. R packages need to be installed separately from Python dependencies.
 
 ---
 
-## Reproducing Results
-
-### Key Tables
-
-#### Table 1: Regression Results
-
-Location: `outputs/tables/regression_results.csv`
-
-Reproduce:
-```bash
-python -m interest_group_analysis.5_analysis.regression_analysis
-```
-
-#### Table 2: Model Fit Statistics
-
-Location: `outputs/tables/model_fit_stats.csv`
-
-Reproduce:
-```bash
-python -m interest_group_analysis.5_analysis.regression_analysis
-```
-
-### Key Figures
-
-#### Figure 1: Mentions Over Time
-
-Location: `outputs/figures/fig1_mentions_over_time.png`
-
-Reproduce:
-```bash
-python -m interest_group_analysis.5_analysis.descriptive_analysis
-```
-
-#### Figure 3: Lobbying vs Prominence
-
-Location: `outputs/figures/fig3_lobbying_prominence.png`
-
-Reproduce:
-```bash
-python -m interest_group_analysis.5_analysis.regression_analysis
-```
-
-### Jupyter Notebooks
-
-#### Classification Analysis
-
-```bash
-jupyter notebook notebooks/Classification_Analysis.ipynb
-```
-
-Run all cells to reproduce:
-- Confusion matrix
-- ROC/PR curves
-- SHAP analysis
-- Error analysis
-
-#### Analysis Showcase
-
-```bash
-jupyter notebook notebooks/Analysis_Showcase.ipynb
-```
-
-Interactive summary of key findings.
-
----
-
-## Troubleshooting
-
-### Common Issues
-
-#### Import Errors
-
-```
-ModuleNotFoundError: No module named 'interest_group_analysis'
-```
-
-**Solution:** Install package in development mode:
-```bash
-pip install -e .
-```
-
-#### Missing Data Files
-
-```
-FileNotFoundError: data/output/level1.csv (or level1.csv.gz)
-```
-
-**Solution:** The mention-level data is stored as `level1.csv.gz` (gzip compressed). Ensure you're in the project root:
-```bash
-cd ThesisPipelineRework
-ls data/output/
-```
-
-#### R Package Errors
-
-```
-Error in library(lme4) : there is no package called 'lme4'
-```
-
-**Solution:** Install R packages:
-```r
-install.packages("lme4")
-```
-
-#### Memory Errors
-
-```
-MemoryError: Unable to allocate array
-```
-
-**Solution:** Process data in chunks or increase available RAM. The full Level 1 dataset requires ~1GB RAM.
-
----
-
-*For methodology details, see [METHODOLOGY.md](METHODOLOGY.md).*
+*See [METHODOLOGY.md](METHODOLOGY.md) for research design and statistical model specifications.*

@@ -132,6 +132,12 @@ model_data <- level1 %>%
   )
 
 cat("Analysis dataset:", nrow(model_data), "observations\n")
+
+# Filter to analytical sample with policy area data
+model_data <- model_data %>%
+  filter(!is.na(issue_area), issue_area != "")
+
+cat("Analytical sample (with issue area):", nrow(model_data), "observations\n")
 ```
 
 ```{r class-distribution}
@@ -189,6 +195,7 @@ m0 <- tryCatch(
 
 # Model summary
 summary(m0)
+gc()
 ```
 
 ## Intraclass Correlation Coefficient (ICC)
@@ -247,6 +254,7 @@ m1 <- tryCatch(
 )
 
 summary(m1)
+gc()
 ```
 
 ```{r model1-coef}
@@ -308,6 +316,7 @@ m2 <- tryCatch(
 )
 
 summary(m2)
+gc()
 ```
 
 ```{r model2-coef}

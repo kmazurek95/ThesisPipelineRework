@@ -2,9 +2,9 @@
 
 Pipeline rebuild of my MSc thesis (University of Amsterdam, 2023). This repo is a ground-up rewrite of the data pipeline with an improved classifier, modular code, and reproducible workflows.
 
-**Original thesis repository:** [MastersThesis_InterestGroupAnalysis](https://github.com/kmazurek95/MastersThesis_InterestGroupAnalysis)
+Original thesis repository: [MastersThesis_InterestGroupAnalysis](https://github.com/kmazurek95/MastersThesis_InterestGroupAnalysis)
 
-**Interactive dashboard:** [Streamlit app](https://thesispipelinerework-emngd3hbxghtkfzbe9secw.streamlit.app/)
+Interactive dashboard: [Streamlit app](https://thesispipelinerework-emngd3hbxghtkfzbe9secw.streamlit.app/)
 
 ## What this project does
 
@@ -23,25 +23,25 @@ Analyzes 53,892 interest group mentions in the 114th and 115th U.S. Congress (20
 
 The prominence classifier distinguishes substantive discussion of an organization from passing references.
 
-- **Model:** Logistic Regression (L2, C=2.0) with TF-IDF features
-- **Performance:** F1 = 0.91, Cohen's kappa = 0.82 (classifier-human agreement on held-out test set)
-- **Training data:** 1,222 manually labeled mentions, coded following Fraussen et al. (2018)
-- **Cross-validation:** Group-aware 5-fold (all mentions of a given org in the same fold)
-- **Threshold:** Optimized on held-out test set (0.558)
+- Model: Logistic Regression (L2, C=2.0) with TF-IDF features
+- Performance: F1 = 0.91, Cohen's kappa = 0.82 (classifier-human agreement on held-out test set)
+- Training data: 1,222 manually labeled mentions, coded following Fraussen et al. (2018)
+- Cross-validation: Group-aware 5-fold (all mentions of a given org in the same fold)
+- Threshold: Optimized on held-out test set (0.558)
 
 ## Statistical models
 
 Three levels of analysis using mixed-effects logistic regression (R/lme4):
 
-- **Mention-level:** Logistic regression with lobbying, party, chamber, org type
-- **Organization-level:** OLS on aggregated prominence rates
-- **Politician-level:** OLS on member-level prominence patterns
+- Mention-level: Logistic regression with lobbying, party, chamber, org type
+- Organization-level: OLS on aggregated prominence rates
+- Politician-level: OLS on member-level prominence patterns
 
 Random effects: Organization ID and Policy Area (crossed). Full model specifications and results in `R_analysis/Multilevel_Analysis.Rmd`.
 
 ## What changed from the original thesis
 
-The original thesis pipeline (SVM classifier, F1 = 0.79) produced ~20,699 mentions. This rebuild produces 53,892 mentions from the same corpus. The difference comes from three sources: character-offset extraction instead of paragraph-level matching, less aggressive early filtering, and a more inclusive acronym policy. Full comparison in `docs/METHODOLOGY.md`.
+The original thesis pipeline (Multinomial Naive Bayes classifier, F1 ≈ 0.73) produced ~20,699 mentions. This rebuild produces 53,892 mentions from the same corpus. The difference comes from three sources: character-offset extraction instead of paragraph-level matching, less aggressive early filtering, and a more inclusive acronym policy. Full comparison in `docs/METHODOLOGY.md`.
 
 ## Data
 

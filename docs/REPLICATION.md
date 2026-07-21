@@ -1,4 +1,4 @@
-# Replication Guide
+# Replication guide
 
 This document explains how to reproduce the analysis. You'll need Python 3.10+ and optionally R 4.0+ for the multilevel models. If you want to re-collect data from scratch (most people won't), you'll also need API keys from GovInfo and Congress.gov.
 

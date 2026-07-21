@@ -1,6 +1,6 @@
-# R Analysis: Multilevel Models
+# R analysis: multilevel models
 
-This directory contains R scripts for **multilevel/mixed-effects regression analysis** of interest group prominence.
+This directory contains R scripts for multilevel/mixed-effects regression analysis of interest group prominence.
 
 ## Why R?
 
@@ -32,14 +32,14 @@ install.packages(c(
 ))
 ```
 
-## Running the Analysis
+## Running the analysis
 
 ### Option 1: In RStudio
 
 1. Open `Multilevel_Analysis.Rmd` in RStudio
 2. Click "Knit" → "Knit to HTML"
 
-### Option 2: Command Line
+### Option 2: Command line
 
 ```bash
 Rscript run_analysis.R
@@ -51,9 +51,9 @@ Rscript run_analysis.R
 rmarkdown::render("Multilevel_Analysis.Rmd", output_dir = "../outputs/reports")
 ```
 
-## Model Specifications
+## Model specifications
 
-### Model Structure
+### Model structure
 
 All models use crossed random effects:
 
@@ -65,11 +65,11 @@ prominence ~ fixed_effects + (1 | org_id) + (1 | issue_area)
 
 | Model | Fixed Effects | Purpose |
 |-------|---------------|---------|
-| **M0** | (intercept only) | Null model for ICC |
-| **M1** | + lobbying, org_type | Organizational effects |
-| **M2** | + party, chamber | Full model with politician effects |
+| M0 | (intercept only) | Null model for ICC |
+| M1 | + lobbying, org_type | Organizational effects |
+| M2 | + party, chamber | Full model with politician effects |
 
-## Expected Outputs
+## Expected outputs
 
 After running the analysis:
 
@@ -91,7 +91,7 @@ outputs/
     └── Multilevel_Analysis.html
 ```
 
-## Key Results
+## Key results
 
 From the full model (M2):
 

@@ -1,8 +1,8 @@
-# Data Directory
+# Data directory
 
 This directory contains all data files for the Interest Group Analysis pipeline.
 
-## Directory Structure
+## Directory structure
 
 ```
 data/
@@ -54,7 +54,7 @@ Final analysis-ready datasets:
 - `issue_salience_long.csv` - Google Trends policy salience data
 - `multi_level_data.csv` - Legacy combined dataset (historical reference)
 
-## Data Flow
+## Data flow
 
 ```
 raw/crec_114/, crec_115/  →  intermediate/normalized_114/, normalized_115/
@@ -66,14 +66,14 @@ raw/crec_114/, crec_115/  →  intermediate/normalized_114/, normalized_115/
                           →  output/level4_policy.csv (aggregated)
 ```
 
-## Regenerating Data
+## Regenerating data
 
-1. **Raw data**: Run `python -m interest_group_analysis.1.data_collection.1.govinfo`
-2. **Normalized**: Run `python -m interest_group_analysis.2.data_processing.1.process_and_normalize`
-3. **Mentions**: Run `python -m interest_group_analysis.2.data_processing.2.mention_extraction`
-4. **Speakers**: Run `python -m interest_group_analysis.2.data_processing.3.attach_speakers`
-5. **Labels**: Run `python -m interest_group_analysis.3.classification.classify_mentions`
-6. **Output**: Run `python -m interest_group_analysis.4_integration.build_analysis_dataset`
+1. Raw data: Run `python -m interest_group_analysis.1.data_collection.1.govinfo`
+2. Normalized: Run `python -m interest_group_analysis.2.data_processing.1.process_and_normalize`
+3. Mentions: Run `python -m interest_group_analysis.2.data_processing.2.mention_extraction`
+4. Speakers: Run `python -m interest_group_analysis.2.data_processing.3.attach_speakers`
+5. Labels: Run `python -m interest_group_analysis.3.classification.classify_mentions`
+6. Output: Run `python -m interest_group_analysis.4_integration.build_analysis_dataset`
 
 ## Notes
 

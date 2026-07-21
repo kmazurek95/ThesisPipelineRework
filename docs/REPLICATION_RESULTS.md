@@ -1,25 +1,25 @@
-# GLMM Replication Results
+# GLMM replication results
 
 Replication of the original thesis GLMM models using the rebuilt pipeline dataset. All models were fit with `lme4::glmer()` using crossed random effects `(1|org_id) + (1|issue_area)` and `nAGQ=0` (Laplace approximation).
 
-**Dataset:** 57,073 rows (53,892 mentions + 3,181 zero-mention organizations) across 5,441 organizations and 18 CAP policy areas.
+Dataset: 57,073 rows (53,892 mentions + 3,181 zero-mention organizations) across 5,441 organizations and 18 CAP policy areas.
 
-**Script:** `scripts/run_glmm_replication.R`
+Script: `scripts/run_glmm_replication.R`
 
 ---
 
-## Model C: Group Characteristics
+## Model C: Group characteristics
 
 | Variable | Thesis OR | Thesis p | Replication OR | Replication p | Direction Match |
 |----------|-----------|----------|----------------|---------------|-----------------|
 | log_lobbying | 1.074 | < 0.001 | 1.06 | 0.003 | Yes |
-| policy_scope | (not tested) | — | 1.07 | 0.03 | — |
-| membership_org | (not tested) | — | 0.746 | 0.046 | — |
+| policy_scope | (not tested) | n/a | 1.07 | 0.03 | n/a |
+| membership_org | (not tested) | n/a | 0.746 | 0.046 | n/a |
 | org_age | 0.998 | 0.22 (ns) | 0.998 | 0.204 (ns) | Yes (both ns) |
 
 Lobbying expenditure remains a significant positive predictor. Organization age remains non-significant in both analyses.
 
-## Model A: Policy Salience
+## Model A: Policy salience
 
 | Variable | Thesis OR | Thesis p | Replication OR | Replication p | Direction Match |
 |----------|-----------|----------|----------------|---------------|-----------------|
@@ -29,7 +29,7 @@ Lobbying expenditure remains a significant positive predictor. Organization age 
 
 High salience continues to suppress prominence. The party effect reverses direction, likely due to dataset construction differences (the replication uses the full rebuilt dataset rather than the thesis subsample).
 
-## Model B: Group-Politician Linkage
+## Model B: Group-politician linkage
 
 | Variable | Thesis OR | Thesis p | Replication OR | Replication p | Direction Match |
 |----------|-----------|----------|----------------|---------------|-----------------|
@@ -41,7 +41,7 @@ High salience continues to suppress prominence. The party effect reverses direct
 
 Policy overlap becomes significant with the larger dataset. Seniority remains a significant negative predictor.
 
-## Variance Decomposition (ICC)
+## Variance decomposition (ICC)
 
 | Component | Thesis | Replication |
 |-----------|--------|-------------|

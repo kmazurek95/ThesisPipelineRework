@@ -43,30 +43,30 @@ library(ggeffects)
 
 # Introduction
 
-## Research Questions
+## Research questions
 
-This analysis examines the determinants of **interest group prominence** in U.S. Congressional floor speeches. Specifically, we ask:
+This analysis examines the determinants of interest group prominence in U.S. Congressional floor speeches. Specifically, we ask:
 
-1. **What organizational characteristics predict prominent mentions?**
+1. What organizational characteristics predict prominent mentions?
    - Does lobbying expenditure increase prominence?
    - Do single-issue groups receive more substantive attention?
 
-2. **How do politician characteristics affect prominence?**
+2. How do politician characteristics affect prominence?
    - Do Democrats and Republicans differ in how they mention groups?
    - Are Senators more likely to give prominent mentions than Representatives?
 
-3. **Why use multilevel models?**
+3. Why use multilevel models?
    - Mentions are nested within organizations and policy areas
    - Observations from the same organization are not independent
    - Random effects capture unobserved heterogeneity
 
-## Data Structure
+## Data structure
 
 Our data has a hierarchical structure:
 
-- **Level 1**: Individual mentions (N ≈ 53,000)
-- **Level 2**: Organizations (N ≈ 2,260)
-- **Cross-classified**: Policy/Issue Areas (N ≈ 21)
+- Level 1: Individual mentions (N ≈ 53,000)
+- Level 2: Organizations (N ≈ 2,260)
+- Cross-classified: Policy/Issue Areas (N ≈ 21)
 
 ```{r data-structure-diagram, echo=FALSE, fig.cap="Hierarchical Data Structure"}
 # Visual representation of the data structure
@@ -90,7 +90,7 @@ cat("
 
 ---
 
-# Data Preparation
+# Data preparation
 
 ```{r load-data}
 # Load the mention-level dataset
@@ -158,11 +158,11 @@ model_data %>%
 
 ---
 
-# Null Model (Empty Model)
+# Null model (empty model)
 
 The null model contains only random intercepts, establishing the baseline variance structure.
 
-## Model Specification
+## Model specification
 
 $$
 \text{logit}(P(\text{Prominent}_i)) = \gamma_{00} + u_{0j[\text{org}]} + v_{0k[\text{issue}]}
@@ -198,7 +198,7 @@ summary(m0)
 gc()
 ```
 
-## Intraclass Correlation Coefficient (ICC)
+## Intraclass correlation coefficient (ICC)
 
 The ICC tells us what proportion of variance in prominence is attributable to clustering.
 
@@ -208,7 +208,7 @@ icc_result <- icc(m0)
 print(icc_result)
 ```
 
-**Interpretation**: An ICC > 0.05 suggests meaningful clustering that justifies multilevel modeling.
+Interpretation: An ICC > 0.05 suggests meaningful clustering that justifies multilevel modeling.
 
 ```{r variance-components}
 # Extract variance components
@@ -229,7 +229,7 @@ vc %>%
 
 ---
 
-# Model 1: Organizational Characteristics
+# Model 1: Organizational characteristics
 
 Adding fixed effects for organizational characteristics: lobbying expenditure and organization type.
 
@@ -284,7 +284,7 @@ m1_coef %>%
 
 ---
 
-# Model 2: Full Model (Organizations + Politicians)
+# Model 2: Full model (organizations + politicians)
 
 Adding politician-level characteristics: party affiliation and chamber.
 
@@ -345,9 +345,9 @@ m2_coef %>%
 
 ---
 
-# Model Comparison
+# Model comparison
 
-## Fit Statistics
+## Fit statistics
 
 ```{r model-comparison}
 # Compare models
@@ -367,7 +367,7 @@ comparison %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
-## Likelihood Ratio Tests
+## Likelihood ratio tests
 
 ```{r lrt}
 # LRT: M0 vs M1
@@ -383,9 +383,9 @@ print(lrt_12)
 
 ---
 
-# Coefficient Visualization
+# Coefficient visualization
 
-## Forest Plot: Full Model
+## Forest plot: full model
 
 ```{r forest-plot, fig.width=10, fig.height=6}
 # Create forest plot using sjPlot
@@ -402,7 +402,7 @@ plot_model(m2,
 ggsave("../outputs/figures/R_model2_forest_plot.png", width = 10, height = 6, dpi = 150)
 ```
 
-## Coefficient Comparison Across Models
+## Coefficient comparison across models
 
 ```{r coef-comparison, fig.width=12, fig.height=6}
 # Combine coefficients from all models
@@ -448,9 +448,9 @@ ggsave("../outputs/figures/R_coefficient_comparison.png", width = 12, height = 6
 
 ---
 
-# Predicted Probabilities
+# Predicted probabilities
 
-## Effect of Lobbying
+## Effect of lobbying
 
 ```{r lobbying-effect, fig.width=10, fig.height=6}
 # Predicted probabilities for lobbying effect
@@ -467,7 +467,7 @@ plot(pred_lobbying) +
 ggsave("../outputs/figures/R_lobbying_effect.png", width = 10, height = 6, dpi = 150)
 ```
 
-## Effect of Party and Chamber
+## Effect of party and chamber
 
 ```{r party-chamber-effect, fig.width=10, fig.height=6}
 # Predicted probabilities by party and chamber
@@ -487,16 +487,16 @@ ggsave("../outputs/figures/R_party_chamber_effect.png", width = 10, height = 6, 
 
 ---
 
-# Model Diagnostics
+# Model diagnostics
 
-## Residual Analysis
+## Residual analysis
 
 ```{r diagnostics, fig.width=12, fig.height=8}
 # Check model performance
 check_result <- check_model(m2, check = c("reqq", "pp_check"))
 ```
 
-## Random Effects Distribution
+## Random effects distribution
 
 ```{r random-effects}
 # Extract random effects
@@ -514,9 +514,9 @@ par(mfrow = c(1, 1))
 
 ---
 
-# Summary and Conclusions
+# Summary and conclusions
 
-## Key Findings
+## Key findings
 
 ```{r summary-table}
 # Create publication-ready summary table
@@ -531,21 +531,21 @@ tab_model(
 )
 ```
 
-### Main Results
+### Main results
 
 | Finding | Coefficient | Odds Ratio | Interpretation |
 |---------|-------------|------------|----------------|
-| **Lobbying (log)** | `r tryCatch(round(fixef(m2)["log_lobbying"], 3), error = function(e) "—")` | `r tryCatch(round(exp(fixef(m2)["log_lobbying"]), 2), error = function(e) "—")` | Higher lobbying expenditure → higher odds of prominence |
-| **Single-Issue Org** | `r tryCatch(round(fixef(m2)["is_single_issue"], 3), error = function(e) "—")` | `r tryCatch(round(exp(fixef(m2)["is_single_issue"]), 2), error = function(e) "—")` | Single-issue groups have different prominence odds |
-| **Democrat Speaker** | `r tryCatch(round(fixef(m2)["partyD"], 3), error = function(e) "—")` | `r tryCatch(round(exp(fixef(m2)["partyD"]), 2), error = function(e) "—")` | Democrats differ from Republicans in prominence mentions |
-| **Senate** | `r tryCatch(round(fixef(m2)["chamberSenate"], 3), error = function(e) "—")` | `r tryCatch(round(exp(fixef(m2)["chamberSenate"]), 2), error = function(e) "—")` | Senators differ from House members in prominence mentions |
+| Lobbying (log) | `r tryCatch(round(fixef(m2)["log_lobbying"], 3), error = function(e) "n/a")` | `r tryCatch(round(exp(fixef(m2)["log_lobbying"]), 2), error = function(e) "n/a")` | Higher lobbying expenditure → higher odds of prominence |
+| Single-Issue Org | `r tryCatch(round(fixef(m2)["is_single_issue"], 3), error = function(e) "n/a")` | `r tryCatch(round(exp(fixef(m2)["is_single_issue"]), 2), error = function(e) "n/a")` | Single-issue groups have different prominence odds |
+| Democrat Speaker | `r tryCatch(round(fixef(m2)["partyD"], 3), error = function(e) "n/a")` | `r tryCatch(round(exp(fixef(m2)["partyD"]), 2), error = function(e) "n/a")` | Democrats differ from Republicans in prominence mentions |
+| Senate | `r tryCatch(round(fixef(m2)["chamberSenate"], 3), error = function(e) "n/a")` | `r tryCatch(round(exp(fixef(m2)["chamberSenate"]), 2), error = function(e) "n/a")` | Senators differ from House members in prominence mentions |
 
-### Theoretical Implications
+### Theoretical implications
 
-1. **Resource Theory Supported**: Lobbying expenditure predicts prominence
-2. **Specialization Matters**: Single-issue groups receive more substantive attention
-3. **Partisan Differences**: Democrats mention groups differently than Republicans
-4. **Institutional Effects**: Senate provides more substantive coverage
+1. Resource theory supported: Lobbying expenditure predicts prominence
+2. Specialization matters: Single-issue groups receive more substantive attention
+3. Partisan differences: Democrats mention groups differently than Republicans
+4. Institutional effects: Senate provides more substantive coverage
 
 ### Limitations
 
@@ -555,7 +555,7 @@ tab_model(
 
 ---
 
-# Session Info
+# Session info
 
 ```{r session-info}
 sessionInfo()
@@ -563,7 +563,7 @@ sessionInfo()
 
 ---
 
-# Save Results
+# Save results
 
 ```{r save-results}
 # Save model objects

@@ -1,26 +1,26 @@
 # Beyond Policy Influence: A Deeper Dive into the Factors Driving Advocacy Group Prominence
 
-**Kaleb Mazurek** | MSc Social Science Research, University of Amsterdam | June 2023
+Kaleb Mazurek | MSc Social Science Research, University of Amsterdam | June 2023
 
 ---
 
-## What This Study Is About
+## What this study is about
 
-This thesis examines why certain advocacy organizations receive disproportionate attention from U.S. legislators during Congressional debates. Rather than trying to measure policy influence directly (a notoriously difficult thing to operationalize), I focus on **prominence**: the degree to which politicians invoke an organization as a credible voice or useful resource during floor speeches. Prominence is not the same as lobbying success or policy access. It reflects a softer form of power, one where an organization becomes the default reference point for a constituency or issue area in the eyes of policymakers.
+This thesis examines why certain advocacy organizations receive disproportionate attention from U.S. legislators during Congressional debates. Rather than trying to measure policy influence directly (a notoriously difficult thing to operationalize), I focus on prominence: the degree to which politicians invoke an organization as a credible voice or useful resource during floor speeches. Prominence is not the same as lobbying success or policy access. It reflects a softer form of power, one where an organization becomes the default reference point for a constituency or issue area in the eyes of policymakers.
 
 The central questions are:
 1. Why are some groups given prominence by some politicians and not others?
 2. Why are some groups given more prominence on certain issues by some politicians than others?
 
-## Data and Methods
+## Data and methods
 
 The analysis collects nearly 78,000 Congressional Record documents from the 114th and 115th Congresses via the GovInfo API, then searches them for mentions of 5,447 national advocacy organizations drawn from the Washington Representative Study. This produced roughly 24,000 unique mention passages.
 
-To distinguish prominent mentions from routine ones, I trained a supervised machine learning classifier (SVM with count vectorization) on 1,000 hand-coded passages. The coding scheme follows Fraussen (2018): a mention is prominent if a group's views are adopted by a policymaker, if the group is described as having a significant role, if it is used as a rhetorical resource, or if the speaker conveys the group's importance to the policy process. The classifier achieved an accuracy of ~81%, an F1-score of 0.79 for prominent mentions, and an ROC AUC of 0.72.
+To distinguish prominent mentions from routine ones, I trained a supervised machine learning classifier (Multinomial Naive Bayes with TF-IDF features and SMOTE) on 1,000 hand-coded passages. The coding scheme follows Fraussen (2018): a mention is prominent if a group's views are adopted by a policymaker, if the group is described as having a significant role, if it is used as a rhetorical resource, or if the speaker conveys the group's importance to the policy process. The classifier achieved an F1-score of ≈ 0.73 and an ROC AUC of ≈ 0.72. (The thesis text calls this an SVM with count vectorization; the deployed model was Multinomial Naive Bayes with TF-IDF. Corrected here.)
 
 I then used generalized linear mixed-effects models (binomial family) with random intercepts for organization and issue area to test hypotheses about what drives prominence. The three-level structure (mention, interest group, issue area) accounts for the fact that a group's likelihood of being afforded prominence varies depending on both the organization itself and the policy context.
 
-## Key Findings
+## Key findings
 
 ### The landscape is heavily skewed
 
@@ -46,13 +46,13 @@ The most surprising finding concerned lobbying. I hypothesized that reliance on 
 
 The results for politician-specific variables were largely null or ran counter to expectations:
 
-- **Seniority** had a small but significant *negative* effect on affording prominence (OR = 0.98, p < 0.001). More senior politicians were slightly less likely to prominently invoke interest groups, which contradicts the intuition that longer-serving members would have more established relationships with advocacy organizations.
-- **Term status** (whether a politician was approaching re-election) showed a weakly positive effect that did not reach conventional significance (p = 0.07 for year before term end).
-- **Bills sponsored** had essentially no effect (OR = 1.001, p = 0.47).
-- **Issue overlap** between the politician's policy domain and the organization's domain was positive but not significant (p = 0.15).
-- **Party affiliation**: Republicans were slightly less likely to afford prominence than Democrats (OR = 0.89, p = 0.047).
+- Seniority had a small but significant *negative* effect on affording prominence (OR = 0.98, p < 0.001). More senior politicians were slightly less likely to prominently invoke interest groups, which contradicts the intuition that longer-serving members would have more established relationships with advocacy organizations.
+- Term status (whether a politician was approaching re-election) showed a weakly positive effect that did not reach conventional significance (p = 0.07 for year before term end).
+- Bills sponsored had essentially no effect (OR = 1.001, p = 0.47).
+- Issue overlap between the politician's policy domain and the organization's domain was positive but not significant (p = 0.15).
+- Party affiliation: Republicans were slightly less likely to afford prominence than Democrats (OR = 0.89, p = 0.047).
 
-## What This Means
+## What this means
 
 The overall picture is that prominence in legislative debate is driven more by organizational positioning and the structure of the policy environment than by the characteristics of individual politicians. The finding on external lobbyists is particularly noteworthy because it contradicts the theoretical expectation and suggests that professional advocacy infrastructure matters more for this form of success than internal organizational qualities like age or membership base.
 
@@ -65,7 +65,7 @@ A few important caveats:
 - The Washington Representative Study data is current only to 2011, meaning some organizational characteristics (especially lobbying expenditure) may not reflect the situation during the 114th-115th Congresses.
 - The Google Trends-based salience measure is an indirect proxy for public attention, not a direct measure of public priorities. It is susceptible to short-term spikes from media events.
 - About a third of observations could not be mapped to a policy area using the available committee and bill metadata, and were dropped from the analysis. While these appear to be randomly distributed, the data loss is not trivial.
-- The classifier, while performing reasonably well, has an F1-score of 0.65 for non-prominent mentions, meaning it is better at identifying prominence than at ruling it out. Misclassification will introduce some noise into the dependent variable.
+- The classifier is imperfect and will introduce some misclassification noise into the dependent variable, as any supervised labeling step does.
 
 ## References
 

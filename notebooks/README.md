@@ -1,6 +1,6 @@
 # Notebooks
 
-## Core Analysis
+## Core analysis
 
 - `Analysis_Showcase.ipynb` - Executive summary: regression models, key visualizations, and findings across all four data levels
 - `Classification_Analysis.ipynb` - ML classifier deep-dive: EDA, model comparison (NB/SVM/RF/LR), SHAP analysis, threshold optimization
@@ -17,7 +17,7 @@
 - `diagnostics/validate_partial_columns.ipynb` - Deep dive on salience and bills_referenced columns
 - `diagnostics/policy_area_diagnostic.ipynb` - Policy area coverage analysis (26.7% committee-based)
 
-## R Analysis
+## R analysis
 
 - `../scripts/run_glmm_replication.R` - GLMM replication of three legacy thesis models (A, B, C) on revamp full-sample dataset
 - `../R_analysis/Multilevel_Analysis.Rmd` - Mixed-effects regression with lme4: empty model (ICC), issue salience model, politician characteristics, organizational characteristics

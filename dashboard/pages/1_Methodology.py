@@ -55,8 +55,10 @@ comparison = load_classifier_comparison()
 st.markdown(
     "Binary classifier distinguishing **prominent** mentions (substantive policy "
     "discussion of an interest group) from **passing** mentions (roll-call lists, "
-    "ceremonial references). Trained on 1,222 hand-labeled examples with "
-    "stratified 5-fold cross-validation."
+    "ceremonial references). Built from 1,222 hand-labeled examples, split "
+    "group-aware by organization into 1,030 training and 192 test examples, "
+    "with group-aware 5-fold cross-validation (GroupKFold by `org_id`) used "
+    "for model selection."
 )
 
 # Metrics cards
@@ -66,6 +68,11 @@ if metrics:
     mc2.metric("Precision", f"{metrics.get('Precision', 0):.3f}")
     mc3.metric("Recall", f"{metrics.get('Recall', 0):.3f}")
     mc4.metric("ROC-AUC", f"{metrics.get('ROC-AUC', 0):.3f}")
+    st.caption(
+        "Held-out test set (n=192), after tuning the decision threshold to 0.558 "
+        "on that same test set — so these are optimistic. Group-aware 5-fold CV "
+        "gives F1 = 0.672 ± 0.061, which is the honest generalization estimate."
+    )
 
 # Model comparison table
 if not comparison.empty:
@@ -74,7 +81,10 @@ if not comparison.empty:
     for col in ['F1', 'Precision', 'Recall', 'ROC-AUC']:
         display[col] = display[col].apply(lambda x: f"{x:.3f}")
     st.dataframe(display, use_container_width=True, hide_index=True)
-    st.caption("Logistic Regression selected for best F1 and interpretability.")
+    st.caption(
+        "Held-out test set at the default 0.5 threshold (not cross-validation). "
+        "Logistic Regression selected for best F1 and interpretability."
+    )
 
 # Classifier figures
 st.subheader("Diagnostic Plots")

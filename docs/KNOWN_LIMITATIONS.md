@@ -77,6 +77,8 @@ Precision gap on prominent class (0.87 vs. 0.95). The classifier is more likely 
 
 CV-to-test gap. The best cross-validation average precision was 0.76, but the test F1 was 0.91. This gap is partly explained by threshold optimization on the test set (threshold = 0.558 instead of default 0.5). While the train/test split is proper (group-aware holdout), the threshold was tuned on the test data, which could be considered a mild form of overfitting to the evaluation set.
 
+Scored on F1, cross-validation gives group-aware (GroupKFold by `org_id`) F1 = 0.672 ± 0.061 against a leaky, groups-ignored 0.694 ± 0.025. The 0.672 is the honest generalization estimate — what to expect on organizations the model has not seen — and it sits well below the 0.91 threshold-tuned test figure. Quote 0.672 when the question is generalization; quote 0.91 only with the tuning caveat attached. Both are computed in `notebooks/Classification_Analysis.ipynb`.
+
 Context dependency. The classifier relies on paragraph context (roughly 7 sentences). Very short granules or mentions near the beginning/end of a document may have truncated context, which could degrade performance in ways not captured by the test set.
 
 ### Future directions
